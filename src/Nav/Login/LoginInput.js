@@ -1,8 +1,8 @@
-import InvalidData from "./Invalid";
-import "../../styles/LoginStyles.css";
-import Main from "../section/Main";
-import Nav from "./Nav";
-import Footer from "../section/Footer";
+import InvalidData from "../Login/Invalid";
+import "../Login/LoginStyles.css";
+import Main from "../../mainPage/components/Main";
+import Nav from "../../mainPage/components/Nav";
+import Footer from "../../mainPage/components/Footer";
 import { Link } from "react-router-dom";
 
 

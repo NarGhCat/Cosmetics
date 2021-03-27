@@ -1,7 +1,7 @@
-import "../../styles/styles.css";
-import faceLogo from "../../Pics/icons/facebook.png";
-import instaLogo from "../../Pics/icons/instagram.png";
-import youtubeLogo from "../../Pics/icons/youtube.png";
+import "../../styles.css";
+import faceLogo from "../../Pics/facebook.png";
+import instaLogo from "../../Pics/instagram.png";
+import youtubeLogo from "../../Pics/youtube.png";
 
 function Footer() {
   return (
