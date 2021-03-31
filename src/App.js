@@ -83,7 +83,9 @@ export default function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
+      
       </Router>
+      <div>asdasddrrdrdrdrdrd</div>
     </>
   );
 }
