@@ -1,10 +1,10 @@
-import '../../styles/navModules.css'
-import React, { useState } from 'react'
-import addUserIcon from '../../Pics/icons/addUser.png'
-import { BrowserRouter as  Switch, Route, Link } from "react-router-dom";
-import Login from './Login'
-import Signup from './Signup';
-import { auth, db } from '../../index'
+import "../../styles/navModules.css";
+import React, { useState } from "react";
+import addUserIcon from "../../Pics/icons/addUser.png";
+import { BrowserRouter as Switch, Route, Link } from "react-router-dom";
+import Login from "./Login";
+import Signup from "./Signup";
+import { auth, db } from "../../index";
 
 const Menumodules = (props) => {
   let user = auth.currentUser;
@@ -57,15 +57,26 @@ const Menumodules = (props) => {
             </span>
           </div>
         </div>
+        <div className="profile-dropdown-logout">
+          <span
+            onClick={() => {
+              auth.signOut();
+              window.location.reload();
+            }}
+            className="profile-dropdown-logout-button"
+          >
+            LogOut
+          </span>
+        </div>
       </div>
     );
   } else {
-    manuUserSeting = (
+    navUserSetting = (
       <div
-        style={{ display: props.changeProfileDisplay }}
+        style={{ display: changeProfileDisplay ? "block" : "none" }}
         className="profile-dropdown"
       >
-        <div className="profile-dropdown-contant">
+        <div className="profile-dropdown-content">
           <div className="navbar-loginButtonLink">
             <Link id="loginButtonLink" to="/login">
               Login
@@ -83,18 +94,15 @@ const Menumodules = (props) => {
       </div>
     );
   }
+
   return (
     <>
       <div
-        onClick={props.handleToggle}
-        style={{ display: props.changeProfileDisplay }}
+        onClick={handleToggle}
+        style={{ display: changeProfileDisplay ? "block" : "none" }}
         className="close-dropDown"
       ></div>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-      </Switch>
-      {manuUserSeting}
+      {navUserSetting}
     </>
   );
 };

@@ -6,13 +6,13 @@ import { db, auth } from '../../index'
 import { useHistory } from "react-router-dom";
 const Signup = () => {
     const history = useHistory()
-    const [choosen, setChoose] = useState(unKnown)
+    const [chosen, setChoose] = useState(unKnown)
     const [values, setValues] = useState({
         username: "",
         email: "",
         password: "",
         errorMessage: "",
-        errorCode:'',
+        errorCode: '',
         sizeErrorMessage: ""
     });
     const generatePreviewImgUrl = (file, callback) => {
@@ -32,12 +32,11 @@ const Signup = () => {
             generatePreviewImgUrl(file, previewImgUrl => {
                 setChoose({ previewImgUrl })
             })
-
         }
         setValues(inputChange)
     }
 
-    const handleinpChange = (e) => {
+    const handleInpChange = (e) => {
         if (e.target.type === 'text') {
             inputChange.username = e.target.value
         } else if (e.target.type === 'password') {
@@ -57,8 +56,8 @@ const Signup = () => {
                     // uid: user.uid,
                     username: inputChange.username,
                     email: inputChange.email,
-                    image: (choosen.previewImgUrl ? choosen.previewImgUrl : unKnown),
-                    bag:[]
+                    image: (chosen.previewImgUrl ? chosen.previewImgUrl : unKnown),
+                    bag: []
                 })
                     .then((docRef) => {
                         inputChange.errorMessage = '';
@@ -75,8 +74,6 @@ const Signup = () => {
                 inputChange.errorCode = error.code;
                 setValues(inputChange)
             });
-
-
     }
     return (
         <>
@@ -89,39 +86,38 @@ const Signup = () => {
                     </div>
                     <div className='login-form'>
                         <div className='form'>
-                            <div className='choosen-img'>
-                                <div className='choosen-img-content'>
-                                    <img src={(choosen.previewImgUrl ? choosen.previewImgUrl : unKnown)} alt='user-img' />
-
+                            <div className='chosen-img'>
+                                <div className='chosen-img-content'>
+                                    <img src={(chosen.previewImgUrl ? chosen.previewImgUrl : unKnown)} alt='user-img' />
                                 </div>
-                                <span className='error-meassage'>{(values.sizeErrorMessage ? values.sizeErrorMessage : '')}</span>
+                                <span className='error-massage'>{(values.sizeErrorMessage ? values.sizeErrorMessage : '')}</span>
                             </div>
                             <form onSubmit={handleSignUp}>
-                                <input type="file" accept=".jpg, .jpeg, .png" onChange={handleImgChange} id="myuniqueid" />
-                                <label htmlFor="myuniqueid">Choose image</label>
+                                <input type="file" accept=".jpg, .jpeg, .png" onChange={handleImgChange} id="userImgInp" />
+                                <label htmlFor="userImgInp">Choose image</label>
                                 <input
                                     type='text'
-                                    onChange={handleinpChange}
+                                    onChange={handleInpChange}
                                     value={values.username}
                                     placeholder='username'
                                     required
                                 />
                                 <input
                                     type='email'
-                                    onChange={handleinpChange}
+                                    onChange={handleInpChange}
                                     value={values.email}
                                     placeholder='E-mail'
                                     required
                                 />
                                 <input
                                     type='password'
-                                    onChange={handleinpChange}
+                                    onChange={handleInpChange}
                                     value={values.password}
                                     placeholder='password'
                                     required
                                 />
 
-                                <span className='error-meassage'>{(values.errorMessage ? values.errorMessage : '')}</span>
+                                <span className='error-massage'>{(values.errorMessage ? values.errorMessage : '')}</span>
                                 <input className='submit' type='submit' value='CREATE' />
                             </form>
                         </div>
@@ -135,7 +131,5 @@ const Signup = () => {
             </div>
         </>
     )
-
 }
-
 export default Signup

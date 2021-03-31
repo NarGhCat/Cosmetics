@@ -33,11 +33,10 @@ const Login = (props) => {
         console.log(user.uid)
         db.collection("users").get(user.uid).then((querySnapshot) => {
           // querySnapshot.forEach((doc) => {
-            // if (user.uid === doc.data().uid) {
-              submitNewValues.errorMessage = ' ' 
-              
-              history.push('/')
-            // }
+          // if (user.uid === doc.data().uid) {
+          submitNewValues.errorMessage = ' '
+          history.push('/')
+          // }
           // });
         });
       })
@@ -65,7 +64,7 @@ const Login = (props) => {
               <form onSubmit={handleSubmit}>
                 <input type='email' value={values.email} onChange={handleChange} placeholder='E-mail' required />
                 <input type='password' value={values.password} onChange={handleChange} placeholder='Password' required />
-                <span className='error-meassage'>{(values.errorMessage ? values.errorMessage : '')}</span>
+                <span className='error-massage'>{(values.errorMessage ? values.errorMessage : '')}</span>
                 <input className='submit' type='submit' value='LOG IN' />
               </form>
             </div>

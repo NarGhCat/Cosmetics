@@ -6,6 +6,7 @@
     bottom          : 0;
     height          : 60px;
     background-color: #000000;
+    background: radial-gradient(ellipse farthest-side at center top, #4c003f 0%, rgb(0 0 0) 100%); /*xent*/
 }
 
 .page-navigation .page-container {

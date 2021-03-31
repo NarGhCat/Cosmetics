@@ -19,28 +19,30 @@
     top             : 60px;
     right           : 0;
     background-color: rgba(21, 26, 35);
-    background      : radial-gradient(ellipse farthest-side at center top, #283244 0%, rgba(21, 26, 35) 100%);
-    border          : solid 1px rgba(255, 255, 255, 0.15);
+    background: radial-gradient(ellipse farthest-side at right top, #4c003f 0%, rgb(0 0 0) 100%); /*xent*/
+    /* border          : solid 1px rgba(255, 255, 255, 0.15); */ /*xent*/
     box-shadow      : 0 8px 17px 0 rgba(0, 0, 0, 0.2);
     opacity         : 1;
-    z-index: 10;
+    z-index         : 10;
 }
-.close-dropDown{
-    width: 100%;
-    position: fixed;
-    top: 0;
-    height: 100%;
-    background: #001323ba;
-    z-index: 5;
+
+.close-dropDown {
+    width     : 100%;
+    position  : fixed;
+    top       : 0;
+    height    : 100%;
+    background-color: #4c003f5c; /*xent*/
+    z-index   : 5;
 }
-.profile-dropdown .profile-dropdown-contant .profile-dropdown-info {
+
+.profile-dropdown .profile-dropdown-content .profile-dropdown-info {
     display      : flex;
     align-items  : center;
     border-bottom: solid 1px rgba(255, 255, 255, 0.15);
     padding      : 15px 0 15px 15px;
 }
 
-.profile-dropdown .profile-dropdown-contant .profile-dropdown-info .profile-dropdown-info-img {
+.profile-dropdown .profile-dropdown-content .profile-dropdown-info .profile-dropdown-info-img {
     width        : 40px;
     height       : 40px;
     position     : relative;
@@ -50,7 +52,7 @@
     margin-right : 15px;
 }
 
-.profile-dropdown .profile-dropdown-contant .profile-dropdown-info .profile-dropdown-info-img img {
+.profile-dropdown .profile-dropdown-content .profile-dropdown-info .profile-dropdown-info-img img {
     width    : 100%;
     position : absolute;
     top      : 50%;
@@ -58,7 +60,7 @@
     transform: translate(-50%, -50%);
 }
 
-.profile-dropdown .profile-dropdown-contant .profile-dropdown-info .profile-dropdown-info-name {
+.profile-dropdown .profile-dropdown-content .profile-dropdown-info .profile-dropdown-info-name {
     font-size      : 18px;
     line-height    : 1.4;
     color          : rgba(255, 255, 255, 0.7);
@@ -67,19 +69,19 @@
     cursor         : pointer;
 }
 
-.profile-dropdown .profile-dropdown-contant .profile-dropdown-logout {
+.profile-dropdown .profile-dropdown-content .profile-dropdown-logout {
     padding: 15px;
 }
 
-.profile-dropdown .profile-dropdown-contant .profile-dropdown-logout .profile-dropdown-logout-button {
-    background-color: #006fb2;
+.profile-dropdown .profile-dropdown-content .profile-dropdown-logout .profile-dropdown-logout-button {
+    background-color: #4c003f; /*xent*/
     padding         : 7px 55px;
     border-radius   : 5px;
     cursor          : pointer;
     color           : rgba(255, 255, 255, 0.7);
 }
 
-.profile-dropdown .profile-dropdown-contant .navbar-loginButtonLink {
+.profile-dropdown .profile-dropdown-content .navbar-loginButtonLink {
     border-bottom: solid 1px rgba(255, 255, 255, 0.15);
     padding      : 20px;
 }
@@ -88,11 +90,11 @@
 
 
 
-.profile-dropdown .profile-dropdown-contant .navbar-loginButtonLink a {
+.profile-dropdown .profile-dropdown-content .navbar-loginButtonLink a {
     margin          : auto;
     display         : block;
-    background-color: #006fb2;
-    border          : solid 1px #00aeff;
+    background-color: #4c003f;  /*xent*/
+    border          : solid 1px #770263;  /*xent*/
     font-family     : "Open Sans", Helvetica, Arial, sans-serif;
     font-size       : 16px;
     font-weight     : 400;
@@ -107,17 +109,19 @@
     max-width       : 100%;
     transition      : color 200ms, background-color 200ms, border-color 200ms;
 }
-
-.profile-dropdown .profile-dropdown-contant .navbar-createAccountButtonLink {
+.profile-dropdown .profile-dropdown-content .navbar-loginButtonLink a:hover{
+    background-color: #770263;  /*xent*/
+}
+.profile-dropdown .profile-dropdown-content .navbar-createAccountButtonLink {
     display: flex;
     padding: 0 15px;
 }
 
-.profile-dropdown .profile-dropdown-contant .navbar-createAccountButtonLink span {
+.profile-dropdown .profile-dropdown-content .navbar-createAccountButtonLink span {
     padding-top: 7px;
 }
 
-.profile-dropdown .profile-dropdown-contant .navbar-createAccountButtonLink a {
+.profile-dropdown .profile-dropdown-content .navbar-createAccountButtonLink a {
     display        : flex;
     flex-direction : row;
     align-items    : center;
@@ -128,4 +132,8 @@
     text-decoration: none;
     color          : rgba(255, 255, 255, 0.7);
     cursor         : pointer;
+    transition      : color 200ms, background-color 200ms, border-color 200ms;
+}
+.profile-dropdown .profile-dropdown-content .navbar-createAccountButtonLink a:hover{
+    color:#770263  /*xent*/
 }

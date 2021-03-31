@@ -55,22 +55,22 @@ function Brands() {
         <Route path={`${match.path}/:Burberry`}>
           <Burberry />
         </Route>
-        <Route path="/brands/esteeLauder">
+        <Route path={`${match.path}/:esteeLauder`}>
           <EsteeLauder />
         </Route>
-        <Route path="/brands/dior">
+        <Route path={`${match.path}/:dior`}>
           <Dior />
         </Route>
-        <Route path="/brands/kylie">
+        <Route path={`${match.path}/:kylie`}>
           <Kylie />
         </Route>
-        <Route path="/brands/KKW">
+        <Route path={`${match.path}/:KKW`}>
           <KKW />
         </Route>
-        <Route path="/brands/mac">
+        <Route path={`${match.path}/:mac`}>
           <Mac />
         </Route>
-        <Route path="/brands/clinique">
+        <Route path={`${match.path}/:clinique`}>
           <Clinique />
         </Route>
         <Footer />
@@ -78,8 +78,8 @@ function Brands() {
     </>
   );
 }
-// function Topic() {
-//   let { topicId } = useParams();
-//   return <h3>Requested topic ID: {topicId}</h3>;
+// function Burberryy() {
+//   let { id } = useParams();
+//   return <Burberry/>;
 // }
 export default Brands;
