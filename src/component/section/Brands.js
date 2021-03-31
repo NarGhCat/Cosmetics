@@ -1,4 +1,10 @@
-import { Link, Route, Switch } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Switch,
+  useParams,
+  useRouteMatch
+} from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import Burberry from "../brands/Burberry";
 import Clinique from "../brands/Clinique";
@@ -11,76 +17,69 @@ import Nav from "../menu/Nav";
 import Footer from "../section/Footer";
 
 function Brands() {
+  let match = useRouteMatch();
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/brands/burberry">
+        <Link to={`${match.url}/Burberry`}>
           <div id="Burberry"></div>
         </Link>
-        <Link to="/brands/esteeLauder">
+        <Link to={`${match.url}/EsteeLauder`}>
           <div id="EsteeLauder"></div>
         </Link>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/brands/dior">
+        <Link to={`${match.url}/Dior`}>
           <div id="Dior"></div>
         </Link>
-        <Link to="/brands/kylie">
+        <Link to={`${match.url}/Kylie`}>
           <div id="Kylie"></div>
         </Link>
-        <Link to="/brands/KKW">
+        <Link to={`${match.url}/KKW`}>
           <div id="KKW"></div>
         </Link>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/brands/mac">
+        <Link to={`${match.url}/Mac`}>
           <div id="Mac"></div>
         </Link>
-        <Link to="/brands/clinique">
+        <Link to={`${match.url}/Clinique`}>
           <div id="Clinique"></div>
         </Link>
       </div>
 
-      {/* <Switch>
-        <Route path="/brands/burberry">
-          <Nav />
+      <Switch>
+        <Nav />
+        <Route path={`${match.path}/:Burberry`}>
           <Burberry />
-          <Footer />
         </Route>
         <Route path="/brands/esteeLauder">
-          <Nav />
           <EsteeLauder />
-          <Footer />
         </Route>
         <Route path="/brands/dior">
-          <Nav />
           <Dior />
-          <Footer />
         </Route>
         <Route path="/brands/kylie">
-          <Nav />
           <Kylie />
-          <Footer />
         </Route>
         <Route path="/brands/KKW">
-          <Nav />
           <KKW />
-          <Footer />
         </Route>
         <Route path="/brands/mac">
-          <Nav />
           <Mac />
-          <Footer />
         </Route>
         <Route path="/brands/clinique">
-          <Nav />
           <Clinique />
-          <Footer />
         </Route>
-      </Switch> */}
+        <Footer />
+      </Switch>
     </>
   );
 }
+// function Topic() {
+//   let { topicId } = useParams();
+//   return <h3>Requested topic ID: {topicId}</h3>;
+// }
 export default Brands;
