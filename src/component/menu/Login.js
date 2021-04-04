@@ -12,7 +12,6 @@ const Login = (props) => {
     errorMessage: "",
     errorCode: ''
   });
-  // const dispatch = useDispatch()
   let submitNewValues = { ...values }
 
   const handleChange = (e) => {
@@ -28,16 +27,10 @@ const Login = (props) => {
     e.preventDefault()
     auth.signInWithEmailAndPassword(values.email, values.password)
       .then((userCredential) => {
-        var user = userCredential.user;
-        // 
-        console.log(user.uid)
+        let user = userCredential.user;
         db.collection("users").get(user.uid).then((querySnapshot) => {
-          // querySnapshot.forEach((doc) => {
-          // if (user.uid === doc.data().uid) {
           submitNewValues.errorMessage = ' '
           history.push('/')
-          // }
-          // });
         });
       })
       .catch((error) => {

@@ -1,5 +1,6 @@
 const initialState = {
-  loggedInUser: null
+  loggedInUser: null,
+  brands:[],
+  selectedBrand:''
 };
-
 export default initialState;
