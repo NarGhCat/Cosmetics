@@ -20,7 +20,7 @@ const Brands = () => {
               <Grid container className='main-grid'>
                 <Grid className='image-grid'  >
                   <ButtonBase className='image-btn' >
-                    <Link to={{ pathname: `${path}/${brand.name}`, state: { brand: brand } }}></Link>
+                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }}></Link>
                   </ButtonBase>
                 </Grid>
                 <Grid className='desc-grid'>
@@ -31,7 +31,7 @@ const Brands = () => {
                   </Grid>
                   <Grid className='grid-btn'>
                     {/* <Link to={`${path}/${brand.name}`} className='brand-link'><Button>{brand.label}</Button></Link> */}
-                    <Link to={{ pathname: `${path}/${brand.name}`, state: { brand: brand } }} className='brand-link' > <Button>{brand.label}</Button></Link>
+                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }} className='brand-link' > <Button>{brand.label}</Button></Link>
                   </Grid>
                 </Grid>
               </Grid>
@@ -41,6 +41,7 @@ const Brands = () => {
       </div>
       <Switch>
         <Route path='/brands/:brand_url' component={Brand}/>
+        {/* <Route path='/brands' component={Brands}/> */}
       </Switch>
     </div >
   );
