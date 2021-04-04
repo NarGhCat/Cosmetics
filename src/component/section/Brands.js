@@ -2,6 +2,18 @@ import { Link } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import {makeStyles} from "@material-ui/core"
 
+
+// async function getImgUrl (path) {
+
+//   var gsReference = storage.refFromURL(path);
+  
+//   return gsReference.getDownloadURL()
+//   }
+  
+//   url = await getImgUrl("gs://cosmetics-91882.appspot.com/brandLogos/diorLogo.png.crdownload")
+
+
+
 const useStyles = makeStyles({
   brandLinkLabel : {
     fontSize : ({l}) => l> 5 ? 18 : 15
