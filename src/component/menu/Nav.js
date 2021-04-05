@@ -1,5 +1,5 @@
 import '../../styles/nav.css'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import wLogo from "../../Pics/white-logo.png";
 import NavModules from './NavModules'
@@ -11,10 +11,11 @@ function Nav() {
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
+  const [categoriesSate,setCategoriesSate] = useState([])
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true)
   }
-  auth.onAuthStateChanged(function (user) {
+  auth.onAuthStateChanged( (user) =>{
     if (user) {
       setEmail(user.email)
       setUid(user.uid)
@@ -25,6 +26,10 @@ function Nav() {
       })
     }
   });
+  useEffect(()=>{
+    setCategoriesSate(categories)
+    console.log(categoriesSate)
+  },[categoriesSate])
   return (
     <div className='page-navigation'>
       <div className='page-container'>
@@ -34,9 +39,9 @@ function Nav() {
           <div className='navbar-menu'>
             <Link className='navbar-menu-a' to="/new">New</Link>
             {
-              categories.map((category) => (
-                <Link className='navbar-menu-a' to={`/${category.type}`}>{category.type}</Link>
-
+              categoriesSate.map((category,i) => (
+                <Link className='navbar-menu-a' key={i} to={`/${category.type}`}>{category.type}</Link>
+                // console.log(category)
               ))
             }
             <Link className='navbar-menu-a' to="/brands">Brands</Link>
