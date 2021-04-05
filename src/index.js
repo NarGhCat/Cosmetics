@@ -19,10 +19,8 @@ firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 export const auth = firebase.auth()
-export const storage = firebase.storage()
-// window.auth = auth
-// window.storage = storage
-// window.db = db
+export const storage = firebase.storage();
+
 
 ReactDOM.render(
   <React.StrictMode>

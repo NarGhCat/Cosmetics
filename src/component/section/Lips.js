@@ -51,7 +51,7 @@ const Lips = () => {
     db.collection("items").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         output.push(doc.data().name)
-        console.log(doc.data().brandId.path)  
+        console.log(doc.data().brandId)  
       });
       setOutputOfLips(output)
     });

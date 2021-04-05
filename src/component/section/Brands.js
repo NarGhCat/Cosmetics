@@ -1,50 +1,48 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
-import {makeStyles} from "@material-ui/core"
-
-
-// async function getImgUrl (path) {
-
-//   var gsReference = storage.refFromURL(path);
-  
-//   return gsReference.getDownloadURL()
-//   }
-  
-//   url = await getImgUrl("gs://cosmetics-91882.appspot.com/brandLogos/diorLogo.png.crdownload")
-
-
-
-const useStyles = makeStyles({
-  brandLinkLabel : {
-    fontSize : ({l}) => l> 5 ? 18 : 15
-  }
-}) 
+import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core';
+import { useDispatch } from 'react-redux'
+import Button from '../shared/Button'
+import Brand from "./Brand"
+import { SELECTED_BRAND } from '../../reducer/reducer'
+import store from '../../reducer/indexStore'
 const Brands = () => {
-   // brands is an array of all brands 
-    // const brands = useSelector(selectAllBrands)
-   const brands = ["Dior", "Chanel"]
-  const classes = useStyles({l : brands.length})
+  const brands = store.getState().brands
+  const { path, url } = useRouteMatch()
   return (
-    <>
-      {brands.map(brand => (
-        <Link to={`/brand/${brand}`}><div className={classes.brandLinkLabel}>{brand}</div></Link>
-      ))}
+    <div className='brands-main-content'>
+      <div className='brands-content'>
+        {brands.map((brand, i) => (
 
-      {/* <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to='/brand/Burberry'><div id="Burberry"></div></Link>
-        <Link to='/brand/EsteeLauder'><div id="EsteeLauder"></div></Link>
+          <div key={i} className='root'>
+            <Paper className='paper'>
+              <Grid container className='main-grid'>
+                <Grid className='image-grid'  >
+                  <ButtonBase className='image-btn' >
+                    <Link to={{ pathname: `${path}/${brand.name}`, state: { brand: brand } }}></Link>
+                  </ButtonBase>
+                </Grid>
+                <Grid className='desc-grid'>
+                  <Grid className='typo-grid'>
+                    <Typography className='description' variant="subtitle1">
+                      {brand.description}
+                    </Typography>
+                  </Grid>
+                  <Grid className='grid-btn'>
+                    {/* <Link to={`${path}/${brand.name}`} className='brand-link'><Button>{brand.label}</Button></Link> */}
+                    <Link to={{ pathname: `${path}/${brand.name}`, state: { brand: brand } }} className='brand-link' > <Button>{brand.label}</Button></Link>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Paper>
+          </div>
+        ))}
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to='/brand/Dior'><div id="Dior"></div></Link>
-        <Link to='/brand/Kylie'><div id="Kylie"></div></Link>
-        <Link to='/brand/KKW>'><div id="KKW"></div></Link>
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to='/brand/Mac'><div id="Mac"></div></Link>
-        <Link to='/brand/Clinique'><div id="Clinique"></div></Link>
-      </div> */}
-    </>
+      <Switch>
+        <Route path='/brands/:brand_url' component={Brand}/>
+      </Switch>
+    </div >
   );
 }
 export default Brands;
-
