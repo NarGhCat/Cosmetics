@@ -3,8 +3,9 @@ import faceLogo from "../../Pics/icons/facebook.png";
 import instaLogo from "../../Pics/icons/instagram.png";
 import youtubeLogo from "../../Pics/icons/youtube.png";
 import { Link } from "react-router-dom";
-
+import store from '../../reducer/indexStore'
 function Footer() {
+  const brands = store.getState().brands
   return (
     <footer style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ margin: "50px 150px 50px 150px" }}>

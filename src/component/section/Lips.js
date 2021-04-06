@@ -51,11 +51,22 @@ const Lips = () => {
     db.collection("items").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         output.push(doc.data().name)
-        console.log(doc.data().brandId)  
+        // console.log(doc.data().brandId)  
       });
       setOutputOfLips(output)
     });
   }, [])
+
+  // async function getImgUrl (path) {
+
+  //   var gsReference = storage.refFromURL(path);
+    
+  //   return gsReference.getDownloadURL()
+  // }
+
+
+  // const urlP = await getImgUrl("gs://cosmetics-91882.appspot.com/brandLogos/kkw-logo.png")
+  // console.log(urlP)
 
   return (
     <div>

@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import wLogo from "../../Pics/white-logo.png";
 import NavModules from './NavModules'
-import { auth,db } from '../../index'
+import { auth, db } from '../../index'
+import store from '../../reducer/indexStore'
 function Nav() {
+  const categories = store.getState().categories
   const [displayNone, setDisplay] = useState(false)
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
@@ -19,7 +21,7 @@ function Nav() {
       db.collection("users").doc(user.uid).get().then((doc) => {
         if (doc.exists) {
           setImg(doc.data().image)
-        } 
+        }
       })
     }
   });
@@ -31,12 +33,12 @@ function Nav() {
           <Link className='navbar-desktop-a' to="/"><img alt='img' src={wLogo} /></Link>
           <div className='navbar-menu'>
             <Link className='navbar-menu-a' to="/new">New</Link>
-            <Link className='navbar-menu-a' to="/lips">Lips</Link>
-            <Link className='navbar-menu-a' to="/face">Face</Link>
-            <Link className='navbar-menu-a' to="/eyes">Eyes</Link>
-            <Link className='navbar-menu-a' to="/brushes">Brushes</Link>
-            <Link className='navbar-menu-a' to="/skin">Skin</Link>
-            <Link className='navbar-menu-a' to="/bestSellers">BEST-SELLERS</Link>
+            {
+              categories.map((category) => (
+                <Link className='navbar-menu-a' to={`/${category.type}`}>{category.type}</Link>
+
+              ))
+            }
             <Link className='navbar-menu-a' to="/brands">Brands</Link>
           </div>
           <div className='profile-items'>
@@ -44,7 +46,7 @@ function Nav() {
 
           </div>
         </div>
-        <NavModules changeProfileDisplay={displayNone} handleToggle={handleToggle} userImg={userImg} email={email} uid={uid}/>
+        <NavModules changeProfileDisplay={displayNone} handleToggle={handleToggle} userImg={userImg} email={email} uid={uid} />
       </div>
 
     </div>

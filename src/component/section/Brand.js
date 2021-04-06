@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link, Switch, Route, useParams, useRouteMatch,useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { db, storage } from '../../index'
@@ -9,15 +9,16 @@ const Brand = (props) => {
     const {url} = useRouteMatch()
     const {brand} = useLocation().state
     const {brand_url} = useParams()
-    // console.log(brands)
-    // console.log(url)
+    const history = useHistory()
     console.log(brand)
-    // console.log(brand_url)
-    db.collection("items").where("brandId", "==", '/brands/'+brand.brandId)
+    console.log(brand_url)
+    db.collection("items").where("brandId", "==",'brands/PG27RdrbiLWQ6trPph34' )
     .get()
     .then((querySnapshot) => {
+        
         querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
+            console.log('uraaa')
+            console.log(doc.id, " => ", doc.data().brandId.path);
         });
     })
     .catch((error) => {
@@ -25,6 +26,7 @@ const Brand = (props) => {
     });
     return (
         <div>
+            <h1>{brand_url}</h1>
             <MediaCard />
         </div>
     )
