@@ -3,9 +3,9 @@ import faceLogo from "../../Pics/icons/facebook.png";
 import instaLogo from "../../Pics/icons/instagram.png";
 import youtubeLogo from "../../Pics/icons/youtube.png";
 import { Link } from "react-router-dom";
-import store from '../../reducer/indexStore'
+import store from "../../reducer/indexStore";
 function Footer() {
-  const brands = store.getState().brands
+  const brands = store.getState().brands;
   return (
     <footer style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ margin: "50px 150px 50px 150px" }}>
@@ -57,7 +57,9 @@ function Footer() {
 
       <div style={{ margin: "50px 150px 50px 150px" }}>
         <h2 style={{ color: "white" }}>ACCOUNT</h2>
-        <li className="footerItem">My Account</li>
+        <Link to="/Signup">
+          <li className="footerItem">My Account</li>
+        </Link>
         <li className="footerItem">Order Status</li>
         <li className="footerItem">My Favourites</li>
       </div>
