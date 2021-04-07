@@ -1,55 +1,94 @@
 
-import React, { useEffect } from 'react'
-import { useParams, useRouteMatch, useLocation } from "react-router-dom";
+import React from 'react'
+import { useParams, useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { db, storage } from '../../index'
-
-import store from '../../reducer/indexStore'
+import { connect } from 'react-redux'
 import Card from '../shared/Card'
 import Button from '../shared/Button'
 import CardMedia from '../shared/CardMedia'
 import Typography from '../shared/Typography'
-import { CardActionArea, CardActions, CardContent } from '@material-ui/core';
+import { CardActionArea, CardActions, CardContent ,makeStyles} from '@material-ui/core';
+const useStyles = makeStyles({
+    brandRoot:{
+        display: 'flex',
+        width: 95+'%',
+        margin: 'auto',
+        justifyContent: 'space-between',
+    },
+    brandItem:{
+        display: 'flex',
+        flexFlow: 'wrap',
+        justifyContent: 'space-between',
+        width: 82+'%',
+        
+    },
+    brandSidebar:{
+        width: 220,
+        background:'radial-gradient(ellipse farthest-side at left top, #a27b9cf5 53%, rgb(255 255 255) 100%)'
+    },
+    brandsSelector:{
+        margin: 10+'px auto',
+        width: 90+'%',
+    },
+    brands:{
+        marginTop: 12
+    },
+    h3:{
+        borderBottom: 1+'px solid black',
+        fontSize: 25,
+    },
+    p:{
+        marginTop: 10,
+        cursor: 'pointer',
+        fontWeight: 600,
+    }
+})
 const Brand = (props) => {
-    const { brands } = store.getState()
+    const brandClasses = useStyles()
+    const { brands, selectedBrand, items } = props
     const { url } = useRouteMatch()
-    const { brand } = useLocation().state
-    const { brand_url } = useParams()
+    const { brandUrl } = useParams()
     const history = useHistory()
-    console.log(brand)
-    console.log(brand_url)
-    db.collection("items").where("brandId", "==", 'brands/PG27RdrbiLWQ6trPph34')
-        .get()
-        .then((querySnapshot) => {
-
-            querySnapshot.forEach((doc) => {
-                console.log('uraaa')
-                console.log(doc.id, " => ", doc.data().brandId.path);
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
     return (
-        <div>
-            <h1>{brand_url}</h1>
-            <Card>
-                <CardActionArea>
-                    <CardMedia />
-                    <CardContent>
-                        <Typography>Dior</Typography>
-                        <Typography>Lorem ipsum .. . .</Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button >    Add to Bag
-                        </Button>
-                    <Button >  Learn More
-                        </Button>
-                </CardActions>
-
-            </Card>
+        <div className={brandClasses.brandRoot}>
+        <div className={brandClasses.brandSidebar}>
+            <div className={brandClasses.brandsSelector}>
+                <h3 className={brandClasses.h3}>Brands</h3>
+                <div className={brandClasses.brands}>
+                    {brands.map((brand,i)=>(
+                        <p key ={i} className={brandClasses.p}>{brand.label}</p>
+                    ))}
+                </div>
+            </div>
+        </div>
+        <div className={brandClasses.brandItem}>
+            {items.map((item,i) => (
+                (selectedBrand.brandId === item.brandId.id?
+                        <Card key={i}>
+                            <Typography>{brandUrl}</Typography>
+                        <CardActionArea>
+                            <CardMedia />
+                            <CardContent>
+                                <Typography>{item.name}</Typography>
+                                <Typography>$ {item.price}</Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Button bgColor='white' labelColor='#4c003f' width='140px' border='none'>    Add to Bag
+                       </Button>
+                            <Button bgColor='white' labelColor='#4c003f' width='140px' border='none'>  Learn More
+                       </Button>
+                        </CardActions>
+                    </Card>:'' )
+            ))}
+        </div>
         </div>
     )
+
 }
-export default Brand
+const mapStateToProps = (state) => ({
+    brands: state.brands,
+    selectedBrand: state.selectedBrand,
+    items: state.items
+})
+export default connect(mapStateToProps)(Brand)

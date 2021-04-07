@@ -22,7 +22,7 @@ import Brand from "./component/section/Brand"
 import { db, storage } from './index'
 // import Brand from "./Brand"
 import { useDispatch } from 'react-redux'
-import { SET_BRANDS, SET_CATEGORY } from './reducer/reducer'
+import { SET_BRANDS, SET_CATEGORY,SET_ITEMS } from './reducer/reducer'
 export default function App() {
   const dispatch = useDispatch()
   let brandState = []
@@ -40,7 +40,7 @@ export default function App() {
       })
     })
   }, [])
-  let categoryState =[]
+  let categoryState = []
   useEffect(() => {
     db.collection("category").get().then((doc) => {
       doc.forEach((category) => {
@@ -55,7 +55,19 @@ export default function App() {
       })
     })
   }, [])
-
+  let itemsState =[]
+  db.collection("items").get().then((querySnapshot) => {
+    querySnapshot.forEach((item) => {
+      itemsState.push({
+        itemId:item.id,
+        ...item.data()
+      })
+    });
+    dispatch({
+        type:SET_ITEMS,
+        payload:itemsState
+      })
+  })
 
   return (
     <>
@@ -71,10 +83,10 @@ export default function App() {
           <Route path="/bestSellers" component={BestSellers} />
           <Route path="/brands" component={Brands} />
           <Route path="/login" component={Login} />
-          <Route path="/Signup" component={Signup} /> 
+          <Route path="/Signup" component={Signup} />
           {/* <Route path='/brands/:brand_url' component={Brand}/>          */}
           <Route exact path="/" component={Main} />
-          <Route exact path="/home" component={Main}> 
+          <Route exact path="/home" component={Main}>
             <Redirect to="/" />
           </Route>
         </Switch>
