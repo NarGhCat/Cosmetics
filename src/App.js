@@ -81,10 +81,10 @@ export default function App() {
           <Route path="/eyes" component={Eyes} />
           <Route path="/brushes" component={Brushes} />
           <Route path="/skin" component={Skin} />
-          <Route path="/brands" component={Brands} />
+          <Route exact path="/brands" component={Brands} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
-          {/* <Route path='/brands/:brand_url' component={Brand}/>          */}
+          <Route path='/brands/:brand_url' component={Brand}/>         
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

@@ -2,44 +2,34 @@ import { useState, useEffect } from 'react'
 import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core';
-import { useDispatch, connect } from 'react-redux'
+import { useDispatch, connect, useSelector } from 'react-redux'
 import Button from '../shared/Button'
 import Brand from "./Brand"
 import { SELECTED_BRAND } from '../../reducer/reducer'
 import store from '../../reducer/indexStore'
 import { storage } from '../..';
+import { selectBrands } from '../../selectors/fierbase';
 const Brands = (props) => {
-  const { brands } = props
+  const brands = useSelector(selectBrands)
   const { path, url } = useRouteMatch()
-  const [logo, setLogo] = useState('')
+  const [logos, setLogos] = useState([])
   const dispatch = useDispatch()
 
   async function getImgUrl(path) {
-
     var gsReference = storage.refFromURL(path);
-
     return gsReference.getDownloadURL()
-
   }
-
-
-
-  const getLogoUrl = (logo) => {
-    // return await getImgUrl("gs://cosmetics-91882.appspot.com/brandLogos/kkw-logo.png")
-    storage.refFromURL(logo).getDownloadURL().then((e) => {
-      // setLogo(e)
-    })
+  const getBrandLogos = async (brands) => {
+    const asd = []
+    brands.forEach(brand => {
+      asd.push(getImgUrl(brand.logo))
+    });
+    const data = await Promise.all(asd)
+    setLogos(data)
   }
-  // useEffect(function getLogoUrl  (logo) {
-  // return await getImgUrl("gs://cosmetics-91882.appspot.com/brandLogos/kkw-logo.png")
-  // storage.refFromURL(logo).getDownloadURL().then((e) => {
-  // setLogo(e)
-  // })
-  // },[] )
-
-  // console.log(getLogoUrl("gs://cosmetics-91882.appspot.com/brandLogos/kkw-logo.png"))
-  // console.log(logo)
-
+  useEffect(() => {
+    getBrandLogos(brands)
+  }, [brands])
 
   return (
     <div className='brands-main-content'>
@@ -51,7 +41,7 @@ const Brands = (props) => {
               <Grid container className='main-grid'>
                 <Grid className='image-grid'  >
                   <ButtonBase className='image-btn' >
-                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }}><img src={getLogoUrl(brand.logo)} /></Link>
+                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }}><img style={{width:20,heigth:20}} src={logos[i]} /></Link>
                   </ButtonBase>
                 </Grid>
                 <Grid className='desc-grid'>
@@ -74,16 +64,13 @@ const Brands = (props) => {
           </div>
         ))}
       </div>
-      <Switch>
-        <Route path='/brands/:brand_url' component={Brand} />
+      {/* <Switch> */}
+        {/* <Route path='/brands/:brand_url' component={Brand} /> */}
         {/* <Route path='/brands' component={Brands}/> */}
-      </Switch>
+      {/* </Switch> */}
     </div >
   );
 }
-const mapStateToProps = (state) => ({
-  brands: state.brands
-})
-export default connect(mapStateToProps)(Brands);
+export default Brands;
 
 
