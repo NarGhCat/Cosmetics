@@ -23,6 +23,7 @@ import { db, storage } from './index'
 // import Brand from "./Brand"
 import { useDispatch } from 'react-redux'
 import { SET_BRANDS, SET_CATEGORY } from './reducer/reducer'
+import Bag from "./component/menu/Bag";
 export default function App() {
   const dispatch = useDispatch()
   let brandState = []
@@ -70,6 +71,7 @@ export default function App() {
           <Route path="/skin" component={Skin} />
           <Route path="/bestSellers" component={BestSellers} />
           <Route path="/brands" component={Brands} />
+          <Route path="/bag" component={Bag} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} /> 
           {/* <Route path='/brands/:brand_url' component={Brand}/>          */}

@@ -16,6 +16,7 @@ const NavModules = (props) => {
         <div className='profile-dropdown-logout'><span onClick={() => { auth.signOut(); window.location.reload() }} className='profile-dropdown-logout-button'>LogOut</span></div>
       </div>
     </div>
+    
   }
   else {
     navUserSetting = <div style={{ display: (changeProfileDisplay ? "block" : "none") }} className="profile-dropdown">
