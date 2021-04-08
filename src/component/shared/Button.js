@@ -2,25 +2,26 @@ import React from 'react'
 import { Button as MaterialButton, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
     button: {
-        border: ({ borderColor }) => borderColor,
-        width:150
+        border: ({ border }) => border,
+        background:({ bgColor }) => bgColor,
+        width:({ width }) => width
 
     },
     buttonLabel: {
-        color: '#4c003f'
+        color: ({ labelColor }) => labelColor
     }
 })
 const Button = (props) => {
     
-    const { borderColor = '2px solid #4c003f',width='150px', classes = {},color='secondary', children, variant = 'outlined', className = '', ...rest } = props
-   const buttonClasses = useStyles({ borderColor })
+    const { border = '2px solid #4c003f', bgColor='#4c003f',labelColor='white', width='150px', classes = {},color='secondary', children, variant = 'outlined', className = '', ...rest } = props
+   const buttonClasses = useStyles({ border ,bgColor,labelColor,width})
     return (
         <MaterialButton
             classes={{
                 label: buttonClasses.buttonLabel,
                 ...classes
             }}
-            color={color}
+            labelColor={labelColor}
             className={`${buttonClasses.button} ${className}`}
             variant={variant}
              {...rest}

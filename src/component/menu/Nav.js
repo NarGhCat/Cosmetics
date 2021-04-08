@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import wLogo from "../../Pics/white-logo.png";
 import NavModules from './NavModules'
 import { auth, db } from '../../index'
-import store from '../../reducer/indexStore'
-function Nav() {
-  const categories = store.getState().categories
+import { connect } from 'react-redux'
+function Nav(props) {
+  const {categories} = props
   const [displayNone, setDisplay] = useState(false)
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
-  const [categoriesSate,setCategoriesSate] = useState([])
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true)
   }
@@ -26,10 +25,6 @@ function Nav() {
       })
     }
   });
-  useEffect(()=>{
-    setCategoriesSate(categories)
-    console.log(categoriesSate)
-  },[categoriesSate])
   return (
     <div className='page-navigation'>
       <div className='page-container'>
@@ -39,7 +34,7 @@ function Nav() {
           <div className='navbar-menu'>
             <Link className='navbar-menu-a' to="/new">New</Link>
             {
-              categoriesSate.map((category,i) => (
+              categories.map((category,i) => (
                 <Link className='navbar-menu-a' key={i} to={`/${category.type}`}>{category.type}</Link>
                 // console.log(category)
               ))
@@ -59,4 +54,7 @@ function Nav() {
 
   )
 }
-export default Nav;
+const mapStateToProps = (state) => ({
+  categories: state.categories
+})
+export default connect(mapStateToProps)(Nav)

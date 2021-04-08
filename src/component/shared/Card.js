@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Card as MaterialCard} from '@material-ui/core';
 const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
+    card: {
+        maxWidth: 300,
         height:400,
         margin:'15px 5px 10px',
         display:'flex',
@@ -26,7 +26,7 @@ const Card = (props) => {
     const cardClasses = useStyles();
 
     return (
-        <MaterialCard className={cardClasses.root}>
+        <MaterialCard className={cardClasses.card}>
             
             {children}
         </MaterialCard>

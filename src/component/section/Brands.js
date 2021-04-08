@@ -2,38 +2,34 @@ import { useState, useEffect } from 'react'
 import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core';
-import { ReactReduxContext, useDispatch } from 'react-redux'
+import { useDispatch, connect, useSelector } from 'react-redux'
 import Button from '../shared/Button'
 import Brand from "./Brand"
 import { SELECTED_BRAND } from '../../reducer/reducer'
 import store from '../../reducer/indexStore'
 import { storage } from '../..';
-const Brands = () => {
-  const brands = store.getState().brands
+import { selectBrands } from '../../selectors/fierbase';
+const Brands = (props) => {
+  const brands = useSelector(selectBrands)
   const { path, url } = useRouteMatch()
-  const [logo, setLogo] = useState(null)
-  
-  async function getImgUrl(path) {
-    
-    var gsReference = storage.refFromURL(path);
-    
-    return gsReference.getDownloadURL()
-    
-  }
-  
-  useEffect(() => {
-    async function  addUrl(logo) {
-      setLogo(await (getImgUrl(logo)))
-      
-      // storage.refFromURL(logo).getDownloadURL().then((e) => {
-      //   setLogo(e)
-      // })
-    }
-  
-    console.log(logo)
-  }, [])
-  
+  const [logos, setLogos] = useState([])
+  const dispatch = useDispatch()
 
+  async function getImgUrl(path) {
+    var gsReference = storage.refFromURL(path);
+    return gsReference.getDownloadURL()
+  }
+  const getBrandLogos = async (brands) => {
+    const asd = []
+    brands.forEach(brand => {
+      asd.push(getImgUrl(brand.logo))
+    });
+    const data = await Promise.all(asd)
+    setLogos(data)
+  }
+  useEffect(() => {
+    getBrandLogos(brands)
+  }, [brands])
 
   return (
     <div className='brands-main-content'>
@@ -46,19 +42,22 @@ const Brands = () => {
               <Grid container className='main-grid'>
                 <Grid className='image-grid'  >
                   <ButtonBase className='image-btn' >
-                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }}><img src={""} /></Link>
+                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }}><img style={{width:310,height:200}} src={logos[i]} /></Link>
                   </ButtonBase>
                 </Grid>
-                {/* {console.log(getLogoUrl(brand.logo))} */}
                 <Grid className='desc-grid'>
+                  <Typography className='description' variant="subtitle1">
+                    {brand.label}
+                  </Typography>
                   <Grid className='typo-grid'>
                     <Typography className='description' variant="subtitle1">
                       {brand.description}
                     </Typography>
                   </Grid>
                   <Grid className='grid-btn'>
-                    {/* <Link to={`${path}/${brand.name}`} className='brand-link'><Button>{brand.label}</Button></Link> */}
-                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }} className='brand-link' > <Button>{brand.label}</Button></Link>
+                    <Link to={`${url}/${brand.name}`} className='brand-link' >
+                      <Button onClick={() => { dispatch({ type: SELECTED_BRAND, payload: brand }) }} value='martin' variant='contained'>{brand.label}</Button>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
@@ -66,10 +65,10 @@ const Brands = () => {
           </div>
         ))}
       </div>
-      <Switch>
-        <Route path='/brands/:brand_url' component={Brand} />
+      {/* <Switch> */}
+        {/* <Route path='/brands/:brand_url' component={Brand} /> */}
         {/* <Route path='/brands' component={Brands}/> */}
-      </Switch>
+      {/* </Switch> */}
     </div >
   );
 }
