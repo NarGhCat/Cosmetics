@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../../styles/bag.css";
 
 const Bag = () => {
-  const [displayNone, setDisplay] = useState(false);
+//   const [displayNone, setDisplay] = useState(false);
+//   const [image, setImage]
 
-  const handleAfterpay = (e) => {
-    setDisplay(displayNone ? false : true);
-  };
+//   const handleAfterpay = (e) => {
+//     setDisplay(displayNone ? false : true);
+//   };
+
+
 
   return (
     <div className="bag-component">
@@ -31,9 +34,9 @@ const Bag = () => {
             <p className="popup-for-afterpay-text">
               Pay in 4 installments on orders $35 - $1000 by{" "}
             </p>
-            <span onClick={handleAfterpay} className="afterpay-info">
-               {(img ? img : "i")}
-            </span>
+            {/* <span onClick={handleAfterpay} className="afterpay-info">
+               {(image ? image : "i")}
+            </span> */}
           </div>
         </div>
       </span>
