@@ -7,7 +7,7 @@ import Button from '../shared/Button'
 import { SELECTED_BRAND } from '../../reducer/reducer'
 import { selectBrands } from '../../selectors/fierbase';
 import {storage} from '../../'
-const Brands = (props) => {
+const Brands = () => {
   const brands = useSelector(selectBrands)
   const { path, url } = useRouteMatch()
   const [logos, setLogos] = useState([])
@@ -28,19 +28,17 @@ const Brands = (props) => {
   useEffect(() => {
     getBrandLogos(brands)
   }, [brands])
-
   return (
     <div className='brands-main-content'>
       <div className='brands-content'>
         {brands.map((brand, i) => (
-
           <div key={i} className='root'>
             {/* {console.log(brand.logo)} */}
             <Paper className='paper'>
               <Grid container className='main-grid'>
                 <Grid className='image-grid'  >
                   <ButtonBase className='image-btn' >
-                    <Link to={{ pathname: `${url}/${brand.name}`, state: { brand: brand } }}><img style={{width:310,height:200}} src={logos[i]} /></Link>
+                    <Link to={`${url}/${brand.name}`}><img style={{width:310,height:200}} src={logos[i]} /></Link>
                   </ButtonBase>
                 </Grid>
                 <Grid className='desc-grid'>

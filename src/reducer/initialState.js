@@ -4,6 +4,7 @@ const initialState = {
   categories:[],
   items:[],
   news:[],
-  selectedBrand:''
+  selectedBrand:'',
+  selectedCategory:''
 };
 export default initialState;

@@ -1,13 +1,19 @@
 import '../../styles/nav.css'
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useRouteMatch} from "react-router-dom";
 import wLogo from "../../Pics/white-logo.png";
 import NavModules from './NavModules'
 import { auth, db } from '../../index'
 import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { SELECTED_CATEGORY } from '../../reducer/reducer'
+import { selectCategories } from '../../selectors/fierbase';
 function Nav(props) {
-  const {categories} = props
+  const categories = useSelector(selectCategories)
+  const dispatch = useDispatch()
+  // const {categories} = props
   const [displayNone, setDisplay] = useState(false)
+  const {  url } = useRouteMatch()
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
@@ -35,7 +41,12 @@ function Nav(props) {
             <Link className='navbar-menu-a' to="/new">New</Link>
             {
               categories.map((category,i) => (
-                <Link className='navbar-menu-a' key={i} to={`/${category.type}`}>{category.type}</Link>
+                <Link 
+                onClick={() => { dispatch({ type: SELECTED_CATEGORY, payload: category }) }}
+                className='navbar-menu-a' 
+                key={i} 
+                to={`/${category.name}`}>
+                  {category.type}</Link>
                 // console.log(category)
               ))
             }
