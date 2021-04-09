@@ -1,77 +1,92 @@
 .page-navigation {
-    position        : fixed;
-    left            : 0;
-    right           : 0;
-    top             : 0;
-    bottom          : 0;
-    height          : 60px;
-    z-index: 100;
-    background-color: #000000;
-    background: radial-gradient(ellipse farthest-side at center top, #4c003f 0%, rgb(0 0 0) 100%); /*xent*/
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 60px;
+  z-index: 100;
+  background-color: #000000;
+  background: radial-gradient(
+    ellipse farthest-side at center top,
+    #4c003f 0%,
+    rgb(0 0 0) 100%
+  ); /*xent*/
 }
 
 .page-navigation .page-container {
-    height  : 60px;
-    position: relative;
+  height: 60px;
+  position: relative;
 }
 
 .page-navigation .page-container .navbar-desktop {
-    height  : 60px;
-    padding : 0 40px;
-    position: relative;
+  height: 60px;
+  padding: 0 40px;
+  position: relative;
 }
 
 .page-navigation .page-container .navbar-desktop .navbar-desktop-a {
-    width       : 100px;
-    display     : inline-block;
-    overflow    : hidden;
-    margin-right: 30px;
+  width: 100px;
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 30px;
 
-    margin-top: 15px;
-    cursor    : pointer;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
 .page-navigation .page-container .navbar-desktop .navbar-desktop-a img {
-    width: 100%;
+  width: 100%;
 }
 
 .page-navigation .page-container .navbar-desktop .navbar-menu {
-    display : inline-block;
-    height  : 60px;
-    position: absolute;
-    top     : 0;
+  display: inline-block;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  text-transform: uppercase;
 }
 
 .page-navigation .page-container .navbar-desktop .navbar-menu .navbar-menu-a,
-.page-navigation .page-container .navbar-desktop .profile-items .profile-items-span {
-    position       : relative;
-    display        : inline;
-    top            : 30%;
-    font-size      : 18px;
-    line-height    : 1.4;
-    color          : rgba(255, 255, 255, 0.7);
-    background     : transparent;
-    white-space    : nowrap;
-    transition     : color 200ms, background-color 200ms, border-color 200ms;
-    margin-right   : 30px;
-    overflow       : inherit;
-    text-decoration: none;
-    cursor         : pointer;
+.page-navigation
+  .page-container
+  .navbar-desktop
+  .profile-items
+  .profile-items-span {
+  position: relative;
+  display: inline;
+  top: 30%;
+  font-size: 18px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  white-space: nowrap;
+  transition: color 200ms, background-color 200ms, border-color 200ms;
+  margin-right: 30px;
+  overflow: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.page-navigation .page-container .navbar-desktop .navbar-menu .navbar-menu-a:hover,
-.page-navigation .page-container .navbar-desktop .profile-items .profile-items-span:hover{
-    opacity: 0.5;
+.page-navigation
+  .page-container
+  .navbar-desktop
+  .navbar-menu
+  .navbar-menu-a:hover,
+.page-navigation
+  .page-container
+  .navbar-desktop
+  .profile-items
+  .profile-items-span:hover {
+  opacity: 0.5;
 }
-
 
 .page-navigation .page-container .navbar-desktop .profile-items {
-    display : inline-block;
-    position: absolute;
-    top     : 0;
-    right   : 0;
-    height  : 60px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 60px;
 }
-
 
 /* .page-navigation .page-container .navbar-modules {} */
