@@ -2,7 +2,6 @@ import '../../styles/nav.css'
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import wLogo from "../../Pics/white-logo.png";
-import bag from "../../Pics/bag.png";
 import NavModules from './NavModules'
 import { auth, db } from '../../index'
 import { connect } from 'react-redux'
@@ -44,13 +43,13 @@ function Nav(props) {
           </div>
           <div className='profile-items'>
             <span onClick={handleToggle} id='profile-items' className='profile-items-span'>{(email ? email : 'My account')} </span>
-           <Link  to="/bag"><img src={bag} className='profile-items-bag'></img></Link>
 
           </div>
         </div>
         <NavModules changeProfileDisplay={displayNone} handleToggle={handleToggle} userImg={userImg} email={email} uid={uid} />
       </div>
 
+      <Link className='navbar-menu-a' to="/bag">Bag</Link>
     </div>
 
   )
