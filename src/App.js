@@ -23,7 +23,7 @@ import { db, storage } from "./index";
 
 import { useDispatch } from 'react-redux'
 import Bag from "./component/menu/Bag";
-import { SET_BRANDS, SET_CATEGORY,SET_ITEMS } from './reducer/reducer'
+import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
 
 export default function App() {
   const dispatch = useDispatch();
@@ -57,18 +57,18 @@ export default function App() {
       })
     })
   }, [])
-  let itemsState =[]
+  let itemsState = []
   db.collection("items").get().then((querySnapshot) => {
     querySnapshot.forEach((item) => {
       itemsState.push({
-        itemId:item.id,
+        itemId: item.id,
         ...item.data()
       })
     });
     dispatch({
-        type:SET_ITEMS,
-        payload:itemsState
-      })
+      type: SET_ITEMS,
+      payload: itemsState
+    })
   })
 
   return (
@@ -86,7 +86,7 @@ export default function App() {
           <Route exact path="/brands" component={Brands} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
-          <Route path='/brands/:brand_url' component={Brand}/>         
+          <Route path='/brands/:brand_url' component={Brand} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

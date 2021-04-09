@@ -4,6 +4,8 @@ export const SET_BRANDS ='SET_BRANDS'
 export const SELECTED_BRAND = 'SELECTED_BRAND'
 export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_ITEMS ='SET_ITEMS'
+
+export const SET_NEWS_ITEMS ='SET_NEWS_ITEMS'
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOGGED_IN_USER : {
@@ -30,6 +32,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload
+      }
+    }case SET_NEWS_ITEMS : {
+      return {
+        ...state,
+        news: action.payload
       }
     }
 

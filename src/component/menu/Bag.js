@@ -32,7 +32,7 @@ const Bag = () => {
               Pay in 4 installments on orders $35 - $1000 by{" "}
             </p>
             <span onClick={handleAfterpay} className="afterpay-info">
-               {(img ? img : "i")}
+               {/* {(img ? img : "i")} */}
             </span>
           </div>
         </div>

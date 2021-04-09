@@ -8,20 +8,20 @@ const useStyles = makeStyles({
 
     },
     buttonLabel: {
-        color: ({ labelColor }) => labelColor
+        color: ({ labelcolor }) => labelcolor
     }
 })
 const Button = (props) => {
     
-    const { border = '2px solid #4c003f', bgColor='#4c003f',labelColor='white', width='150px', classes = {},color='secondary', children, variant = 'outlined', className = '', ...rest } = props
-   const buttonClasses = useStyles({ border ,bgColor,labelColor,width})
+    const { border = '2px solid #4c003f', bgColor='#4c003f',labelcolor='white', width='150px', classes = {},color='secondary', children, variant = 'outlined', className = '', ...rest } = props
+   const buttonClasses = useStyles({ border ,bgColor,labelcolor,width})
     return (
         <MaterialButton
             classes={{
                 label: buttonClasses.buttonLabel,
                 ...classes
             }}
-            labelColor={labelColor}
+            labelcolor={labelcolor}
             className={`${buttonClasses.button} ${className}`}
             variant={variant}
              {...rest}

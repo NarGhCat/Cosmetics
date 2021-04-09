@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 });
 
 const MediaCard = (props) => {
-    const {classes = {}, children,image= {item} ,title='item',  className = '', ...rest } = props
+    const {classes = {}, children, image= {item} ,title='item',  className = '', ...rest } = props
     const cardMediaClasses = useStyles();
     return (
         <MaterialCardMedia
