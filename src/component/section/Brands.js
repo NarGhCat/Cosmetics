@@ -12,8 +12,9 @@ const Brands = () => {
   const { path, url } = useRouteMatch()
   const [logos, setLogos] = useState([])
   const dispatch = useDispatch()
+  
   async function getImgUrl(path) {
-    var gsReference = storage.refFromURL(path);
+    let gsReference = storage.refFromURL(path);
     return gsReference.getDownloadURL()
   }
   const getBrandLogos = async (brands) => {
