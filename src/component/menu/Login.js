@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import pLogo from '../../Pics/pink-logo.png'
 import { useHistory } from "react-router-dom";
 import { db, auth } from '../../index'
+import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
+
 const Login = (props) => {
 
   const history = useHistory()
@@ -49,7 +51,7 @@ const Login = (props) => {
         <div className='login-container'>
           <div className='login-logo'>
             <div className='logo'>
-              <span><img src={pLogo} alt={pLogo} /></span>
+              <Link to='/'><img src={pLogo} alt={pLogo} /></Link>
             </div>
           </div>
           <div className='login-form'>

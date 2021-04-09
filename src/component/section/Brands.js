@@ -2,29 +2,28 @@ import { useState, useEffect } from 'react'
 import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core';
-import { useDispatch, connect, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../shared/Button'
-import Brand from "./Brand"
 import { SELECTED_BRAND } from '../../reducer/reducer'
-import store from '../../reducer/indexStore'
-import { storage } from '../..';
 import { selectBrands } from '../../selectors/fierbase';
+import {storage} from '../../'
 const Brands = (props) => {
   const brands = useSelector(selectBrands)
   const { path, url } = useRouteMatch()
   const [logos, setLogos] = useState([])
   const dispatch = useDispatch()
-
+  
   async function getImgUrl(path) {
-    var gsReference = storage.refFromURL(path);
+    let gsReference = storage.refFromURL(path);
     return gsReference.getDownloadURL()
   }
   const getBrandLogos = async (brands) => {
-    const asd = []
+    const imageArray = []
     brands.forEach(brand => {
-      asd.push(getImgUrl(brand.logo))
+      imageArray.push(getImgUrl(brand.logo))
     });
-    const data = await Promise.all(asd)
+    const data = await Promise.all(imageArray)
+    // console.log(data)
     setLogos(data)
   }
   useEffect(() => {

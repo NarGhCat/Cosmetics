@@ -34,9 +34,9 @@ const Bag = () => {
             <p className="popup-for-afterpay-text">
               Pay in 4 installments on orders $35 - $1000 by{" "}
             </p>
-            {/* <span onClick={handleAfterpay} className="afterpay-info">
-               {(image ? image : "i")}
-            </span> */}
+            <span onClick={""} className="afterpay-info">
+               {/* {(img ? img : "i")} */}
+            </span>
           </div>
         </div>
       </span>
