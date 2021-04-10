@@ -29,7 +29,6 @@ const Brands = () => {
       imageArray.push(getImgUrl(brand.logo));
     });
     const data = await Promise.all(imageArray);
-    // console.log(data)
     setLogos(data);
   };
   useEffect(() => {
@@ -40,13 +39,15 @@ const Brands = () => {
       <div className="brands-content">
         {brands.map((brand, i) => (
           <div key={i} className="root">
-            {/* {console.log(brand.logo)} */}
             <Paper className="paper">
               <Grid container className="main-grid">
                 <Grid className="image-grid">
                   <ButtonBase className="image-btn">
                     <Link to={`${url}/${brand.name}`}>
-                      <img style={{ width: 300, height: 300 }} src={logos[i]} />
+                      <img
+                        style={{ maxWidth: 300, maxHeight: 300 }}
+                        src={logos[i]}
+                      />
                     </Link>
                   </ButtonBase>
                 </Grid>
@@ -78,10 +79,6 @@ const Brands = () => {
           </div>
         ))}
       </div>
-      {/* <Switch> */}
-      {/* <Route path='/brands/:brand_url' component={Brand} /> */}
-      {/* <Route path='/brands' component={Brands}/> */}
-      {/* </Switch> */}
     </div>
   );
 };

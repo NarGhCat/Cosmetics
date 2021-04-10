@@ -56,16 +56,11 @@ const useStyles = makeStyles({
 
 const Brand = (props) => {
   const brandClasses = useStyles();
-  // const [currentItems, setCurrentItems] = useState(null)
-  // const { brands, selectedBrand, items } = props
   const items = useSelector(selectItems);
   const brands = useSelector(selectBrands);
   const selectedBrand = useSelector(selectBrand);
-  const { path, url } = useRouteMatch();
   const { brandUrl } = useParams();
-  const history = useHistory();
   const [imgs, setImgs] = useState([]);
-
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
     return gsReference.getDownloadURL();
@@ -76,16 +71,19 @@ const Brand = (props) => {
     items.forEach((item) => {
       imageArray.push(getImgUrl(item.photo));
     });
-    // console.log(imageArray)
-    const data = await Promise.all(imageArray);
-    // console.log(data)
-    setImgs(data);
+    const data = await Promise.allSettled(imageArray);
+    const asd = data.map((d, i) => {
+      if (d.status === "fulfilled") {
+        return d.value;
+      } else {
+        return undefined;
+      }
+    });
+    setImgs(asd);
   };
-
   useEffect(() => {
     getBrandLogos(items);
   }, [items]);
-  console.log(imgs);
 
   return (
     <div className={brandClasses.brandRoot}>
@@ -107,7 +105,7 @@ const Brand = (props) => {
             <Card key={i}>
               <Typography>{brandUrl}</Typography>
               <CardActionArea>
-                <CardMedia />
+                <CardMedia image={imgs[i]} />
                 <CardContent>
                   <Typography>{item.name}</Typography>
                   <Typography>$ {item.price}</Typography>
