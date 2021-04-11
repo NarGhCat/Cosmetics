@@ -87,7 +87,7 @@ export default function App() {
           <Route exact path="/brands" component={Brands} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
-          <Route path="/:category_url" component={Category} />
+          <Route exact path="/categories/:category_url" component={Category} />
           <Route path='/brands/:brand_url' component={Brand} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
