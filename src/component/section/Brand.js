@@ -21,7 +21,8 @@ const useStyles = makeStyles({
     width: 82 + "%"
   }
 });
-const Brand = () => {
+
+const Brand = (props) => {
   const brandClasses = useStyles();
   const brands = useSelector(selectBrands);
   const { brandUrl } = useParams();
@@ -43,7 +44,6 @@ const Brand = () => {
           payload: filteringItems
         })
       });
-
   }, [selectedBrand])
   return (
     <div className={brandClasses.root}>

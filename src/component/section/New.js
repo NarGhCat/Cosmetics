@@ -81,6 +81,8 @@ const New = () => {
     getBrandLogos(news);
   }, [news]);
 
+  
+
   return (
 
     <div className={brandClasses.brandRoot}>

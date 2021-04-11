@@ -7,18 +7,18 @@ import {
   useRouteMatch
 } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
-import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux'
-import Button from '../shared/Button'
-import { SELECTED_BRAND } from '../../reducer/reducer'
-import { selectBrands } from '../../selectors/fierbase';
-import {storage} from '../../'
+import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../shared/Button";
+import { SELECTED_BRAND } from "../../reducer/reducer";
+import { selectBrands } from "../../selectors/fierbase";
+import { storage } from "../../";
 const Brands = () => {
-  const brands = useSelector(selectBrands)
-  const { path, url } = useRouteMatch()
-  const [logos, setLogos] = useState([])
-  const dispatch = useDispatch()
-  
+  const brands = useSelector(selectBrands);
+  const { path, url } = useRouteMatch();
+  const [logos, setLogos] = useState([]);
+  const dispatch = useDispatch();
+
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
     return gsReference.getDownloadURL();
@@ -32,24 +32,32 @@ const Brands = () => {
     setLogos(data);
   };
   useEffect(() => {
+<<<<<<< HEAD
     getBrandLogos(brands)
   }, [brands])
  
+=======
+    getBrandLogos(brands);
+  }, [brands]);
+>>>>>>> 981d28f4ef00738c9a26b48b28b04ef8e4163e53
   return (
     <div className="brands-main-content">
       <div className="brands-content">
         {brands.map((brand, i) => (
-          <div key={i} className='root'>
+          <div key={i} className="root">
             {/* {console.log(brand.logo)} */}
-            <Paper className='paper'>
-              <Grid container className='main-grid'>
-                <Grid className='image-grid'  >
-                  <ButtonBase className='image-btn' >
-                    <Link 
-                    onClick={() => {
-                      dispatch({ type: SELECTED_BRAND, payload: brand });
-                    }}
-                    to={`${url}/${brand.name}`}><img style={{width:310,height:200}} src={logos[i]} /></Link>
+            <Paper className="paper">
+              <Grid container className="main-grid">
+                <Grid className="image-grid">
+                  <ButtonBase className="image-btn">
+                    <Link
+                      onClick={() => {
+                        dispatch({ type: SELECTED_BRAND, payload: brand });
+                      }}
+                      to={`${url}/${brand.name}`}
+                    >
+                      <img style={{ width: 300, height: 300 }} src={logos[i]} />
+                    </Link>
                   </ButtonBase>
                 </Grid>
                 <Grid className="desc-grid">
