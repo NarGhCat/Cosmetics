@@ -6,12 +6,11 @@
 }
 
 body {
-  background-color: black;
   margin-top: 65px;
   background: radial-gradient(
-    ellipse farthest-side at center top,
-    #4c003f 0%,
-    rgb(0 0 0) 100%
+    ellipse farthest-side at center ,
+    #f500cb 0%,
+    rgb(255 255 255) 100%
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
-import Item from "./Item";
+import Item from "./CaruselItem";
 import "../../styles/styles.css";
 
 const breakPoints = [

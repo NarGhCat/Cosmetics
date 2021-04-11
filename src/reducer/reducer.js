@@ -7,6 +7,8 @@ export const SET_ITEMS = 'SET_ITEMS'
 export const SELECTED_CATEGORY = 'SELECTED_CATEGORY'
 export const SET_NEWS_ITEMS = 'SET_NEWS_ITEMS'
 export const SET_USER = "SET_USER"
+export const SET_ITEMS_BY_BRAND = 'SET_ITEMS_BY_BRAND'
+export const SET_ITEMS_BY_CATEGORY = 'SET_ITEMS_BY_CATEGORY'
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOGGED_IN_USER: {
@@ -49,14 +51,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload
       }
-
+    } case SET_ITEMS_BY_BRAND: {
+      return {
+        ...state,
+        filterByBrand: action.payload
+      }
+    } case SET_ITEMS_BY_CATEGORY: {
+      return {
+        ...state,
+        filterByCategory: action.payload
+      }
     }
-    // case SET_USER_ID: {
-    //   return {
-    //     ...state,
-    //     userId: action.payload
-    //   }
-    // }
     default:
       return state;
   }

@@ -11,6 +11,7 @@ import Typography from '../shared/Typography'
 import { useDispatch } from 'react-redux'
 import { CardActionArea, CardActions, CardContent, makeStyles } from '@material-ui/core';
 import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
+import SideBar from "./SideBar";
 const useStyles = makeStyles({
   brandRoot: {
     display: 'flex',
@@ -24,26 +25,6 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     width: 82 + '%',
 
-  },
-  brandSidebar: {
-    width: 220,
-    background: 'radial-gradient(ellipse farthest-side at left top, #a27b9cf5 53%, rgb(255 255 255) 100%)'
-  },
-  brandsSelector: {
-    margin: 10 + 'px auto',
-    width: 90 + '%',
-  },
-  brands: {
-    marginTop: 12
-  },
-  h3: {
-    borderBottom: 1 + 'px solid black',
-    fontSize: 25,
-  },
-  p: {
-    marginTop: 10,
-    cursor: 'pointer',
-    fontWeight: 600,
   }
 })
 
@@ -103,16 +84,7 @@ const New = () => {
   return (
 
     <div className={brandClasses.brandRoot}>
-      <div className={brandClasses.brandSidebar}>
-        <div className={brandClasses.brandsSelector}>
-          <h3 className={brandClasses.h3}>Brands</h3>
-          <div className={brandClasses.brands}>
-            {brands.map((brand, i) => (
-              <p key={i} className={brandClasses.p}>{brand.label}</p>
-            ))}
-          </div>
-        </div>
-      </div>
+      <SideBar/>
       <div className={brandClasses.brandItem}>
         {news.map((item, i) => (
 

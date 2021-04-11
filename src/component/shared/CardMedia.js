@@ -10,12 +10,12 @@ const useStyles = makeStyles({
 });
 
 const MediaCard = (props) => {
-    const { classes = {}, children, image = item, title = 'item', className = '', ...rest } = props
+    const { classes = {}, children, img = item, title = 'item', className = '', ...rest } = props
     const cardMediaClasses = useStyles();
     return (
         <MaterialCardMedia
             className={cardMediaClasses.media}
-            image={image}
+            image={img}
             title={title}
             {...rest}
         />

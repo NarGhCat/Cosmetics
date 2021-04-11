@@ -1,40 +1,36 @@
 import '../../styles/nav.css'
 import React, { useEffect, useState } from "react";
-import { Link ,useRouteMatch} from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import wLogo from "../../Pics/white-logo.png";
 import NavModules from './NavModules'
 import { auth, db } from '../../index'
 import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
-import { SELECTED_CATEGORY, SET_USER} from '../../reducer/reducer'
+import { SELECTED_CATEGORY, SET_USER } from '../../reducer/reducer'
 import { selectCategories } from '../../selectors/fierbase';
 function Nav(props) {
   const categories = useSelector(selectCategories)
   const dispatch = useDispatch()
   // const {categories} = props
   const [displayNone, setDisplay] = useState(false)
-  const {  url } = useRouteMatch()
+  const { url } = useRouteMatch()
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true)
   }
-  auth.onAuthStateChanged( (user) =>{
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
     if (user) {
-      // dispatch({
-      //   type : SET_USER_ID,
-      //   payload: user.uid
-      // })
       setEmail(user.email)
       setUid(user.uid)
       db.collection("users").doc(user.uid).get().then((doc) => {
-        
         if (doc.exists) {
           dispatch({
             type: SET_USER,
             payload: {
-              item: doc.data(), 
+              item: doc.data(),
               uid: user.uid
             }
           })
@@ -43,6 +39,8 @@ function Nav(props) {
       })
     }
   });
+  }, [])
+  
   return (
     <div className='page-navigation'>
       <div className='page-container'>
@@ -52,12 +50,12 @@ function Nav(props) {
           <div className='navbar-menu'>
             <Link className='navbar-menu-a' to="/new">New</Link>
             {
-              categories.map((category,i) => (
-                <Link 
-                onClick={() => { dispatch({ type: SELECTED_CATEGORY, payload: category }) }}
-                className='navbar-menu-a' 
-                key={i} 
-                to={`/categories/${category.name}`}>
+              categories.map((category, i) => (
+                <Link
+                  onClick={() => { dispatch({ type: SELECTED_CATEGORY, payload: category }) }}
+                  className='navbar-menu-a'
+                  key={i}
+                  to={`/categories/${category.name}`}>
                   {category.type}</Link>
                 // console.log(category)
               ))

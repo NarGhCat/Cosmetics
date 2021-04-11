@@ -34,6 +34,7 @@ const Brands = () => {
   useEffect(() => {
     getBrandLogos(brands)
   }, [brands])
+ 
   return (
     <div className="brands-main-content">
       <div className="brands-content">

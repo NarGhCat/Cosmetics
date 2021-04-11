@@ -1,12 +1,13 @@
 const initialState = {
   loggedInUser: null,
-  // userId : "",
   user: [],
-  brands:[],
-  categories:[],
-  items:[],
-  news:[],
-  selectedBrand:'',
-  selectedCategory:''
+  brands: [],
+  categories: [],
+  items: [],
+  news: [],
+  selectedBrand: '',
+  selectedCategory: '',
+  filterByBrand: [],
+  filterByCategory: []
 };
 export default initialState;

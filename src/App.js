@@ -20,14 +20,7 @@ import { useDispatch } from 'react-redux'
 import Bag from "./component/menu/Bag";
 import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
 import Payment from "./component/section/Payment";
-// import AddressItem from "./component/section/Payment";
-// import PlacesAutocomplete from "./component/section/Payment";
-// import Payment from "./component/section/Payment";
 import Category from "./component/section/Category"
-// import AddressItem from "./component/section/Payment";
-
-// import MyCards from "./component/section/Payment";
-// import Category from "./component/section/Category";
 
 
 export default function App() {
@@ -82,18 +75,13 @@ export default function App() {
         <Nav />
         <Switch>
           <Route path="/new" component={New} />
-          {/* <Route path="/lips" component={Lips} />
-          <Route path="/face" component={Face} />
-          <Route path="/eyes" component={Eyes} />
-          <Route path="/brushes" component={Brushes} />
-          <Route path="/skin" component={Skin} /> */}
-          <Route exact path="/bag" component={Bag} />
+          <Route path="/categories/:categoryUrl" component={Category} />
           <Route exact path="/brands" component={Brands} />
+          <Route path='/brands/:brandUrl' component={Brand} />
+          <Route exact path="/bag" component={Bag} />
+          <Route path="/bag/payment" component={Payment} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
-          <Route exact path="/categories/:category_url" component={Category} />
-          <Route path='/brands/:brand_url' component={Brand} />
-          <Route path="/bag/payment" component={Payment} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

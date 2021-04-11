@@ -22,7 +22,7 @@ const Typography = (props) => {
     return (
         <MaterialTypography
             variant={variant}
-            className={typographyClasses.typography}
+            className={`${typographyClasses.typography}, ${className}`}
             color={color}
             component={component}
             {...rest}
