@@ -11,10 +11,11 @@
   border: 4px solid black;
   margin-top: 10px;
   width: 65%;
-  height: 900px;
+  min-height: 500px;
   float: left;
   overflow: hidden;
 }
+
 
 .bag-component-right-items {
   width: 400px;
