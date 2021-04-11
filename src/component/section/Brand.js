@@ -13,8 +13,8 @@ import {
   makeStyles
 } from "@material-ui/core";
 import { db, storage } from "../..";
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+
 import {
   selectBrands,
   selectItems,
@@ -59,7 +59,7 @@ const useStyles = makeStyles({
 });
 
 const Brand = (props) => {
-  const user = useSelector(selectUser)
+  const user = useSelector(selectUser);
   const brandClasses = useStyles();
   const items = useSelector(selectItems);
   const brands = useSelector(selectBrands);
@@ -91,22 +91,13 @@ const Brand = (props) => {
   }, [items]);
 
   const handleClickedItem = (item, user) => {
-    console.log(item, user)
-    db.collection("users").doc(user.uid).update({
-      bag: firebase.firestore.FieldValue.arrayUnion(item)
-    })
-      // .then((docRef) => {
-      //     inputChange.errorMessage = '';
-      //     setValues(inputChange)
-      //     history.push('/')
-      // })
-      // .catch((error) => {
-      //     inputChange.errorMessage = error.message;
-      //     console.log("Error adding document: ", error.message);
-      // });
-  }
-
-
+    console.log(item, user);
+    db.collection("users")
+      .doc(user.uid)
+      .update({
+        bag: firebase.firestore.FieldValue.arrayUnion(item)
+      });
+  };
 
   return (
     <div className={brandClasses.brandRoot}>
@@ -141,7 +132,7 @@ const Brand = (props) => {
                   width="140px"
                   border="none"
                   {...item}
-                  onClick = {() => handleClickedItem({...item}, user)} 
+                  onClick={() => handleClickedItem({ ...item }, user)}
                 >
                   {" "}
                   Add to Bag

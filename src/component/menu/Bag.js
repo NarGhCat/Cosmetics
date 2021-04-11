@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/bag.css";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Grid from "@material-ui/core/Grid";
+//import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -11,48 +11,45 @@ import { useRouteMatch } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../selectors/fierbase";
-
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
-    maxWidth: 500,
+    maxWidth: 500
   },
   image: {
     width: 128,
-    height: 128,
+    height: 128
   },
   img: {
     margin: "auto",
     display: "block",
     maxWidth: "100%",
-    maxHeight: "100%",
+    maxHeight: "100%"
   },
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(0),
       width: "20ch",
-      defaultValue: 1,
-    },
-  },
+      defaultValue: 1
+    }
+  }
 }));
-
 
 const Bag = () => {
   const [displayNone, setDisplay] = useState(false);
-  const user = useSelector(selectUser)
+  const user = useSelector(selectUser);
   const { path, url } = useRouteMatch();
   const classes = useStyles();
-  console.log(user)
+  console.log(user);
   const handleAfterpay = (e) => {
     setDisplay(displayNone ? false : true);
   };
-
-
 
   return (
     <div className="bag-component">
@@ -87,7 +84,7 @@ const Bag = () => {
                         label="Quantity"
                         type="number"
                         InputLabelProps={{
-                          shrink: true,
+                          shrink: true
                         }}
                       />
                     </Grid>
@@ -126,13 +123,12 @@ const Bag = () => {
             <span onClick={handleAfterpay} className="afterpay-info">
               {/* {(img ? img : "i")} */}
             </span>
-
           </div>
-            <p className="popup-click-pay">
+          <p className="popup-click-pay">
             <Link to="/bag/payment" className="brand-link">
-                      
+              PAY
             </Link>
-            </p>
+          </p>
         </div>
       </span>
     </div>
