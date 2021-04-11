@@ -24,7 +24,11 @@ import { db, storage } from "./index";
 import { useDispatch } from 'react-redux'
 import Bag from "./component/menu/Bag";
 import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
-import Category from "./component/section/Category";
+import Payment from "./component/section/Payment";
+import AddressItem from "./component/section/Payment";
+import PlacesAutocomplete from "./component/section/Payment";
+import MyCards from "./component/section/Payment";
+// import AddressItem from "./component/section/Payment";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -83,12 +87,13 @@ export default function App() {
           <Route path="/eyes" component={Eyes} />
           <Route path="/brushes" component={Brushes} />
           <Route path="/skin" component={Skin} /> */}
-          <Route path="/bag" component={Bag} />
+          <Route exact path="/bag" component={Bag} />
           <Route exact path="/brands" component={Brands} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
           <Route exact path="/categories/:category_url" component={Category} />
           <Route path='/brands/:brand_url' component={Brand} />
+          <Route path="/bag/payment" component={MyCards} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />
