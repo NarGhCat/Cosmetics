@@ -15,7 +15,9 @@ form {
 	width: 59%;
     margin: 0 auto;
     margin-top: 20px;
-    margin-left: 291px;
+    /* margin-left: 378px; */
+    /* position: unset; */
+    text-align: center;
 } 
 
 input {

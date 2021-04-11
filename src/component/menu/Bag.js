@@ -9,6 +9,9 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import TextField from "@material-ui/core/TextField";
 import { useRouteMatch } from "react-router";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../selectors/fierbase";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,12 +44,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Bag = () => {
   const [displayNone, setDisplay] = useState(false);
+  const user = useSelector(selectUser)
   const { path, url } = useRouteMatch();
   const classes = useStyles();
-
+  console.log(user)
   const handleAfterpay = (e) => {
     setDisplay(displayNone ? false : true);
   };
+
+
 
   return (
     <div className="bag-component">

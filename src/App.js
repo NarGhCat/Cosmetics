@@ -24,11 +24,10 @@ import { db, storage } from "./index";
 import { useDispatch } from 'react-redux'
 import Bag from "./component/menu/Bag";
 import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
-import Payment from "./component/section/Payment";
-import AddressItem from "./component/section/Payment";
-import PlacesAutocomplete from "./component/section/Payment";
+
 import MyCards from "./component/section/Payment";
-// import AddressItem from "./component/section/Payment";
+import Category from "./component/section/Category";
+
 
 export default function App() {
   const dispatch = useDispatch();

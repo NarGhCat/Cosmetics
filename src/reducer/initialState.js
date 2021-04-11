@@ -1,5 +1,7 @@
 const initialState = {
   loggedInUser: null,
+  // userId : "",
+  user: null,
   brands:[],
   categories:[],
   items:[],
