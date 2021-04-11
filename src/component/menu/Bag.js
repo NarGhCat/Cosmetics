@@ -1,8 +1,48 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/bag.css";
+import { makeStyles } from "@material-ui/core/styles";
+
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import TextField from "@material-ui/core/TextField";
+import { useRouteMatch } from "react-router";
+import { Link } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: "auto",
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+  },
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(0),
+      width: "20ch",
+      defaultValue: 1,
+    },
+  },
+}));
+
 
 const Bag = () => {
   const [displayNone, setDisplay] = useState(false);
+  const { path, url } = useRouteMatch();
+  const classes = useStyles();
 
   const handleAfterpay = (e) => {
     setDisplay(displayNone ? false : true);
@@ -14,7 +54,53 @@ const Bag = () => {
         <h1> SHOPPTING BAG {} </h1>
       </div>
       <span className="bag-component-left">
-        <div className="bag-component-left-items"></div>
+        <div className="bag-component-left-items">
+          <div className={classes.root}>
+            <Paper className={classes.paper}>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <ButtonBase className={classes.image}>
+                    <img
+                      className={classes.img}
+                      alt="complex"
+                      src="/static/images/grid/complex.jpg"
+                    />
+                  </ButtonBase>
+                </Grid>
+                <Grid item xs={12} sm container>
+                  <Grid item xs container direction="column" spacing={2}>
+                    <Grid item xs>
+                      <Typography gutterBottom variant="subtitle1">
+                        Brand Name
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        Item name
+                      </Typography>
+                      <TextField
+                        id="standard-number"
+                        label="Quantity"
+                        type="number"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body2" style={{ cursor: "pointer" }}>
+                        Remove
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="subtitle1">
+                      Quantity * price
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Paper>
+          </div>
+        </div>
       </span>
       <span className="bag-component-right">
         <div className="bag-component-right-items">
@@ -32,9 +118,15 @@ const Bag = () => {
               Pay in 4 installments on orders $35 - $1000 by{" "}
             </p>
             <span onClick={handleAfterpay} className="afterpay-info">
-               {/* {(img ? img : "i")} */}
+              {/* {(img ? img : "i")} */}
             </span>
+
           </div>
+            <p className="popup-click-pay">
+            <Link to="/bag/payment" className="brand-link">
+                      
+            </Link>
+            </p>
         </div>
       </span>
     </div>

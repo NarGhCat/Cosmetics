@@ -53,6 +53,8 @@ const New = () => {
   const news = useSelector(selectNews)
   const brands = useSelector(selectBrands)
   const { brandUrl } = useParams()
+  const [imgs, setImgs] = useState([]);
+  const items = useSelector(selectItems);
   // console.log(items)
   let newsState =[];
   useEffect(() => {
@@ -74,6 +76,29 @@ const New = () => {
       })
   }, [])
 
+  async function getImgUrl(path) {
+    let gsReference = storage.refFromURL(path);
+    return gsReference.getDownloadURL();
+  }
+
+  const getBrandLogos = async (news) => {
+    const imageArray = [];
+    news.forEach((item) => {
+      imageArray.push(getImgUrl(item.photo));
+    });
+    const data = await Promise.allSettled(imageArray);
+    const asd = data.map((d, i) => {
+      if (d.status === "fulfilled") {
+        return d.value;
+      } else {
+        return undefined;
+      }
+    });
+    setImgs(asd);
+  };
+  useEffect(() => {
+    getBrandLogos(news);
+  }, [news]);
 
   return (
 
@@ -95,7 +120,7 @@ const New = () => {
             <Card key={i}>
               <Typography>{brandUrl}</Typography>
               <CardActionArea>
-                <CardMedia />
+                <CardMedia  image ={imgs[i]} />
                 <CardContent>
                   <Typography>{item.name}</Typography>
                   <Typography>$ {item.price}</Typography>

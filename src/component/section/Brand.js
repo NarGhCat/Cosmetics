@@ -85,6 +85,10 @@ const Brand = (props) => {
     getBrandLogos(items);
   }, [items]);
 
+  const handleClickedItem = (e) => {
+    console.log(e)
+  }
+
   return (
     <div className={brandClasses.brandRoot}>
       <div className={brandClasses.brandSidebar}>
@@ -117,6 +121,7 @@ const Brand = (props) => {
                   labelcolor="#4c003f"
                   width="140px"
                   border="none"
+                  onClick = {handleClickedItem}
                 >
                   {" "}
                   Add to Bag

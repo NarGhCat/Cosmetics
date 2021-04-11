@@ -1,0 +1,36 @@
+/* 
+
+.App {
+	width: 450px;
+	display: flex;
+	height: 70vh;
+	justify-content: space-around;
+	flex-direction: column;
+	background: #ffff;
+	border-radius: 10px;
+} */ 
+
+
+form {
+	width: 59%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 291px;
+} 
+
+input {
+	background: #f9f9f9;
+    padding: 10px;
+    width: 59%;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-weight: 300;
+    margin-left: 70px;
+}
+
+.rccs__card--unknown > div {
+	background: #adadad;
+} 
