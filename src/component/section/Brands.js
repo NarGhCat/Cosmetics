@@ -32,14 +32,9 @@ const Brands = () => {
     setLogos(data);
   };
   useEffect(() => {
-<<<<<<< HEAD
     getBrandLogos(brands)
   }, [brands])
- 
-=======
-    getBrandLogos(brands);
-  }, [brands]);
->>>>>>> 981d28f4ef00738c9a26b48b28b04ef8e4163e53
+
   return (
     <div className="brands-main-content">
       <div className="brands-content">
