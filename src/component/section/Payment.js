@@ -4,7 +4,7 @@ import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "../../styles/payment.css"
 
-const MyCards = () => {
+const Payment = () => {
 	const [data, setData] = useState({
 		cvc: "",
 		expiry: "",
@@ -57,4 +57,4 @@ const MyCards = () => {
 	);
 };
 
-export default MyCards;
+export default Payment;

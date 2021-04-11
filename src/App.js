@@ -6,11 +6,6 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import New from "./component/section/New";
-import Lips from "./component/section/Lips";
-import Face from "./component/section/Face";
-import Eyes from "./component/section/Eyes";
-import Brushes from "./component/section/Brushes";
-import Skin from "./component/section/Skin";
 import Brands from "./component/section/Brands";
 import Nav from "./component/menu/Nav";
 import Main from "./component/section/Main";
@@ -27,7 +22,8 @@ import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
 import Payment from "./component/section/Payment";
 import AddressItem from "./component/section/Payment";
 import PlacesAutocomplete from "./component/section/Payment";
-import MyCards from "./component/section/Payment";
+// import Payment from "./component/section/Payment";
+import Category from "./component/section/Category"
 // import AddressItem from "./component/section/Payment";
 
 export default function App() {
@@ -93,7 +89,7 @@ export default function App() {
           <Route path="/Signup" component={Signup} />
           <Route exact path="/categories/:category_url" component={Category} />
           <Route path='/brands/:brand_url' component={Brand} />
-          <Route path="/bag/payment" component={MyCards} />
+          <Route path="/bag/payment" component={Payment} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

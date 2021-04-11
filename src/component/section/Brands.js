@@ -44,7 +44,11 @@ const Brands = () => {
               <Grid container className='main-grid'>
                 <Grid className='image-grid'  >
                   <ButtonBase className='image-btn' >
-                    <Link to={`${url}/${brand.name}`}><img style={{width:310,height:200}} src={logos[i]} /></Link>
+                    <Link 
+                    onClick={() => {
+                      dispatch({ type: SELECTED_BRAND, payload: brand });
+                    }}
+                    to={`${url}/${brand.name}`}><img style={{width:310,height:200}} src={logos[i]} /></Link>
                   </ButtonBase>
                 </Grid>
                 <Grid className="desc-grid">
@@ -62,7 +66,6 @@ const Brands = () => {
                         onClick={() => {
                           dispatch({ type: SELECTED_BRAND, payload: brand });
                         }}
-                        value="martin"
                         variant="contained"
                       >
                         {brand.label}
