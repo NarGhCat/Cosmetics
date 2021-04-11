@@ -6,7 +6,7 @@ import NavModules from './NavModules'
 import { auth, db } from '../../index'
 import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
-import { SELECTED_CATEGORY } from '../../reducer/reducer'
+import { SELECTED_CATEGORY, SET_USER} from '../../reducer/reducer'
 import { selectCategories } from '../../selectors/fierbase';
 function Nav(props) {
   const categories = useSelector(selectCategories)
@@ -22,10 +22,22 @@ function Nav(props) {
   }
   auth.onAuthStateChanged( (user) =>{
     if (user) {
+      // dispatch({
+      //   type : SET_USER_ID,
+      //   payload: user.uid
+      // })
       setEmail(user.email)
       setUid(user.uid)
       db.collection("users").doc(user.uid).get().then((doc) => {
+        
         if (doc.exists) {
+          dispatch({
+            type: SET_USER,
+            payload: {
+              item: doc.data(), 
+              uid: user.uid
+            }
+          })
           setImg(doc.data().image)
         }
       })

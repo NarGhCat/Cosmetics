@@ -6,6 +6,7 @@ export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_ITEMS = 'SET_ITEMS'
 export const SELECTED_CATEGORY = 'SELECTED_CATEGORY'
 export const SET_NEWS_ITEMS = 'SET_NEWS_ITEMS'
+export const SET_USER = "SET_USER"
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOGGED_IN_USER: {
@@ -43,8 +44,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         news: action.payload
       }
-    }
+    } case SET_USER: {
+      return {
+        ...state,
+        user: action.payload
+      }
 
+    }
+    // case SET_USER_ID: {
+    //   return {
+    //     ...state,
+    //     userId: action.payload
+    //   }
+    // }
     default:
       return state;
   }
