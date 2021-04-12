@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import { SELECTED_CATEGORY, SET_USER } from '../../reducer/reducer'
 import { selectCategories } from '../../selectors/fierbase';
+import bagIcon from '../../Pics/bag.png'
 function Nav(props) {
   const categories = useSelector(selectCategories)
   const dispatch = useDispatch()
@@ -17,6 +18,8 @@ function Nav(props) {
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
+  const [bag ,setBag] = useState([])
+  // let bagLen = bag.length
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true)
   }
@@ -35,6 +38,8 @@ function Nav(props) {
             }
           })
           setImg(doc.data().image)
+          console.log(doc.data)
+          setBag(doc.data().bag.length)
         }
       })
     }
@@ -63,6 +68,7 @@ function Nav(props) {
             <Link className='navbar-menu-a' to="/brands">Brands</Link>
           </div>
           <div className='profile-items'>
+            <div className='div-bag-icon' ><span className='bag-count'>{bag}</span><Link className='navbar-menu-a' to="/bag"><img src={bagIcon}/></Link></div>
             <span onClick={handleToggle} id='profile-items' className='profile-items-span'>{(email ? email : 'My account')} </span>
 
           </div>
@@ -70,7 +76,7 @@ function Nav(props) {
         <NavModules changeProfileDisplay={displayNone} handleToggle={handleToggle} userImg={userImg} email={email} uid={uid} />
       </div>
 
-      <Link className='navbar-menu-a' to="/bag">Bag</Link>
+      
     </div>
 
   )

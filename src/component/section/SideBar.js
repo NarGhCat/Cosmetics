@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core";
+import { ListItem, makeStyles } from "@material-ui/core";
 import { selectBrands, selectCategories } from "../../selectors/fierbase";
-import { Link,useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 const useStyles = makeStyles({
 
     sidebar: {
         width: 220,
         background: "radial-gradient(ellipse farthest-side at left top,#f500cb70 13%, rgb(255 255 255 / 0%) 90%)",
         borderLeft: '1px solid #f500cb'
-},
+    },
     brandsSelector: {
-    margin: 10 + "px auto",
-    width: 90 + "%"
-},
+        margin: 10 + "px auto",
+        width: 90 + "%"
+    },
     brands: {
-    marginTop: 12
-},
+        marginTop: 12
+    },
     h3: {
-    borderBottom: 1 + "px solid black",
-    fontSize: 25,
-    cursor: 'pointer'
-},
+        borderBottom: 1 + "px solid black",
+        fontSize: 25,
+        cursor: 'pointer'
+    },
     p: {
-    marginTop: 10,
-    cursor: "pointer",
-    fontWeight: 600
-},
-link:{
-    textDecoration:"none",
-    color:'black'
+        marginTop: 10,
+        cursor: "pointer",
+        fontWeight: 600
+    },
+    link: {
+        textDecoration: "none",
+        color: 'black'
 
-}
+    }
 });
 const SideBar = () => {
     const { path, url } = useRouteMatch()
@@ -45,9 +45,9 @@ const SideBar = () => {
                     <h3 className={classes.h3}>Brands</h3>
                     <div className={classes.brands}>
                         {brands.map((brand, i) => (
-                            <p key={i} className={classes.p}>
+                            <ListItem button key={i}>
                                 <Link className={classes.link} to={`/brands/${brand.name}`}>{brand.label}</Link>
-                            </p>
+                            </ListItem>
                         ))}
                     </div>
                 </div>
@@ -56,8 +56,9 @@ const SideBar = () => {
                     <div className={classes.brands}>
                         {categories.map((category, i) => (
                             <p key={i} className={classes.p}>
-                                <Link className={classes.link} to={`/categories/${category.name}`}>{category.type}</Link>
-
+                                <ListItem button key={i}>
+                                    <Link className={classes.link} to={`/categories/${category.name}`}>{category.type}</Link>
+                                </ListItem>
                             </p>
                         ))}
                     </div>

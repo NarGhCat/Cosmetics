@@ -22,11 +22,9 @@ const useStyles = makeStyles({
   }
 });
 
-const Brand = (props) => {
-  const brandClasses = useStyles();
-  const brands = useSelector(selectBrands);
+const Brand = () => {
+  const classes = useStyles();
   const { brandUrl } = useParams();
-  console.log(useParams())
   const selectedBrand = useSelector(selectBrand);
   const [filteredItems, setFilteredItems] = useState([])
   const dispatch = useDispatch()
@@ -46,9 +44,9 @@ const Brand = (props) => {
       });
   }, [selectedBrand])
   return (
-    <div className={brandClasses.root}>
+    <div className={classes.root}>
       <SideBar/>
-      <div className={brandClasses.brandItem}>
+      <div className={classes.brandItem}>
         {filteredItems.map((item, i) =>
           <Item key={i} ind={i} {...item} url ={brandUrl} />
         )}

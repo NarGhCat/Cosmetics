@@ -82,11 +82,30 @@
 }
 
 .page-navigation .page-container .navbar-desktop .profile-items {
-  display: inline-block;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   right: 0;
   height: 60px;
 }
-
-/* .page-navigation .page-container .navbar-modules {} */
+.page-navigation .page-container .navbar-desktop .profile-items .div-bag-icon{
+width: 32px;
+margin-top: 15px;
+position: relative;
+}
+.page-navigation .page-container .navbar-desktop .profile-items .div-bag-icon a img{
+  width: 100%;
+  
+}
+.page-navigation .page-container .navbar-desktop .profile-items .div-bag-icon .bag-count{
+  background: #ec57a3;
+  font-size: 13px;
+  padding: 3px;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+    top: -13px;
+    right: -9px;
+}

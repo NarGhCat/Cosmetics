@@ -1,108 +1,13 @@
-.bag-component {
-  margin-top: 100px;
+.for-scroll::-webkit-scrollbar {
+  width: 10px;
 }
-
-.bag-component-heading h1 {
-  color: white;
-  text-align: center;
+.for-scroll::-webkit-scrollbar-track {
+  border-radius: 10px;
 }
-
-.bag-component-left-items {
-  border: 4px solid black;
-  margin-top: 10px;
-  width: 65%;
-  min-height: 500px;
-  float: left;
-  overflow: hidden;
+.for-scroll::-webkit-scrollbar-thumb {
+  background: #4c003f; 
+  border-radius: 10px;
 }
-
-
-.bag-component-right-items {
-  width: 400px;
-  height: 900px;
-  border: 4px solid black;
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.bag-component-right-items h4 {
-  color: white;
-  margin-top: 60px;
-  text-align: center;
-}
-
-.bag-component-right-text {
-  margin-top: 24px;
-  margin-left: 25px;
-  color: white;
-  margin-bottom: 14px;
-}
-
-.shipping-text {
-  border: 1px solid white;
-  height: 55px;
-  width: 155px;
-  text-align: center;
-  margin: auto;
-  padding-top: 10px;
-  margin-top: 37px;
-  margin-bottom: 40px;
-}
-
-.shipping-text p {
-  color: white;
-}
-
-.shipping {
-  display: inline;
-}
-
-.shipping-free {
-  color: white;
-  text-align: end;
-  margin-left: 233px;
-  display: inline;
-}
-
-.price-total {
-  margin-left: 181px;
-}
-
-.popup-for-afterpay-text {
-  color: white;
-}
-.popup-for-afterpay {
-  width: 228px;
-  height: 61px;
-  margin-top: 17px;
-  margin-left: 25px;
-}
-
-.afterpay-info {
-    width: 21px;
-    height: 21px;
-    display: inline-block;
-    border-radius: 50%;
-    background: #7b7979;
-    color: white;
-    padding-right: 1px;
-    font-size: 14px;
-    font-family: TimesNewRoman, "Times New Roman", Times, serif;
-    line-height: 1.4;
-    text-transform: lowercase;
-    text-align: center;
-    cursor: pointer;
-}
-
-.popup-click-pay {
-    border: 1px solid white;
-  height: 35px;
-  width: 155px;
-  text-align: center;
-  margin: auto;
-  padding-top: 10px;
-  margin-top: 37px;
-  margin-bottom: 40px;
-  color: white;
-  cursor: pointer;
+.for-scroll::-webkit-scrollbar-thumb:hover {
+  background: #4c003f ; 
 }

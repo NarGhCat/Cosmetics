@@ -20,18 +20,16 @@ const useStyles = makeStyles({
     float: "right",
     color: 'red'
   },
-  card:{
+  card: {
     boxShadow: '0 0 6px 2px #f500cb87'
   }
 });
 
 const Item = (props) => {
-  
   const classes = useStyles();
   const user = useSelector(selectUser)
-  // const { brandUrl } = useParams();
   const [img, setImg] = useState('');
-  const { ind, name, price, photo, status,url } = props
+  const { ind, name, price, photo, status, url } = props
   console.log(url)
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
@@ -40,25 +38,23 @@ const Item = (props) => {
   const getBrandLogos = async (item) => {
     const data = await getImgUrl(item);
     setImg(data)
-
   };
-
   useEffect(() => {
-    // console.log(status)
     getBrandLogos(photo);
   }, []);
-  // console.log(status)
   function handleClickedItem(item, user) {
     db.collection("users").doc(user.uid).update({
       bag: firebase.firestore.FieldValue.arrayUnion(item)
     })
   }
+  console.log(img)
   return (
     <Card className={classes.card} key={ind}>
       <Typography>brand - {url}</Typography>
       <Typography className={classes.new} >{status}</Typography>
       <CardActionArea>
         <CardMedia img={img} />
+
         <CardContent>
           <Typography>{name}</Typography>
           <Typography>$ {price}</Typography>
