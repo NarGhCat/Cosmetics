@@ -6,7 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionActions from '@material-ui/core/AccordionActions';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
@@ -54,7 +54,7 @@ const BagItem = (props) => {
         <div className={classes.root}>
             <Accordion >
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    // expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1c-content"
                     id="panel1c-header"
                 >
@@ -74,7 +74,7 @@ const BagItem = (props) => {
                         <Typography variant="caption">
                             Select your destination of choice
               <br />
-                            <a href="#secondary-heading-and-columns" className={classes.link}>
+                            <a  href="#secondary-heading-and-columns" className={classes.link}>
                                 Learn more
               </a>
                         </Typography>

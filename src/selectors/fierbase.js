@@ -5,3 +5,4 @@ export const selectBrand = state => state.selectedBrand
 export const selectNews = state => state.news
 export const selectCategory = state => state.selectedCategory
 export const selectUser = state => state.user
+export const selectedItem = state => state.selectedItem

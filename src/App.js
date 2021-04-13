@@ -21,6 +21,7 @@ import Bag from "./component/menu/Bag";
 import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
 import Payment from "./component/section/Payment";
 import Category from "./component/section/Category"
+import LearnMore from "./component/section/LearnMore";
 
 
 export default function App() {
@@ -82,6 +83,7 @@ export default function App() {
           <Route path="/bag/payment" component={Payment} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
+          <Route path="/clickedItem" component={LearnMore} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

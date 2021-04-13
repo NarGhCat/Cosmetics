@@ -7,7 +7,9 @@ import {
 import item from "../../Pics/icons/item.png";
 const useStyles = makeStyles({
   media: {
-    height: 200
+    height: 200,
+    width: 200,
+    margin: "auto"
   }
 });
 

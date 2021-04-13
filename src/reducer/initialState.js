@@ -7,6 +7,7 @@ const initialState = {
   news: [],
   selectedBrand: '',
   selectedCategory: '',
+  selectedItem: "",
   filterByBrand: [],
   filterByCategory: []
 };
