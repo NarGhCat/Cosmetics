@@ -16,59 +16,64 @@ import Brand from "./component/section/Brand";
 import { db, storage } from "./index";
 // import Brand from "./Brand"
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import Bag from "./component/menu/Bag";
-import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from './reducer/reducer'
+import { SET_BRANDS, SET_CATEGORY, SET_ITEMS } from "./reducer/reducer";
 import Payment from "./component/section/Payment";
-import Category from "./component/section/Category"
+import Category from "./component/section/Category";
 import LearnMore from "./component/section/LearnMore";
-
 
 export default function App() {
   const dispatch = useDispatch();
   let brandState = [];
   useEffect(() => {
-    db.collection("brands").get().then((doc) => {
-      doc.forEach((brand) => {
-        brandState.push({
-          brandId: brand.id,
-          ...brand.data()
-        })
-      })
-      dispatch({
-        type: SET_BRANDS,
-        payload: brandState
-      })
-    })
-  }, [])
-  let categoryState = []
+    db.collection("brands")
+      .get()
+      .then((doc) => {
+        doc.forEach((brand) => {
+          brandState.push({
+            brandId: brand.id,
+            ...brand.data()
+          });
+        });
+        dispatch({
+          type: SET_BRANDS,
+          payload: brandState
+        });
+      });
+  }, []);
+  let categoryState = [];
   useEffect(() => {
-    db.collection("category").get().then((doc) => {
-      doc.forEach((category) => {
-        categoryState.push({
-          categoryId: category.id,
-          ...category.data()
-        })
-      })
+    db.collection("category")
+      .get()
+      .then((doc) => {
+        doc.forEach((category) => {
+          categoryState.push({
+            categoryId: category.id,
+            ...category.data()
+          });
+        });
+        dispatch({
+          type: SET_CATEGORY,
+          payload: categoryState
+        });
+      });
+  }, []);
+  let itemsState = [];
+  db.collection("items")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((item) => {
+        itemsState.push({
+          itemId: item.id,
+          ...item.data()
+        });
+      });
       dispatch({
-        type: SET_CATEGORY,
-        payload: categoryState
-      })
-    })
-  }, [])
-  let itemsState = []
-  db.collection("items").get().then((querySnapshot) => {
-    querySnapshot.forEach((item) => {
-      itemsState.push({
-        itemId: item.id,
-        ...item.data()
-      })
+        type: SET_ITEMS,
+        payload: itemsState
+      });
     });
-    dispatch({
-      type: SET_ITEMS,
-      payload: itemsState
-    })
-  })
 
   return (
     <>
@@ -78,7 +83,7 @@ export default function App() {
           <Route path="/new" component={New} />
           <Route path="/categories/:categoryUrl" component={Category} />
           <Route exact path="/brands" component={Brands} />
-          <Route path='/brands/:brandUrl' component={Brand} />
+          <Route path="/brands/:brandUrl" component={Brand} />
           <Route exact path="/bag" component={Bag} />
           <Route path="/bag/payment" component={Payment} />
           <Route path="/login" component={Login} />
