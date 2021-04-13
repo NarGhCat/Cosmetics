@@ -7,10 +7,11 @@ import { auth, db } from '../../index'
 import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import { SELECTED_CATEGORY, SET_USER } from '../../reducer/reducer'
-import { selectCategories } from '../../selectors/fierbase';
+import { selectCategories, selectUser } from '../../selectors/fierbase';
 import bagIcon from '../../Pics/bag.png'
 function Nav(props) {
   const categories = useSelector(selectCategories)
+  const user = useSelector(selectUser)
   const dispatch = useDispatch()
   // const {categories} = props
   const [displayNone, setDisplay] = useState(false)
@@ -18,34 +19,42 @@ function Nav(props) {
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
-  const [bag ,setBag] = useState([])
+  const [bag, setBag] = useState([])
   // let bagLen = bag.length
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true)
   }
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-    if (user) {
-      setEmail(user.email)
-      setUid(user.uid)
-      db.collection("users").doc(user.uid).get().then((doc) => {
-        if (doc.exists) {
-          dispatch({
-            type: SET_USER,
-            payload: {
-              item: doc.data(),
-              uid: user.uid
-            }
-          })
-          setImg(doc.data().image)
-          console.log(doc.data)
-          setBag(doc.data().bag.length)
-        }
-      })
-    }
-  });
+      if (user) {
+        setEmail(user.email)
+        setUid(user.uid)
+        db.collection("users").doc(user.uid).get().then((doc) => {
+          if (doc.exists) {
+            dispatch({
+              type: SET_USER,
+              payload: {
+                item: doc.data(),
+                uid: user.uid
+              }
+            })
+            setImg(doc.data().image)
+            console.log(doc.data)
+            setBag(doc.data().bag.length)
+          }
+        })
+      }
+    });
   }, [])
-  
+  let bagItemIcon ='';
+  if (user.item) {(
+    bagItemIcon = <div className='div-bag-icon' >
+      <span className='bag-count'>{bag}</span>
+      <Link className='navbar-menu-a' to="/bag">
+        <img src={bagIcon} />
+      </Link>
+    </div>
+  )}
   return (
     <div className='page-navigation'>
       <div className='page-container'>
@@ -68,7 +77,8 @@ function Nav(props) {
             <Link className='navbar-menu-a' to="/brands">Brands</Link>
           </div>
           <div className='profile-items'>
-            <div className='div-bag-icon' ><span className='bag-count'>{bag}</span><Link className='navbar-menu-a' to="/bag"><img src={bagIcon}/></Link></div>
+            {bagItemIcon}
+
             <span onClick={handleToggle} id='profile-items' className='profile-items-span'>{(email ? email : 'My account')} </span>
 
           </div>
@@ -76,7 +86,7 @@ function Nav(props) {
         <NavModules changeProfileDisplay={displayNone} handleToggle={handleToggle} userImg={userImg} email={email} uid={uid} />
       </div>
 
-      
+
     </div>
 
   )
@@ -84,4 +94,4 @@ function Nav(props) {
 const mapStateToProps = (state) => ({
   categories: state.categories
 })
-export default connect(mapStateToProps)(Nav)
+export default Nav

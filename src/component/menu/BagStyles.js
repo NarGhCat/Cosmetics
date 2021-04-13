@@ -33,11 +33,12 @@ export const useStyles = makeStyles((theme) => ({
   },
   bagHeader:{
     textAlign: 'center',
-    borderBottom: '1px solid',
+    borderBottom: '1px solid white',
+    color:'white'
   },
   leftContent:{
     width: '57%',
-    borderRight: '1px solid',
+    borderRight: '1px solid white',
     height: '600px',
     overflow: 'auto',
   },

@@ -15,17 +15,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import {useStyles} from './BagStyles'
 
-
 const Bag = () => {
-  const [displayNone, setDisplay] = useState(false);
   const user = useSelector(selectUser);
   const { path, url } = useRouteMatch();
   const classes = useStyles();
-  const [page, setPage] = useState(0);
-
   const [bag, setBag] = useState([]);
+  console.log(user)
   useEffect(() => {
-    setBag(user.item.bag);
+    if(user.item){
+      setBag(user.item.bag);
+    }
   }, [user]);
   return (
     <div className={classes.bagComponent}>
