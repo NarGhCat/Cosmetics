@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-export const useStyles = makeStyles((theme) => ({
+export const useStylesForBag = makeStyles((theme) => ({
   paper: {
     display: 'flex',
     justifyContent: 'space-between'
@@ -25,26 +25,69 @@ export const useStyles = makeStyles((theme) => ({
   pos: {
     marginBottom: 12,
   },
-  bagComponent:{
+  bagComponent: {
     width: '95%',
     margin: 'auto',
-    marginBottom:'50px',
+    marginBottom: '50px',
     paddingTop: '30px',
   },
-  bagHeader:{
+  bagHeader: {
     textAlign: 'center',
     borderBottom: '1px solid white',
-    color:'white'
+    color: 'white'
   },
-  leftContent:{
+  leftContent: {
     width: '57%',
     borderRight: '1px solid white',
     height: '600px',
     overflow: 'auto',
   },
-  bagItems:{    width: '80%'},
-  card:{
+  bagItems: { width: '80%' },
+  card: {
     width: '42%',
     margin: '0 auto'
+  },
+}));
+export const useStylesForBagItem = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    marginTop: '2px'
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+  icon: {
+    verticalAlign: 'bottom',
+    height: 20,
+    width: 20,
+  },
+  details: {
+    alignItems: 'center',
+  },
+  column: {
+    flexBasis: '33.33%',
+  },
+  helper: {
+    borderLeft: `2px solid ${theme.palette.divider}`,
+    padding: theme.spacing(1, 2),
+  },
+  imgDiv: {
+    width: 200,
+    heigth: 100,
+    display:'inline-block'
+  },
+  img: {
+width:'100%'
+  },
+  link: {
+    color: theme.palette.primary.main,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
 }));

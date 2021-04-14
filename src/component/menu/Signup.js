@@ -70,12 +70,13 @@ const Signup = () => {
                         console.log("Error adding document: ", error.message);
                     });
             })
-            console.log('auth2')
+            
             .catch((error) => {
                 inputChange.errorMessage = error.message;
                 inputChange.errorCode = error.code;
                 setValues(inputChange)
             });
+            console.log('auth2')
     }
     return (
         <>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
@@ -16,6 +16,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { SET_SELECTED_ITEM } from "../../reducer/reducer";
+import { useAlert } from 'react-alert'
 const useStyles = makeStyles({
   new: {
     float: "right",
@@ -28,30 +29,35 @@ const useStyles = makeStyles({
 
 const Item = (props) => {
   const classes = useStyles();
+  const alert = useAlert()
+  const dispatch = useDispatch();
+  const history = useHistory()
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
-  const dispatch = useDispatch();
-  const { ind, name, price, photo, status, url } = props;
-  // console.log(url)
-  async function getImgUrl(path) {
-    let gsReference = storage.refFromURL(path);
-    return gsReference.getDownloadURL();
-  }
-  const getBrandLogos = async (item) => {
-    const data = await getImgUrl(item);
+  const [alertMessage, setAlert] = useState('')
+  const { name, price, photo, status } = props;
+  const getBrandLogo = async (photo) => {
+    let data = await storage.refFromURL(photo).getDownloadURL()
     setImg(data);
   };
   useEffect(() => {
-    getBrandLogos(photo);
+    getBrandLogo(photo);
     console.log('item-photo')
   }, []);
-  function handleClickedItem(item, user) {
+  function handleAddToBagItem(item, user) {
+    
+    if(user.item){
     db.collection("users")
       .doc(user.uid)
       .update({
         bag: firebase.firestore.FieldValue.arrayUnion(item),
-      });
-      console.log('item-users')
+      }).then(() => {
+        setAlert('successfully added to bag')
+    })
+  }else{
+    history.push('/login')
+  }
+    console.log('item-users')
   }
   function handleLearnMore(item) {
     console.log(item)
@@ -60,10 +66,9 @@ const Item = (props) => {
       payload: item,
     });
   }
-  
   return (
-    <Card className={classes.card} key={ind}>
-      <Typography>brand - {url}</Typography>
+    <Card className={classes.card} >
+      <Typography>brand - </Typography>
       <Typography className={classes.new}>{status}</Typography>
       <CardActionArea>
         <CardMedia img={img} />
@@ -79,7 +84,7 @@ const Item = (props) => {
           labelcolor="#4c003f"
           width="140px"
           border="none"
-          onClick={() => handleClickedItem({ ...props }, user)}
+          onClick={() =>{ handleAddToBagItem({ ...props }, user);alert.show(<div style={{ color: 'white',fontSize:'12px' }}>{alertMessage}</div>) }}
         >
           {" "}
           Add to Bag

@@ -13,12 +13,12 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import {useStyles} from './BagStyles'
+import {useStylesForBag} from './BagStyles'
 
 const Bag = () => {
   const user = useSelector(selectUser);
   const { path, url } = useRouteMatch();
-  const classes = useStyles();
+  const classes = useStylesForBag();
   const [bag, setBag] = useState([]);
   console.log(user)
   useEffect(() => {

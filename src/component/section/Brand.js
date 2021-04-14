@@ -32,10 +32,13 @@ const Brand = () => {
     const ref = db.collection("brands").doc(selectedBrand.brandId);
     db.collection("items").where("brandId", "==", ref).get()
       .then((querySnapshot) => {
-        const filteringItems = [];
+        let filteringItems = [];
+        
+        // filteringItems.push(querySnapshot.uid);
         querySnapshot.forEach((item) => {
-          filteringItems.push(item.data());
+          filteringItems.push({id:item.id,data:item.data()});
         });
+        console.log(filteringItems)
         console.log('brand-items. js')
         setFilteredItems(filteringItems)
         dispatch({
@@ -49,7 +52,9 @@ const Brand = () => {
       <SideBar/>
       <div className={classes.brandItem}>
         {filteredItems.map((item, i) =>
-          <Item key={i} ind={i} {...item} url ={brandUrl} />
+
+          <Item key={i}{...item.data} itemId={item.id} />
+          // (console.log(item))
         )}
       </div>
     </div>

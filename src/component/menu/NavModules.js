@@ -1,10 +1,11 @@
 import '../../styles/navModules.css'
 import React from 'react'
 import addUserIcon from '../../Pics/icons/addUser.png'
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { auth } from '../../index'
 const NavModules = (props) => {
   const { changeProfileDisplay, handleToggle, uid, email, userImg } = props
+  const history = useHistory()
   let navUserSetting;
   if (uid) {
     navUserSetting = <div style={{ display: (changeProfileDisplay ? "block" : "none") }} className='profile-dropdown'>
@@ -13,7 +14,7 @@ const NavModules = (props) => {
           <span className='profile-dropdown-info-img'><img alt='img' src={userImg} />{userImg}</span>
           <span className='profile-dropdown-info-name'>{email}</span>
         </div>
-        <div className='profile-dropdown-logout'><span onClick={() => { auth.signOut(); window.location.reload() }} className='profile-dropdown-logout-button'>LogOut</span></div>
+        <div className='profile-dropdown-logout'><span onClick={() => { auth.signOut();window.location.reload() }} className='profile-dropdown-logout-button'>LogOut</span></div>
       </div>
     </div>
     
