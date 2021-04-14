@@ -43,6 +43,7 @@ const Item = (props) => {
   };
   useEffect(() => {
     getBrandLogos(photo);
+    console.log('item-photo')
   }, []);
   function handleClickedItem(item, user) {
     db.collection("users")
@@ -50,6 +51,7 @@ const Item = (props) => {
       .update({
         bag: firebase.firestore.FieldValue.arrayUnion(item),
       });
+      console.log('item-users')
   }
   function handleLearnMore(item) {
     console.log(item)

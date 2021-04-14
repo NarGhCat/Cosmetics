@@ -37,6 +37,7 @@ const Category = () => {
         querySnapshot.forEach((item) => {
           filteringItems.push(item.data());
         });
+        console.log('category.js')
         setFilteredItems(filteringItems)
         dispatch({
           type: SET_ITEMS_BY_CATEGORY,

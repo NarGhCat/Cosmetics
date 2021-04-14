@@ -33,6 +33,7 @@ const Brands = () => {
   };
   useEffect(() => {
     getBrandLogos(brands)
+    console.log('brands.js')
   }, [brands])
 
   return (

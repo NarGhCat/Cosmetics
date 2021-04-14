@@ -25,6 +25,7 @@ const Bag = () => {
     if(user.item){
       setBag(user.item.bag);
     }
+    console.log('bag.js')
   }, [user]);
   return (
     <div className={classes.bagComponent}>

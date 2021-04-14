@@ -36,6 +36,7 @@ const Brand = () => {
         querySnapshot.forEach((item) => {
           filteringItems.push(item.data());
         });
+        console.log('brand-items. js')
         setFilteredItems(filteringItems)
         dispatch({
           type: SET_ITEMS_BY_BRAND,

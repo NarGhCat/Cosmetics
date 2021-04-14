@@ -53,6 +53,7 @@ const Lips = () => {
         output.push(doc.data().name)
         // console.log(doc.data().brandId)  
       });
+      console.log('lis-component')
       setOutputOfLips(output)
     });
   }, [])

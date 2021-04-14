@@ -30,6 +30,7 @@ function Nav(props) {
         setEmail(user.email)
         setUid(user.uid)
         db.collection("users").doc(user.uid).get().then((doc) => {
+          console.log('nav.js-user')
           if (doc.exists) {
             dispatch({
               type: SET_USER,
@@ -39,7 +40,7 @@ function Nav(props) {
               }
             })
             setImg(doc.data().image)
-            console.log(doc.data)
+            // console.log(doc.data)
             setBag(doc.data().bag.length)
           }
         })

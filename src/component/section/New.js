@@ -48,8 +48,8 @@ const New = () => {
             itemId: item.id,
             ...item.data()
           })
+          console.log('new items')
         });
-        console.log(newsState)
         dispatch({
           type: SET_NEWS_ITEMS,
           payload: newsState
@@ -78,6 +78,7 @@ const New = () => {
     setImgs(asd);
   };
   useEffect(() => {
+    console.log('new-image')
     getBrandLogos(news);
   }, [news]);
 

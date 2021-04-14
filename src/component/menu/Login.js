@@ -34,6 +34,7 @@ const Login = (props) => {
           submitNewValues.errorMessage = ' '
           history.push('/')
         });
+        console.log('login.js')
       })
       .catch((error) => {
         submitNewValues.errorCode = error.code;

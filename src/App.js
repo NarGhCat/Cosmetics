@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import New from "./component/section/New";
@@ -33,12 +33,13 @@ export default function App() {
         doc.forEach((brand) => {
           brandState.push({
             brandId: brand.id,
-            ...brand.data()
+            ...brand.data(),
           });
+          console.log('brands')
         });
         dispatch({
           type: SET_BRANDS,
-          payload: brandState
+          payload: brandState,
         });
       });
   }, []);
@@ -50,31 +51,34 @@ export default function App() {
         doc.forEach((category) => {
           categoryState.push({
             categoryId: category.id,
-            ...category.data()
+            ...category.data(),
           });
+          console.log('category')
         });
         dispatch({
           type: SET_CATEGORY,
-          payload: categoryState
+          payload: categoryState,
         });
       });
   }, []);
   let itemsState = [];
-  db.collection("items")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((item) => {
-        itemsState.push({
-          itemId: item.id,
-          ...item.data()
+  useEffect(() => {
+    db.collection("items")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((item) => {
+          itemsState.push({
+            itemId: item.id,
+            ...item.data(),
+          });
+          console.log('items')
+        });
+        dispatch({
+          type: SET_ITEMS,
+          payload: itemsState,
         });
       });
-      dispatch({
-        type: SET_ITEMS,
-        payload: itemsState
-      });
-    });
-
+  }, []);
   return (
     <>
       <Router>
