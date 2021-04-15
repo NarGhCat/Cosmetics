@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function DiscoverEvenMore() {
   return (
@@ -15,7 +15,7 @@ function DiscoverEvenMore() {
         Discover even more
       </h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/lips">
+        <Link to="/categories/Lips">
           <div
             className="discoverEvenMore"
             style={{
@@ -28,7 +28,7 @@ function DiscoverEvenMore() {
             <span>Lips</span>
           </div>
         </Link>
-        <Link to="/face">
+        <Link to="/categories/Face">
           <div
             className="discoverEvenMore"
             style={{
@@ -41,7 +41,7 @@ function DiscoverEvenMore() {
             <span>Face</span>
           </div>
         </Link>
-        <Link to="/eyes">
+        <Link to="/categories/Eyes">
           <div
             className="discoverEvenMore"
             style={{

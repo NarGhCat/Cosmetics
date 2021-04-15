@@ -1,43 +1,40 @@
 import "../../styles/NewStyle.css";
-import React, { useState, useEffect } from 'react'
-import { selectBrands, selectItems,selectNews } from '../../selectors/fierbase';
-import { useSelector } from 'react-redux';
-import { db, storage } from "../../index";
-import { SET_NEWS_ITEMS } from '../../reducer/reducer'
-import Card from '../shared/Card'
-import Button from '../shared/Button'
-import CardMedia from '../shared/CardMedia'
-import Typography from '../shared/Typography'
-import { useDispatch } from 'react-redux'
-import { CardActionArea, CardActions, CardContent, makeStyles } from '@material-ui/core';
-import { Link, Switch, Route, useParams, useRouteMatch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { selectNews } from "../../selectors/fierbase";
+import { useSelector } from "react-redux";
+import { storage } from "../../index";
+import Card from "../shared/Card";
+import Button from "../shared/Button";
+import CardMedia from "../shared/CardMedia";
+import Typography from "../shared/Typography";
+import {
+  CardActionArea,
+  CardActions,
+  CardContent,
+  makeStyles
+} from "@material-ui/core";
+import { useParams } from "react-router-dom";
 import SideBar from "./SideBar";
 const useStyles = makeStyles({
   brandRoot: {
-    display: 'flex',
-    width: 95 + '%',
-    margin: 'auto',
-    justifyContent: 'space-between',
+    display: "flex",
+    width: 95 + "%",
+    margin: "auto",
+    justifyContent: "space-between"
   },
   brandItem: {
-    display: 'flex',
-    flexFlow: 'wrap',
-    justifyContent: 'space-between',
-    width: 82 + '%',
-
+    display: "flex",
+    flexFlow: "wrap",
+    justifyContent: "space-between",
+    width: 82 + "%"
   }
-})
+});
 
 const New = () => {
-  const dispatch = useDispatch()
-  const brandClasses = useStyles()
-  const news = useSelector(selectNews)
-  const brands = useSelector(selectBrands)
-  const { brandUrl } = useParams()
+  const brandClasses = useStyles();
+  const news = useSelector(selectNews);
+  const { brandUrl } = useParams();
   const [imgs, setImgs] = useState([]);
-  const items = useSelector(selectItems);
-  // console.log(items)
-  
 
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
@@ -60,42 +57,52 @@ const New = () => {
     setImgs(asd);
   };
   useEffect(() => {
-    console.log('new-image')
     getBrandLogos(news);
   }, [news]);
 
-  
-
   return (
-
     <div className={brandClasses.brandRoot}>
-      <SideBar/>
+      <SideBar />
       <div className={brandClasses.brandItem}>
-        {news.map((item, i) => (
-
-          (item.brandId.id ?
+        {news.map((item, i) =>
+          item.brandId.id ? (
             <Card key={i}>
               <Typography>{brandUrl}</Typography>
               <CardActionArea>
-                <CardMedia  image ={imgs[i]} />
+                <CardMedia image={imgs[i]} />
                 <CardContent>
                   <Typography>{item.name}</Typography>
                   <Typography>$ {item.price}</Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button bgColor='white' labelcolor='#4c003f' width='140px' border='none'>    Add to Bag
-                 </Button>
+                <Button
+                  bgColor="white"
+                  labelcolor="#4c003f"
+                  width="140px"
+                  border="none"
+                >
+                  {" "}
+                  Add to Bag
+                </Button>
 
-                <Button bgColor='white' labelcolor='#4c003f' width='140px' border='none'>  Learn More
-                 </Button>
+                <Button
+                  bgColor="white"
+                  labelcolor="#4c003f"
+                  width="140px"
+                  border="none"
+                >
+                  {" "}
+                  Learn More
+                </Button>
               </CardActions>
-            </Card> : '')
-
-        ))}
+            </Card>
+          ) : (
+            ""
+          )
+        )}
       </div>
     </div>
-
-  )
-}
+  );
+};
 export default New;
