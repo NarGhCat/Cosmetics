@@ -18,15 +18,17 @@ import Bag from "./component/menu/Bag";
 import Payment from "./component/section/Payment";
 import Category from "./component/section/Category";
 import LearnMore from "./component/section/LearnMore";
-import { getBrandsFromDb, getCategoryFromDb, getItemsFromDb, getNewItemsFromDb } from './FireBase'
+import { getBrandsFromDb, getItemsFromDb, getNewItemsFromDb } from './FireBase'
+import { getCategoriesAction } from "./reducer/asyncActions/firestoreActions";
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     getBrandsFromDb(dispatch)
   }, []);
+
   useEffect(() => {
-    getCategoryFromDb(dispatch)
-  }, []);
+    dispatch(getCategoriesAction())
+  }, [dispatch])
   useEffect(() => {
     getItemsFromDb(dispatch)
   }, []);
