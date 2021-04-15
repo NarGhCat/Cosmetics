@@ -4,7 +4,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import New from "./component/section/New";
 import Brands from "./component/section/Brands";
 import Nav from "./component/menu/Nav";
@@ -40,7 +40,7 @@ export default function App() {
         <Nav />
         <Switch>
           <Route path="/new" component={New} />
-          <Route path="/categories/:categoryUrl" component={Category} />
+          <Route path="/categories/:categoryId" component={Category} />
           <Route exact path="/brands" component={Brands} />
           <Route path="/brands/:brandUrl" component={Brand} />
           <Route exact path="/bag" component={Bag} />
@@ -50,6 +50,9 @@ export default function App() {
           <Route path="/clickedItem" component={LearnMore} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
+            <Redirect to="/" />
+          </Route>
+          <Route path="*" >
             <Redirect to="/" />
           </Route>
         </Switch>

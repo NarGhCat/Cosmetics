@@ -70,7 +70,7 @@ function Nav(props) {
                   onClick={() => { dispatch({ type: SELECTED_CATEGORY, payload: category }) }}
                   className='navbar-menu-a'
                   key={i}
-                  to={`/categories/${category.name}`}>
+                  to={`/categories/${category.categoryId}`}>
                   {category.type}</Link>
                 // console.log(category)
               ))

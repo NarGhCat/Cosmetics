@@ -42,6 +42,7 @@ export function getCategoryFromDb(dispatch, categoryState = []) {
 
 export function getItemsFromDb(dispatch, itemsState = []) {
   db.collection("items")
+    .limit(20)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((item) => {
