@@ -25,6 +25,7 @@ import { useParams } from "react-router";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { Link } from "react-router-dom";
+import Item from "./Item";
 // import { makeStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
@@ -145,33 +146,35 @@ const LearnMore = () => {
 
       <div style={{display: "flex", justifyContent: "center"}}>
         {newArray.map((item, i) => (
-          <Card key={i} style={{ width: 300, height: 300, margin: 30 }}>
-            <Typography>brand - </Typography>
-            <Typography className={classes.new}>{item.status}</Typography>
-            <CardActionArea>
-              <CardMedia img={pics} style={{ width: 100, height: 100 }} />
+          <Item key={i}{...item} itemId={item.id} />
+          // <Card key={i} style={{ width: 300, height: 300, margin: 30 }}>
+          //   <Typography>brand - </Typography>
+          //   <Typography className={classes.new}>{item.status}</Typography>
+          //   <CardActionArea>
+          //     <CardMedia img={pics} style={{ width: 100, height: 100 }} />
 
-              <CardContent>
-                <Typography>{item.name}</Typography>
-                <Typography>$ {item.price}</Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Link to="/clickedItem">
-                <Button
-                  bgColor="white"
-                  labelcolor="#4c003f"
-                  width="140px"
-                  border="none"
-                  // onClick={() => handleLearnMore({ ...props })}
-                >
-                  {" "}
-                  Learn More
-                </Button>
-              </Link>
-            </CardActions>
-          </Card>
-        ))}
+          //     <CardContent>
+          //       <Typography>{item.name}</Typography>
+          //       <Typography>$ {item.price}</Typography>
+          //     </CardContent>
+          //   </CardActionArea>
+          //   <CardActions>
+          //     <Link to="/clickedItem">
+          //       <Button
+          //         bgColor="white"
+          //         labelcolor="#4c003f"
+          //         width="140px"
+          //         border="none"
+          //         // onClick={() => handleLearnMore({ ...props })}
+          //       >
+          //         {" "}
+          //         Learn More
+          //       </Button>
+          //     </Link>
+          //   </CardActions>
+          // </Card>
+        )
+        )}
       </div>
       
     </div>

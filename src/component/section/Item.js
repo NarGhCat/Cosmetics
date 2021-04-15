@@ -36,6 +36,7 @@ const Item = (props) => {
   const [img, setImg] = useState("");
   const [alertMessage, setAlert] = useState('')
   const { name, price, photo, status } = props;
+  console.log(props)
   const getBrandLogo = async (photo) => {
     let data = await storage.refFromURL(photo).getDownloadURL()
     setImg(data);
