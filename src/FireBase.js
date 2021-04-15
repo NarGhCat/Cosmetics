@@ -1,10 +1,11 @@
-import React from "react";
-import { db, storage } from "./index";
-// import Brand from "./Brand"
+import { db } from "./index";
 
-// import { useDispatch } from "react-redux";
-// import Bag from "./component/menu/Bag";
-import { SET_BRANDS, SET_CATEGORY, SET_ITEMS, SET_NEWS_ITEMS } from "./reducer/reducer";
+import {
+  SET_BRANDS,
+  SET_CATEGORY,
+  SET_ITEMS,
+  SET_NEWS_ITEMS
+} from "./reducer/reducer";
 export function getBrandsFromDb(dispatch, brandState = []) {
   db.collection("brands")
     .get()
@@ -12,13 +13,12 @@ export function getBrandsFromDb(dispatch, brandState = []) {
       doc.forEach((brand) => {
         brandState.push({
           brandId: brand.id,
-          ...brand.data(),
+          ...brand.data()
         });
-        console.log("brands");
       });
       dispatch({
         type: SET_BRANDS,
-        payload: brandState,
+        payload: brandState
       });
     });
 }
@@ -29,13 +29,12 @@ export function getCategoryFromDb(dispatch, categoryState = []) {
       doc.forEach((category) => {
         categoryState.push({
           categoryId: category.id,
-          ...category.data(),
+          ...category.data()
         });
-        console.log("category");
       });
       dispatch({
         type: SET_CATEGORY,
-        payload: categoryState,
+        payload: categoryState
       });
     });
 }
@@ -47,13 +46,12 @@ export function getItemsFromDb(dispatch, itemsState = []) {
       querySnapshot.forEach((item) => {
         itemsState.push({
           itemId: item.id,
-          ...item.data(),
+          ...item.data()
         });
       });
-      console.log("items");
       dispatch({
         type: SET_ITEMS,
-        payload: itemsState,
+        payload: itemsState
       });
     });
 }
@@ -63,17 +61,15 @@ export function getNewItemsFromDb(dispatch, newsState = []) {
     .where("status", "==", "new")
     .get()
     .then((querySnapshot) => {
-      console.log(querySnapshot);
       querySnapshot.forEach((item) => {
         newsState.push({
           itemId: item.id,
-          ...item.data(),
+          ...item.data()
         });
-        console.log("new items");
       });
       dispatch({
         type: SET_NEWS_ITEMS,
-        payload: newsState,
+        payload: newsState
       });
     });
 }

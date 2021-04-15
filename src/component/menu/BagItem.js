@@ -1,15 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionActions from "@material-ui/core/AccordionActions";
-import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Chip from "@material-ui/core/Chip";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
+import {
+  Divider,
+  Button,
+  AccordionDetails,
+  Accordion,
+  Chip,
+  Typography,
+  AccordionActions,
+  AccordionSummary
+} from "@material-ui/core";
 import { useStylesForBagItem } from "./BagStyles";
 import { db, storage } from "../..";
 import firebase from "firebase/app";
@@ -17,10 +18,10 @@ import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { deletedFromBagAlert } from "../section/Alert.js";
+
 const BagItem = (props) => {
   const classes = useStylesForBagItem();
-  const { ind, name, price, photo, status, url, itemId } = props;
+  const { ind, name, price, photo } = props;
   const user = useSelector(selectUser);
   const [alertMessage, setAlert] = useState("");
   const [img, setImg] = useState("");
@@ -31,9 +32,8 @@ const BagItem = (props) => {
   };
   useEffect(() => {
     getBrandLogo(photo);
-    console.log("item-photo");
   }, []);
-  console.log(user);
+
   function handleDeleteFromBag(ind, user) {
     db.collection("users")
       .doc(user.uid)
@@ -103,7 +103,6 @@ const BagItem = (props) => {
           </AccordionActions>
         </Accordion>
       </Fragment>
-      {/* {alert} */}
     </div>
   );
 };
