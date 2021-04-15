@@ -4,20 +4,27 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
-import Button from '@material-ui/core/Button';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+import Button from "@material-ui/core/Button";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import pics from "../../Pics/bag.png";
 // import Button from '@material-ui/core/Button';
 // import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import { selectedItem, selectItems, selectUser } from "../../selectors/fierbase";
+import {
+  selectedItem,
+  selectItems,
+  selectNews,
+  selectUser,
+} from "../../selectors/fierbase";
 import { useSelector } from "react-redux";
 import { db, storage } from "../..";
 import { useParams } from "react-router";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import { Link } from "react-router-dom";
 // import { makeStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
@@ -41,24 +48,29 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
   },
   button: {
-    margin: theme.spacing(10, 0,0 ,0),
-    width: 250
+    margin: theme.spacing(10, 0, 0, 0),
+    width: 250,
   },
   media: {
     height: 140,
   },
 }));
 
-
 const LearnMore = () => {
   const classes = useStyles();
   const clickItem = useSelector(selectedItem);
   const user = useSelector(selectUser);
+  const news = useSelector(selectNews);
   const [img, setImg] = useState("");
   const { brandUrl } = useParams();
 
-  // console.log(clickItem)
-  
+  let newArrayItems = [...news]
+  const shuffled = newArrayItems.sort(() => 0.5 - Math.random());
+  let newArray = shuffled.slice(0, 3);
+
+  console.log(news);
+  console.log(newArray);
+
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
     return gsReference.getDownloadURL();
@@ -69,17 +81,33 @@ const LearnMore = () => {
   };
   useEffect(() => {
     getBrandLogos(clickItem);
-    console.log('learnMore')
   }, [clickItem]);
 
-
-  // function handleClickedItem(item, user) {
-  //   db.collection("users")
-  //     .doc(user.uid)
-  //     .update({
-  //       bag: firebase.firestore.FieldValue.arrayUnion(item),
-  //     });
+  // async function getImgUrl(path) {
+  //   let gsReference = storage.refFromURL(path);
+  //   return gsReference.getDownloadURL();
   // }
+
+  // const getBrandLogos = async (news) => {
+  //   const imageArray = [];
+  //   news.forEach((item) => {
+  //     imageArray.push(getImgUrl(item.photo));
+  //   });
+  //   const data = await Promise.allSettled(imageArray);
+  //   const asd = data.map((d, i) => {
+  //     if (d.status === "fulfilled") {
+  //       return d.value;
+  //     } else {
+  //       return undefined;
+  //     }
+  //   });
+  //   setImgs(asd);
+  // };
+  // useEffect(() => {
+  //   console.log('new-image')
+  //   getBrandLogos(news);
+  // }, [news]);
+
 
   return (
     <div className={classes.root}>
@@ -101,46 +129,51 @@ const LearnMore = () => {
                 </Typography>
                 <br />
                 <Typography variant="subtitle1">$ {clickItem.price}</Typography>
-              <Button
-                variant="contained"
-                color="default"
-                className={classes.button}
-                // onClick={() => handleClickedItem({ ...props }, user)}
-              >
-                ADD TO BAG
-              </Button>
+                <Button
+                  variant="contained"
+                  color="default"
+                  className={classes.button}
+                  // onClick={() => handleClickedItem({ ...props }, user)}
+                >
+                  ADD TO BAG
+                </Button>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Paper>
+
+      <div style={{display: "flex", justifyContent: "center"}}>
+        {newArray.map((item, i) => (
+          <Card key={i} style={{ width: 300, height: 300, margin: 30 }}>
+            <Typography>brand - </Typography>
+            <Typography className={classes.new}>{item.status}</Typography>
+            <CardActionArea>
+              <CardMedia img={pics} style={{ width: 100, height: 100 }} />
+
+              <CardContent>
+                <Typography>{item.name}</Typography>
+                <Typography>$ {item.price}</Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Link to="/clickedItem">
+                <Button
+                  bgColor="white"
+                  labelcolor="#4c003f"
+                  width="140px"
+                  border="none"
+                  // onClick={() => handleLearnMore({ ...props })}
+                >
+                  {" "}
+                  Learn More
+                </Button>
+              </Link>
+            </CardActions>
+          </Card>
+        ))}
+      </div>
       
-      <Card >
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          {/* <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography> */}
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
-          Share
-        </Button> */}
-        <Button size="small" color="primary">
-          LEARN MORE
-        </Button>
-      </CardActions>
-    </Card>
     </div>
   );
 };

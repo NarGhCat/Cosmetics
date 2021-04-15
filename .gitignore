@@ -1,1 +1,116 @@
 node_modules
+
+const LearnMore = () => {
+  const classes = useStyles();
+  const clickItem = useSelector(selectedItem);
+  const user = useSelector(selectUser);
+  const news = useSelector(selectNews)
+  const [img, setImg] = useState("");
+  const [newImgs, setNewImgs] = useState([]);
+  const { brandUrl } = useParams();
+  
+  let newArray = [...news].slice(0,3)
+  console.log(news)
+  console.log(newArray)
+
+  async function getImgUrl(path) {
+    let gsReference = storage.refFromURL(path);
+    return gsReference.getDownloadURL();
+  }
+  const getBrandLogos = async (clickItem) => {
+    const data = await getImgUrl(clickItem.photo);
+    setImg(data);
+  };
+  useEffect(() => {
+    getBrandLogos(clickItem);
+  }, [clickItem]);
+
+  // async function getImgUrl2(path) {
+  //   let gsReference = storage.refFromURL(path);
+  //   return gsReference.getDownloadURL();
+  // }
+
+  // const getBrandLogos2 = async (newArray) => {
+  //   const imageArray = [];
+  //   newArray.forEach((item) => {
+  //     imageArray.push(getImgUrl2(item.photo));
+  //   });
+  //   const data = await Promise.allSettled(imageArray);
+  //   const asd = data.map((d, i) => {
+  //     if (d.status === "fulfilled") {
+  //       return d.value;
+  //     } else {
+  //       return undefined;
+  //     }
+  //   });
+  //   setNewImgs(asd);
+  // };
+  // // useEffect(() => {
+  // //   getBrandLogos2(newArray);
+  // // }, [newArray]);
+
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img className={classes.img} alt="complex" src={img} />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="h4">
+                  {clickItem.name}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Brand
+                </Typography>
+                <br />
+                <Typography variant="subtitle1">$ {clickItem.price}</Typography>
+                <Button
+                  variant="contained"
+                  color="default"
+                  className={classes.button}
+                  // onClick={() => handleClickedItem({ ...props }, user)}
+                >
+                  ADD TO BAG
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+
+      {newArray.map((item,i) => (
+      <Card key={i} style={{width: 300, height: 300}}>
+        <Typography>brand - </Typography>
+        <Typography className={classes.new}>{item.status}</Typography>  
+        <CardActionArea>
+          <CardMedia img={"newImgs[i]"} style={{width: 100, height: 100}}/>
+
+          <CardContent>
+            <Typography>{item.name}</Typography>
+            <Typography>$ {item.price}</Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Link to="/clickedItem">
+            <Button
+              bgColor="white"
+              labelcolor="#4c003f"
+              width="140px"
+              border="none"
+              // onClick={() => handleLearnMore({ ...props })}
+            >
+              {" "}
+              Learn More
+            </Button>
+          </Link>
+        </CardActions>
+      </Card>
+      ))}
+    </div>
+  );
+};

@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Eyes from "./Eyes";
-import Face from "./Face";
-import Lips from "./Lips";
+
 
 function DiscoverEvenMore() {
   return (

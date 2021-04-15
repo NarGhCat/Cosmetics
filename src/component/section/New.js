@@ -37,25 +37,7 @@ const New = () => {
   const [imgs, setImgs] = useState([]);
   const items = useSelector(selectItems);
   // console.log(items)
-  let newsState =[];
-  useEffect(() => {
-    db.collection("items").where('status', '==', 'new')
-      .get()
-      .then((querySnapshot) => {
-        console.log(querySnapshot)
-        querySnapshot.forEach((item) => {
-          newsState.push({
-            itemId: item.id,
-            ...item.data()
-          })
-          console.log('new items')
-        });
-        dispatch({
-          type: SET_NEWS_ITEMS,
-          payload: newsState
-        })
-      })
-  }, [])
+  
 
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
