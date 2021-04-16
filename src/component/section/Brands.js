@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Link,
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +8,7 @@ import { selectBrands } from "../../selectors/fierbase";
 import { storage } from "../../";
 const Brands = () => {
   const brands = useSelector(selectBrands);
-  const { path, url } = useRouteMatch();
+  const { url } = useRouteMatch();
   const [logos, setLogos] = useState([]);
   const dispatch = useDispatch();
 
@@ -31,8 +25,8 @@ const Brands = () => {
     setLogos(data);
   };
   useEffect(() => {
-    getBrandLogos(brands)
-  }, [brands])
+    getBrandLogos(brands);
+  }, [brands]);
 
   return (
     <div className="brands-main-content">
@@ -49,7 +43,7 @@ const Brands = () => {
                       // }}
                       to={`${url}/${brand.brandId}`}
                     >
-                      <img style={{ width: 300, height: 300 }} src={logos[i]} />
+                      <img style={{ width: 300, height: 300 }} src={logos[i]} alt="" />
                     </Link>
                   </ButtonBase>
                 </Grid>

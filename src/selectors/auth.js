@@ -1,1 +1,1 @@
-export const selectLoggedInUser = (state) => state.loggedInUser
+export const selectLoggedInUser = (state) => state.loggedInUser;

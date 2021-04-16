@@ -8,12 +8,12 @@ const Payment = () => {
     cvc: "",
     expiry: "",
     name: "",
-    number: ""
+    number: "",
   });
   const handleInputChange = (e) => {
     setData({
       ...data,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 

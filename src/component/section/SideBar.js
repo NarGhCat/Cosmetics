@@ -2,38 +2,37 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ListItem, makeStyles } from "@material-ui/core";
 import { selectBrands, selectCategories } from "../../selectors/fierbase";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   sidebar: {
     width: 220,
     background:
       "radial-gradient(ellipse farthest-side at left top,#f500cb70 13%, rgb(255 255 255 / 0%) 90%)",
-    borderLeft: "1px solid #f500cb"
+    borderLeft: "1px solid #f500cb",
   },
   brandsSelector: {
     margin: 10 + "px auto",
-    width: 90 + "%"
+    width: 90 + "%",
   },
   brands: {
-    marginTop: 12
+    marginTop: 12,
   },
   h3: {
     borderBottom: 1 + "px solid black",
     fontSize: 25,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   p: {
     marginTop: 10,
     cursor: "pointer",
-    fontWeight: 600
+    fontWeight: 600,
   },
   link: {
     textDecoration: "none",
-    color: "black"
-  }
+    color: "black",
+  },
 });
 const SideBar = () => {
-  const { path, url } = useRouteMatch();
   const classes = useStyles();
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);

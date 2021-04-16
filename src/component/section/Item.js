@@ -30,15 +30,15 @@ const useStyles = makeStyles({
 
 const Item = (props) => {
   const classes = useStyles();
-  const alertDraft = useAlert()
+  const alertDraft = useAlert();
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
+  const [alertMessage, setAlert] = useState("");
   const { name, price, photo, status } = props;
-  let setUser = user
   const getBrandLogo = async (photo) => {
-    let data = await storage.refFromURL(photo).getDownloadURL()
+    let data = await storage.refFromURL(photo).getDownloadURL();
     setImg(data);
   };
   useEffect(() => {

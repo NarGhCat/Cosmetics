@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -17,10 +16,10 @@ import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { deletedFromBagAlert } from "../section/Alert.js";
+
 const BagItem = (props) => {
   const classes = useStylesForBagItem();
-  const { ind, name, price, photo, status, url, itemId } = props;
+  const { ind, name, price, photo } = props;
   const user = useSelector(selectUser);
   const [alertMessage, setAlert] = useState("");
   const [img, setImg] = useState("");
@@ -31,14 +30,13 @@ const BagItem = (props) => {
   };
   useEffect(() => {
     getBrandLogo(photo);
-    console.log("item-photo");
-  }, []);
-  console.log(user);
+  }, [photo]);
+
   function handleDeleteFromBag(ind, user) {
     db.collection("users")
       .doc(user.uid)
       .update({
-        bag: firebase.firestore.FieldValue.arrayRemove(user.item.bag[ind])
+        bag: firebase.firestore.FieldValue.arrayRemove(user.item.bag[ind]),
       })
       .then(() => {
         setAlert("Successfully deleted");
@@ -65,7 +63,7 @@ const BagItem = (props) => {
           <AccordionDetails className={classes.details}>
             <div className={classes.column}>
               <div className={classes.imgDiv}>
-                <img className={classes.img} src={img} />
+                <img className={classes.img} src={img} alt="" />
               </div>
             </div>
             <div className={classes.column}>

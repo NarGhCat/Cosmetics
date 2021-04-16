@@ -5,10 +5,10 @@ const initialState = {
   categories: [],
   items: [],
   news: [],
-  selectedBrand: '',
-  selectedCategory: '',
+  selectedBrand: "",
+  selectedCategory: "",
   selectedItem: "",
   filterByBrand: [],
-  filterByCategory: []
+  filterByCategory: [],
 };
 export default initialState;

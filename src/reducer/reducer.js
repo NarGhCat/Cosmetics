@@ -13,9 +13,10 @@ const reducer = (state = initialState, action) => {
     case SET_LOGGED_IN_USER: {
       return {
         ...state,
-        loggedInUser: action.payload
-      }
-    } case SET_BRANDS: {
+        loggedInUser: action.payload,
+      };
+    }
+    case SET_BRANDS: {
       return {
         ...state,
         brands: action.payload
@@ -23,38 +24,44 @@ const reducer = (state = initialState, action) => {
     } case SET_CATEGORY: {
       return {
         ...state,
-        categories: action.payload
-      }
-    } case SET_ITEMS: {
+        categories: action.payload,
+      };
+    }
+    case SET_ITEMS: {
       return {
         ...state,
-        items: action.payload
-      }
-    } case SET_NEWS_ITEMS: {
+        items: action.payload,
+      };
+    }
+    case SET_NEWS_ITEMS: {
       return {
         ...state,
-        news: action.payload
-      }
-    } case SET_USER: {
+        news: action.payload,
+      };
+    }
+    case SET_USER: {
       return {
         ...state,
-        user: action.payload
-      }
-    } case SET_ITEMS_BY_BRAND: {
+        user: action.payload,
+      };
+    }
+    case SET_ITEMS_BY_BRAND: {
       return {
         ...state,
-        filterByBrand: action.payload
-      }
-    } case SET_ITEMS_BY_CATEGORY: {
+        filterByBrand: action.payload,
+      };
+    }
+    case SET_ITEMS_BY_CATEGORY: {
       return {
         ...state,
-        filterByCategory: action.payload
-      }
-    } case SET_SELECTED_ITEM: {
+        filterByCategory: action.payload,
+      };
+    }
+    case SET_SELECTED_ITEM: {
       return {
         ...state,
-        selectedItem: action.payload
-      }
+        selectedItem: action.payload,
+      };
     }
     default:
       return state;

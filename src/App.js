@@ -18,23 +18,30 @@ import Bag from "./component/menu/Bag";
 import Payment from "./component/section/Payment";
 import Category from "./component/section/Category";
 import LearnMore from "./component/section/LearnMore";
-import { getBrandsFromDb, getItemsFromDb, getNewItemsFromDb } from './FireBase'
-import { getCategoriesAction } from "./reducer/asyncActions/firestoreActions";
+import { getItemsFromDb, getNewItemsFromDb } from "./FireBase";
+import {
+  getBrandsActions,
+  getCategoriesAction,
+  getItemsActions,
+  getNewItemsActions,
+} from "./reducer/asyncActions/firestoreActions";
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    getBrandsFromDb(dispatch)
-  }, []);
+    dispatch(getBrandsActions());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getCategoriesAction())
-  }, [dispatch])
+    dispatch(getCategoriesAction());
+  }, [dispatch]);
+
   useEffect(() => {
-    getItemsFromDb(dispatch)
-  }, []);
+    dispatch(getItemsActions());
+  }, [dispatch]);
+
   useEffect(() => {
-    getNewItemsFromDb(dispatch)
-  }, []);
+    dispatch(getNewItemsActions());
+  }, [dispatch]);
 
   return (
     <>
@@ -54,7 +61,7 @@ export default function App() {
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />
           </Route>
-          <Route path="*" >
+          <Route path="*">
             <Redirect to="/" />
           </Route>
         </Switch>

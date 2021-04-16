@@ -6,17 +6,15 @@ const useStyles = makeStyles({
   media: {
     height: 200,
     width: 200,
-    margin: "auto"
-  }
+    margin: "auto",
+  },
 });
 
 const MediaCard = (props) => {
   const {
-    classes = {},
     children,
     img = item,
     title = "item",
-    className = "",
     ...rest
   } = props;
   const cardMediaClasses = useStyles();
