@@ -44,7 +44,7 @@ const Item = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-
+  let setUser = user
   function handleAddToBagItem(item, user) {
     if (user.data) {
       db.collection("users")

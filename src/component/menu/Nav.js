@@ -5,7 +5,7 @@ import wLogo from "../../Pics/white-logo.png";
 import NavModules from "./NavModules";
 import { auth, db } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
-import { SELECTED_CATEGORY, SET_USER } from "../../reducer/reducer";
+import {  SET_USER } from "../../reducer/reducer";
 import { selectCategories, selectUser } from "../../selectors/fierbase";
 import bagIcon from "../../Pics/bag.png";
 function Nav(props) {
@@ -70,9 +70,6 @@ function Nav(props) {
             </Link>
             {categories.map((category, i) => (
               <Link
-                onClick={() => {
-                  dispatch({ type: SELECTED_CATEGORY, payload: category });
-                }}
                 className="navbar-menu-a"
                 key={i}
                 to={`/categories/${category.categoryId}`}

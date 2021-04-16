@@ -61,10 +61,6 @@ const LearnMore = () => {
   useEffect(() => {
     getBrandLogos(clickItem);
   }, [clickItem]);
-<<<<<<< HEAD
-=======
-
->>>>>>> 17e93eb137464af45d9964468ca50b541cc7538d
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>

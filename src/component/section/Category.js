@@ -30,10 +30,6 @@ const Category = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-<<<<<<< HEAD
-
-=======
->>>>>>> 17e93eb137464af45d9964468ca50b541cc7538d
     if (!selectedCategory) return;
     const ref = db.collection("category").doc(selectedCategory.categoryId);
     db.collection("items")
@@ -45,11 +41,7 @@ const Category = () => {
         querySnapshot.forEach((item) => {
           filteringItems.push(item.data());
         });
-<<<<<<< HEAD
         setFilteredItems(filteringItems)
-=======
-        setFilteredItems(filteringItems);
->>>>>>> 17e93eb137464af45d9964468ca50b541cc7538d
         dispatch({
           type: SET_ITEMS_BY_CATEGORY,
           payload: filteringItems,
