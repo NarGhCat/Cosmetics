@@ -24,9 +24,10 @@ export default function App() {
   useEffect(() => {
     getBrandsFromDb(dispatch)
   }, []);
+
   useEffect(() => {
-    getCategoryFromDb(dispatch)
-  }, []);
+    dispatch(getCategoriesAction())
+  }, [dispatch])
   useEffect(() => {
     getItemsFromDb(dispatch)
   }, []);

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core';
 import { db, storage } from '../..';
 import { SET_ITEMS_BY_CATEGORY } from '../../reducer/reducer'
-import { selectBrands, selectItems, selectCategory } from '../../selectors/fierbase';
+import { selectBrands, selectItems, selectCategory, selectCategoryById } from '../../selectors/fierbase';
 import Item from './Item';
 import SideBar from './SideBar';
 const useStyles = makeStyles({
@@ -22,16 +22,21 @@ const useStyles = makeStyles({
     width: 82 + "%"
   },
 });
+
 const Category = () => {
 
   const classes = useStyles()
-  const selectedCategory = useSelector(selectCategory)
-  const { categoryUrl } = useParams()
+  const { categoryId } = useParams()
+  const selectedCategory = useSelector(selectCategoryById(categoryId))
   const [filteredItems, setFilteredItems] = useState([])
   const dispatch = useDispatch()
+
   useEffect(() => {
+    console.log(`🚀 -> useEffect -> selectCategory`, selectedCategory);
+
+    if (!selectedCategory) return;
     const ref = db.collection("category").doc(selectedCategory.categoryId);
-    db.collection("items").where("categoryId", "==", ref).get()
+    db.collection("items").where("categoryId", "==", ref).limit(5).get()
       .then((querySnapshot) => {
         const filteringItems = [];
         querySnapshot.forEach((item) => {
@@ -51,7 +56,7 @@ const Category = () => {
       <SideBar />
       <div className={classes.categoryItem}>
         {filteredItems.map((item, i) => (
-          <Item key={i} ind={i} {...item} url={categoryUrl} selectedCategory={selectedCategory} />
+          <Item key={item.itemId} ind={i} {...item} url={categoryId} selectedCategory={selectedCategory} />
         ))}
       </div>
     </div>

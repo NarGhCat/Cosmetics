@@ -22,26 +22,10 @@ export function getBrandsFromDb(dispatch, brandState = []) {
       });
     });
 }
-export function getCategoryFromDb(dispatch, categoryState = []) {
-  db.collection("category")
-    .get()
-    .then((doc) => {
-      doc.forEach((category) => {
-        categoryState.push({
-          categoryId: category.id,
-          ...category.data(),
-        });
-        console.log("category");
-      });
-      dispatch({
-        type: SET_CATEGORY,
-        payload: categoryState,
-      });
-    });
-}
 
 export function getItemsFromDb(dispatch, itemsState = []) {
   db.collection("items")
+    .limit(20)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((item) => {

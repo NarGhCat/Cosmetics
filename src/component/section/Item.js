@@ -17,6 +17,7 @@ import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { SET_SELECTED_ITEM } from "../../reducer/reducer";
 import { useAlert } from 'react-alert'
+import { SmsFailed } from "@material-ui/icons";
 const useStyles = makeStyles({
   new: {
     float: "right",
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
 
 const Item = (props) => {
   const classes = useStyles();
-  const alert = useAlert()
+  const alertDraft = useAlert()
   const dispatch = useDispatch();
   const history = useHistory()
   const user = useSelector(selectUser);
@@ -44,7 +45,7 @@ const Item = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
     console.log('item-photo')
-  }, []);
+  }, [photo]);
   function handleAddToBagItem(item, user) {
     
     if(user.item){
@@ -85,7 +86,7 @@ const Item = (props) => {
           labelcolor="#4c003f"
           width="140px"
           border="none"
-          onClick={() =>{ handleAddToBagItem({ ...props }, user);alert.show(<div style={{ color: 'white',fontSize:'12px' }}>{alertMessage}</div>) }}
+          onClick={() =>{ handleAddToBagItem({ ...props }, user);alertDraft.show(<div style={{ color: 'white',fontSize:'12px' }}>{alertMessage}</div>) }}
         >
           {" "}
           Add to Bag
