@@ -2,92 +2,92 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStylesForBag = makeStyles((theme) => ({
   paper: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   image: {
     width: 128,
-    height: 128
+    height: 128,
   },
   root: {
-    width: "100%"
+    width: "100%",
   },
   container: {
-    maxHeight: 440
+    maxHeight: 440,
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
-    transform: "scale(0.8)"
+    transform: "scale(0.8)",
   },
   title: {
-    fontSize: 14
+    fontSize: 14,
   },
   pos: {
-    marginBottom: 12
+    marginBottom: 12,
   },
   bagComponent: {
     width: "95%",
     margin: "auto",
     marginBottom: "50px",
-    paddingTop: "30px"
+    paddingTop: "30px",
   },
   bagHeader: {
     textAlign: "center",
     borderBottom: "1px solid white",
-    color: "white"
+    color: "white",
   },
   leftContent: {
     width: "57%",
     borderRight: "1px solid white",
     height: "600px",
-    overflow: "auto"
+    overflow: "auto",
   },
   bagItems: { width: "80%" },
   card: {
     width: "42%",
-    margin: "0 auto"
-  }
+    margin: "0 auto",
+  },
 }));
 export const useStylesForBagItem = makeStyles((theme) => ({
   root: {
     width: "100%",
-    marginTop: "2px"
+    marginTop: "2px",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15)
+    fontSize: theme.typography.pxToRem(15),
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   icon: {
     verticalAlign: "bottom",
     height: 20,
-    width: 20
+    width: 20,
   },
   details: {
-    alignItems: "center"
+    alignItems: "center",
   },
   column: {
-    flexBasis: "33.33%"
+    flexBasis: "33.33%",
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: theme.spacing(1, 2)
+    padding: theme.spacing(1, 2),
   },
   imgDiv: {
     width: 200,
     heigth: 100,
-    display: "inline-block"
+    display: "inline-block",
   },
   img: {
-    width: "100%"
+    width: "100%",
   },
   link: {
     color: theme.palette.primary.main,
     textDecoration: "none",
     "&:hover": {
-      textDecoration: "underline"
-    }
-  }
+      textDecoration: "underline",
+    },
+  },
 }));

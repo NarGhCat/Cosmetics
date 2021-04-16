@@ -13,7 +13,7 @@ const Signup = () => {
     password: "",
     errorMessage: "",
     errorCode: "",
-    sizeErrorMessage: ""
+    sizeErrorMessage: "",
   });
   const generatePreviewImgUrl = (file, callback) => {
     const reader = new FileReader();
@@ -52,7 +52,6 @@ const Signup = () => {
       .createUserWithEmailAndPassword(values.email, values.password)
       .then((userCredential) => {
         let user = userCredential.user;
-        console.log(user.uid);
         db.collection("users")
           .doc(user.uid)
           .set({
@@ -60,7 +59,7 @@ const Signup = () => {
             username: inputChange.username,
             email: inputChange.email,
             image: chosen.previewImgUrl ? chosen.previewImgUrl : unKnown,
-            bag: []
+            bag: [],
           })
           .then((docRef) => {
             inputChange.errorMessage = "";
@@ -69,7 +68,6 @@ const Signup = () => {
           })
           .catch((error) => {
             inputChange.errorMessage = error.message;
-            console.log("Error adding document: ", error.message);
           });
       })
 

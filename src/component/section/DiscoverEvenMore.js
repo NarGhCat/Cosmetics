@@ -9,7 +9,7 @@ function DiscoverEvenMore() {
           textAlign: "center",
           marginTop: "20px",
           fontSize: "40px",
-          color: "white"
+          color: "white",
         }}
       >
         Discover even more
@@ -22,7 +22,7 @@ function DiscoverEvenMore() {
               background:
                 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZyje3D3u4iogMKsF36uoZNsAq8X8tycM63A&usqp=CAU")',
               backgroundSize: "contain",
-              backgroundRepeat: "no-repeat"
+              backgroundRepeat: "no-repeat",
             }}
           >
             <span>Lips</span>
@@ -35,7 +35,7 @@ function DiscoverEvenMore() {
               background:
                 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0bDOoWVcrocLyUU7Lto93btZrfy2d2uKCow&usqp=CAU")',
               backgroundSize: "cover",
-              backgroundRepeat: "no-repeat"
+              backgroundRepeat: "no-repeat",
             }}
           >
             <span>Face</span>
@@ -48,7 +48,7 @@ function DiscoverEvenMore() {
               background:
                 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vbpVBUKCaPgoNAKOzNXFevdo-G2nDDQw3g&usqp=CAU")',
               backgroundSize: "cover",
-              backgroundRepeat: "no-repeat"
+              backgroundRepeat: "no-repeat",
             }}
           >
             <span>Eyes</span>

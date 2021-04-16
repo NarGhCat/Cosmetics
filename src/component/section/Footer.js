@@ -1,11 +1,11 @@
 import "../../styles/styles.css";
-import faceLogo from "../../Pics/icons/facebook.png";
-import instaLogo from "../../Pics/icons/instagram.png";
-import youtubeLogo from "../../Pics/icons/youtube.png";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SELECTED_BRAND } from "../../reducer/reducer";
 import { selectBrands } from "../../selectors/fierbase";
+import { Link } from "react-router-dom";
+import faceLogo from "../../Pics/icons/facebook.png";
+import instaLogo from "../../Pics/icons/instagram.png";
+import youtubeLogo from "../../Pics/icons/youtube.png";
 
 function Footer() {
   const brands = useSelector(selectBrands);
@@ -16,7 +16,7 @@ function Footer() {
         className="brands-main-content"
         style={{
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <div style={{ width: "200px", margin: "50px 50px", marginLeft: "15%" }}>
@@ -39,18 +39,18 @@ function Footer() {
         <div style={{ width: "200px", margin: "50px 50px", marginLeft: "15%" }}>
           <h2 style={{ color: "white" }}>CONNECT</h2>
           <li className="footerItem">
-            <a href="https://www.instagram.com/" target="_blank">
-              <img src={instaLogo} className="logos" />
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              <img src={instaLogo} className="logos" alt="" />
             </a>
           </li>
           <li className="footerItem">
-            <a href="https://www.facebook.com/" target="_blank">
-              <img src={faceLogo} className="logos" />
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+              <img src={faceLogo} className="logos" alt="" />
             </a>
           </li>
           <li className="footerItem">
-            <a href="https://www.youtube.com/" target="_blank">
-              <img src={youtubeLogo} className="logos" />
+            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+              <img src={youtubeLogo} className="logos" alt="" />
             </a>
           </li>
         </div>

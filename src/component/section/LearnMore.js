@@ -13,31 +13,31 @@ import Item from "./Item";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
     maxWidth: "50%",
-    maxHeight: 1500
+    maxHeight: 1500,
   },
   image: {
     width: 300,
-    height: 500
+    height: 500,
   },
   img: {
     margin: "auto",
     display: "block",
     maxWidth: "100%",
-    maxHeight: "100%"
+    maxHeight: "100%",
   },
   button: {
     margin: theme.spacing(10, 0, 0, 0),
-    width: 250
+    width: 250,
   },
   media: {
-    height: 140
-  }
+    height: 140,
+  },
 }));
 
 const LearnMore = () => {
@@ -61,31 +61,6 @@ const LearnMore = () => {
   useEffect(() => {
     getBrandLogos(clickItem);
   }, [clickItem]);
-
-  // async function getImgUrl(path) {
-  //   let gsReference = storage.refFromURL(path);
-  //   return gsReference.getDownloadURL();
-  // }
-
-  // const getBrandLogos = async (news) => {
-  //   const imageArray = [];
-  //   news.forEach((item) => {
-  //     imageArray.push(getImgUrl(item.photo));
-  //   });
-  //   const data = await Promise.allSettled(imageArray);
-  //   const asd = data.map((d, i) => {
-  //     if (d.status === "fulfilled") {
-  //       return d.value;
-  //     } else {
-  //       return undefined;
-  //     }
-  //   });
-  //   setImgs(asd);
-  // };
-  // useEffect(() => {
-  //   console.log('new-image')
-  //   getBrandLogos(news);
-  // }, [news]);
 
   return (
     <div className={classes.root}>
@@ -124,32 +99,6 @@ const LearnMore = () => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         {newArray.map((item, i) => (
           <Item key={i} {...item} itemId={item.id} />
-          // <Card key={i} style={{ width: 300, height: 300, margin: 30 }}>
-          //   <Typography>brand - </Typography>
-          //   <Typography className={classes.new}>{item.status}</Typography>
-          //   <CardActionArea>
-          //     <CardMedia img={pics} style={{ width: 100, height: 100 }} />
-
-          //     <CardContent>
-          //       <Typography>{item.name}</Typography>
-          //       <Typography>$ {item.price}</Typography>
-          //     </CardContent>
-          //   </CardActionArea>
-          //   <CardActions>
-          //     <Link to="/clickedItem">
-          //       <Button
-          //         bgColor="white"
-          //         labelcolor="#4c003f"
-          //         width="140px"
-          //         border="none"
-          //         // onClick={() => handleLearnMore({ ...props })}
-          //       >
-          //         {" "}
-          //         Learn More
-          //       </Button>
-          //     </Link>
-          //   </CardActions>
-          // </Card>
         ))}
       </div>
     </div>

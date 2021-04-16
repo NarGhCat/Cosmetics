@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
@@ -16,8 +16,8 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { SET_SELECTED_ITEM } from "../../reducer/reducer";
-import { useAlert } from 'react-alert'
-import { SmsFailed } from "@material-ui/icons";
+import { useAlert } from "react-alert";
+
 const useStyles = makeStyles({
   new: {
     float: "right",
@@ -30,46 +30,42 @@ const useStyles = makeStyles({
 
 const Item = (props) => {
   const classes = useStyles();
-  const alertDraft = useAlert()
+  const alertDraft = useAlert();
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
-  const [alertMessage, setAlert] = useState('')
+  const [alertMessage, setAlert] = useState("");
   const { name, price, photo, status } = props;
-  console.log(props)
   const getBrandLogo = async (photo) => {
-    let data = await storage.refFromURL(photo).getDownloadURL()
+    let data = await storage.refFromURL(photo).getDownloadURL();
     setImg(data);
   };
   useEffect(() => {
     getBrandLogo(photo);
-    console.log('item-photo')
   }, [photo]);
   function handleAddToBagItem(item, user) {
-    
-    if(user.item){
-    db.collection("users")
-      .doc(user.uid)
-      .update({
-        bag: firebase.firestore.FieldValue.arrayUnion(item),
-      }).then(() => {
-        setAlert('successfully added to bag')
-    })
-  }else{
-    history.push('/login')
-  }
-    console.log('item-users')
+    if (user.item) {
+      db.collection("users")
+        .doc(user.uid)
+        .update({
+          bag: firebase.firestore.FieldValue.arrayUnion(item),
+        })
+        .then(() => {
+          setAlert("successfully added to bag");
+        });
+    } else {
+      history.push("/login");
+    }
   }
   function handleLearnMore(item) {
-    console.log(item)
     dispatch({
       type: SET_SELECTED_ITEM,
       payload: item,
     });
   }
   return (
-    <Card className={classes.card} >
+    <Card className={classes.card}>
       <Typography>brand - </Typography>
       <Typography className={classes.new}>{status}</Typography>
       <CardActionArea>
@@ -86,7 +82,14 @@ const Item = (props) => {
           labelcolor="#4c003f"
           width="140px"
           border="none"
-          onClick={() =>{ handleAddToBagItem({ ...props }, user);alertDraft.show(<div style={{ color: 'white',fontSize:'12px' }}>{alertMessage}</div>) }}
+          onClick={() => {
+            handleAddToBagItem({ ...props }, user);
+            alertDraft.show(
+              <div style={{ color: "white", fontSize: "12px" }}>
+                {alertMessage}
+              </div>
+            );
+          }}
         >
           {" "}
           Add to Bag

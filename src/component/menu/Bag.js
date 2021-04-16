@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/bag.css";
-import { makeStyles } from "@material-ui/core/styles";
-
 import Typography from "@material-ui/core/Typography";
-import { useRouteMatch } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../selectors/fierbase";
-import { db } from "../..";
 import BagItem from "./BagItem";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,15 +13,12 @@ import { useStylesForBag } from "./BagStyles";
 
 const Bag = () => {
   const user = useSelector(selectUser);
-  const { path, url } = useRouteMatch();
   const classes = useStylesForBag();
   const [bag, setBag] = useState([]);
-  console.log(user);
   useEffect(() => {
     if (user.item) {
       setBag(user.item.bag);
     }
-    console.log("bag.js");
   }, [user]);
   return (
     <div className={classes.bagComponent}>
@@ -42,9 +35,6 @@ const Bag = () => {
         </div>
         <Card className={classes.card} variant="outlined">
           <CardContent>
-            {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Word of the Day
-        </Typography> */}
             <Typography variant="h5" component="h2">
               ORDER SUMMARY
             </Typography>
