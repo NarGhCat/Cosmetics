@@ -4,7 +4,7 @@ import instaLogo from "../../Pics/icons/instagram.png";
 import youtubeLogo from "../../Pics/icons/youtube.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SELECTED_BRAND } from "../../reducer/reducer";
+// import { SELECTED_BRAND } from "../../reducer/reducer";
 import { selectBrands } from "../../selectors/fierbase";
 
 function Footer() {
@@ -26,9 +26,9 @@ function Footer() {
               <Link to={`/brands/${brand.name}`}>
                 <div
                   className="footerItem"
-                  onClick={() => {
-                    dispatch({ type: SELECTED_BRAND, payload: brand });
-                  }}
+                  // onClick={() => {
+                    // dispatch({ type: SELECTED_BRAND, payload: brand });
+                  // }}
                 >
                   {brand.label}
                 </div>

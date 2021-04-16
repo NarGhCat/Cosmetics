@@ -69,7 +69,6 @@ const Signup = () => {
           })
           .catch((error) => {
             inputChange.errorMessage = error.message;
-            console.log("Error adding document: ", error.message);
           });
       })
 

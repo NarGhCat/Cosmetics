@@ -61,32 +61,6 @@ const LearnMore = () => {
   useEffect(() => {
     getBrandLogos(clickItem);
   }, [clickItem]);
-
-  // async function getImgUrl(path) {
-  //   let gsReference = storage.refFromURL(path);
-  //   return gsReference.getDownloadURL();
-  // }
-
-  // const getBrandLogos = async (news) => {
-  //   const imageArray = [];
-  //   news.forEach((item) => {
-  //     imageArray.push(getImgUrl(item.photo));
-  //   });
-  //   const data = await Promise.allSettled(imageArray);
-  //   const asd = data.map((d, i) => {
-  //     if (d.status === "fulfilled") {
-  //       return d.value;
-  //     } else {
-  //       return undefined;
-  //     }
-  //   });
-  //   setImgs(asd);
-  // };
-  // useEffect(() => {
-  //   console.log('new-image')
-  //   getBrandLogos(news);
-  // }, [news]);
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>

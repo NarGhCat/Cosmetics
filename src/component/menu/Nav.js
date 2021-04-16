@@ -6,7 +6,7 @@ import NavModules from './NavModules'
 import { auth, db } from '../../index'
 import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
-import { SELECTED_CATEGORY, SET_USER } from '../../reducer/reducer'
+import {  SET_USER } from '../../reducer/reducer'
 import { selectCategories, selectUser } from '../../selectors/fierbase';
 import bagIcon from '../../Pics/bag.png'
 function Nav(props) {
@@ -15,47 +15,47 @@ function Nav(props) {
   const dispatch = useDispatch()
   // const {categories} = props
   const [displayNone, setDisplay] = useState(false)
-  const { url } = useRouteMatch()
   const [email, setEmail] = useState('');
   const [uid, setUid] = useState('');
   const [userImg, setImg] = useState('');
   const [bag, setBag] = useState([])
-  // let bagLen = bag.length
+  // const bagLength = user.data.bag.length
+
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true)
   }
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setEmail(user.email)
         setUid(user.uid)
         db.collection("users").doc(user.uid).get().then((doc) => {
-          console.log('nav.js-user')
           if (doc.exists) {
             dispatch({
               type: SET_USER,
               payload: {
-                item: doc.data(),
+                data: doc.data(),
                 uid: user.uid
               }
             })
             setImg(doc.data().image)
-            // console.log(doc.data)
-            setBag(doc.data().bag.length)
           }
         })
       }
     });
   }, [])
-  let bagItemIcon ='';
-  if (user.item) {(
-    bagItemIcon = <div className='div-bag-icon' >
-      <span className='bag-count'>{bag}</span>
-      <Link className='navbar-menu-a' to="/bag">
-        <img src={bagIcon} />
-      </Link>
-    </div>
-  )}
+  let bagItemIcon = '';
+  if (user.data) {
+    (
+      bagItemIcon = <div className='div-bag-icon' >
+        <span className='bag-count'>{(bag ? bag : 0)}</span>
+        <Link className='navbar-menu-a' to="/bag">
+          <img src={bagIcon} />
+        </Link>
+      </div>
+    )
+  }
   return (
     <div className='page-navigation'>
       <div className='page-container'>
@@ -67,12 +67,11 @@ function Nav(props) {
             {
               categories.map((category, i) => (
                 <Link
-                  onClick={() => { dispatch({ type: SELECTED_CATEGORY, payload: category }) }}
+                  // onClick={() => { dispatch({ type: SELECTED_CATEGORY, payload: category }) }}
                   className='navbar-menu-a'
                   key={i}
                   to={`/categories/${category.categoryId}`}>
                   {category.type}</Link>
-                // console.log(category)
               ))
             }
             <Link className='navbar-menu-a' to="/brands">Brands</Link>
@@ -92,7 +91,4 @@ function Nav(props) {
 
   )
 }
-const mapStateToProps = (state) => ({
-  categories: state.categories
-})
 export default Nav

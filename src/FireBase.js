@@ -4,7 +4,7 @@ import { db, storage } from "./index";
 
 // import { useDispatch } from "react-redux";
 // import Bag from "./component/menu/Bag";
-import { SET_BRANDS, SET_CATEGORY, SET_ITEMS, SET_NEWS_ITEMS } from "./reducer/reducer";
+import { SET_BRANDS, SET_ITEMS, SET_NEWS_ITEMS } from "./reducer/reducer";
 export function getBrandsFromDb(dispatch, brandState = []) {
   db.collection("brands")
     .get()
@@ -14,7 +14,6 @@ export function getBrandsFromDb(dispatch, brandState = []) {
           brandId: brand.id,
           ...brand.data(),
         });
-        console.log("brands");
       });
       dispatch({
         type: SET_BRANDS,
@@ -34,7 +33,6 @@ export function getItemsFromDb(dispatch, itemsState = []) {
           ...item.data(),
         });
       });
-      console.log("items");
       dispatch({
         type: SET_ITEMS,
         payload: itemsState,
@@ -53,7 +51,6 @@ export function getNewItemsFromDb(dispatch, newsState = []) {
           itemId: item.id,
           ...item.data(),
         });
-        console.log("new items");
       });
       dispatch({
         type: SET_NEWS_ITEMS,

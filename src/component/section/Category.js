@@ -32,7 +32,6 @@ const Category = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(`🚀 -> useEffect -> selectCategory`, selectedCategory);
 
     if (!selectedCategory) return;
     const ref = db.collection("category").doc(selectedCategory.categoryId);
@@ -42,7 +41,6 @@ const Category = () => {
         querySnapshot.forEach((item) => {
           filteringItems.push(item.data());
         });
-        console.log('category.js')
         setFilteredItems(filteringItems)
         dispatch({
           type: SET_ITEMS_BY_CATEGORY,

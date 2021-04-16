@@ -44,7 +44,7 @@ export default function App() {
           <Route path="/new" component={New} />
           <Route path="/categories/:categoryId" component={Category} />
           <Route exact path="/brands" component={Brands} />
-          <Route path="/brands/:brandUrl" component={Brand} />
+          <Route path="/brands/:brandId" component={Brand} />
           <Route exact path="/bag" component={Bag} />
           <Route path="/bag/payment" component={Payment} />
           <Route path="/login" component={Login} />

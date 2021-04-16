@@ -20,10 +20,9 @@ const Bag = () => {
   const { path, url } = useRouteMatch();
   const classes = useStylesForBag();
   const [bag, setBag] = useState([]);
-  console.log(user);
   useEffect(() => {
-    if (user.item) {
-      setBag(user.item.bag);
+    if (user.data) {
+      setBag(user.data.bag);
     }
     console.log("bag.js");
   }, [user]);

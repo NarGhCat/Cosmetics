@@ -10,7 +10,6 @@ import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../shared/Button";
-import { SELECTED_BRAND } from "../../reducer/reducer";
 import { selectBrands } from "../../selectors/fierbase";
 import { storage } from "../../";
 const Brands = () => {
@@ -33,7 +32,6 @@ const Brands = () => {
   };
   useEffect(() => {
     getBrandLogos(brands)
-    console.log('brands.js')
   }, [brands])
 
   return (
@@ -41,16 +39,15 @@ const Brands = () => {
       <div className="brands-content">
         {brands.map((brand, i) => (
           <div key={i} className="root">
-            {/* {console.log(brand.logo)} */}
             <Paper className="paper">
               <Grid container className="main-grid">
                 <Grid className="image-grid">
                   <ButtonBase className="image-btn">
                     <Link
-                      onClick={() => {
-                        dispatch({ type: SELECTED_BRAND, payload: brand });
-                      }}
-                      to={`${url}/${brand.name}`}
+                      // onClick={() => {
+                      //   dispatch({ type: SELECTED_BRAND, payload: brand });
+                      // }}
+                      to={`${url}/${brand.brandId}`}
                     >
                       <img style={{ width: 300, height: 300 }} src={logos[i]} />
                     </Link>
@@ -66,11 +63,11 @@ const Brands = () => {
                     </Typography>
                   </Grid>
                   <Grid className="grid-btn">
-                    <Link to={`${url}/${brand.name}`} className="brand-link">
+                    <Link to={`${url}/${brand.brandId}`} className="brand-link">
                       <Button
-                        onClick={() => {
-                          dispatch({ type: SELECTED_BRAND, payload: brand });
-                        }}
+                        // onClick={() => {
+                          // dispatch({ type: SELECTED_BRAND, payload: brand });
+                        // }}
                         variant="contained"
                       >
                         {brand.label}

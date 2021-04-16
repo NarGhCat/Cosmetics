@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import { db, storage } from "../..";
 import { SET_ITEMS_BY_BRAND } from '../../reducer/reducer'
-import { selectBrands, selectBrand } from "../../selectors/fierbase";
+import { selectBrands, selectBrand, selectBrandById } from "../../selectors/fierbase";
 import Item from "./Item";
 import SideBar from "./SideBar";
 const useStyles = makeStyles({
@@ -24,22 +24,19 @@ const useStyles = makeStyles({
 
 const Brand = () => {
   const classes = useStyles();
-  const { brandUrl } = useParams();
-  const selectedBrand = useSelector(selectBrand);
+  const { brandId } = useParams();
+  const selectedBrand = useSelector(selectBrandById(brandId));
   const [filteredItems, setFilteredItems] = useState([])
   const dispatch = useDispatch()
   useEffect(() => {
+    if (!selectedBrand) return;
     const ref = db.collection("brands").doc(selectedBrand.brandId);
     db.collection("items").where("brandId", "==", ref).get()
       .then((querySnapshot) => {
         let filteringItems = [];
-        
-        // filteringItems.push(querySnapshot.uid);
         querySnapshot.forEach((item) => {
           filteringItems.push({id:item.id,data:item.data()});
         });
-        console.log(filteringItems)
-        console.log('brand-items. js')
         setFilteredItems(filteringItems)
         dispatch({
           type: SET_ITEMS_BY_BRAND,
@@ -52,9 +49,7 @@ const Brand = () => {
       <SideBar/>
       <div className={classes.brandItem}>
         {filteredItems.map((item, i) =>
-
-          <Item key={i}{...item.data} itemId={item.id} />
-          // (console.log(item))
+          <Item key={i}{...item.data} itemId={item.id}/>
         )}
       </div>
     </div>

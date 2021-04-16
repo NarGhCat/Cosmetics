@@ -45,7 +45,7 @@ const SideBar = () => {
           <div className={classes.brands}>
             {brands.map((brand, i) => (
               <ListItem button key={i}>
-                <Link className={classes.link} to={`/brands/${brand.name}`}>
+                <Link className={classes.link} to={`/brands/${brand.brandId}`}>
                   {brand.label}
                 </Link>
               </ListItem>
