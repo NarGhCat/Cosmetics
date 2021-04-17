@@ -17,6 +17,7 @@ import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
 import { useAlert } from 'react-alert'
+import produce from "immer"
 
 const useStyles = makeStyles({
   new: {
@@ -44,7 +45,6 @@ const Item = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-  let setUser = user
   function handleAddToBagItem(item, user) {
     if (user.data) {
       db.collection("users")
@@ -52,10 +52,13 @@ const Item = (props) => {
         .update({
           bag: firebase.firestore.FieldValue.arrayUnion(item),
         }).then(() => {
-          setUser.data.bag.push(item)
+          // setUser.data.bag.push(item)
+          let payload = produce(user, (draftUser) => {
+            draftUser.data.bag.push(item)
+          })
           dispatch({
             type: SET_USER,
-            payload: setUser
+            payload
           })
           alertDraft.show(<div style={{ color: 'white', fontSize: '12px' }}>successfully added to bag</div>)
         })

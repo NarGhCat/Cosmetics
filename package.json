@@ -13,6 +13,7 @@
     "bootstrap": "^4.6.0",
     "firebase": "^8.3.1",
     "fybnbase3": "1.0.0",
+    "immer": "^9.0.1",
     "react": "^17.0.1",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",

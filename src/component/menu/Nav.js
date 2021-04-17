@@ -6,10 +6,11 @@ import NavModules from "./NavModules";
 import { auth, db } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
 import {  SET_USER } from "../../reducer/reducer";
-import { selectCategories, selectUser } from "../../selectors/fierbase";
+import { selectBagCount, selectCategories, selectUser } from "../../selectors/fierbase";
 import bagIcon from "../../Pics/bag.png";
 function Nav(props) {
   const categories = useSelector(selectCategories);
+  const bagCount = useSelector(selectBagCount)
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const [displayNone, setDisplay] = useState(false);
@@ -34,7 +35,7 @@ function Nav(props) {
               dispatch({
                 type: SET_USER,
                 payload: {
-                  item: doc.data(),
+                  data: doc.data(),
                   uid: user.uid,
                 },
               });
@@ -46,10 +47,10 @@ function Nav(props) {
     });
   }, [dispatch]);
   let bagItemIcon = "";
-  if (user.item) {
+  if (user.data) {
     bagItemIcon = (
       <div className="div-bag-icon">
-        <span className="bag-count">{bag}</span>
+        <span className="bag-count">{bagCount}</span>
         <Link className="navbar-menu-a" to="/bag">
           <img src={bagIcon} alt="" />
         </Link>
