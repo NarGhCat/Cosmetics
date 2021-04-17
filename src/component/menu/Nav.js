@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {  SET_USER } from "../../reducer/reducer";
 import { selectBagCount, selectCategories, selectUser } from "../../selectors/fierbase";
 import bagIcon from "../../Pics/bag.png";
-function Nav(props) {
+function Nav() {
   const categories = useSelector(selectCategories);
   const bagCount = useSelector(selectBagCount)
   const user = useSelector(selectUser);

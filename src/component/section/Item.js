@@ -52,7 +52,6 @@ const Item = (props) => {
         .update({
           bag: firebase.firestore.FieldValue.arrayUnion(item),
         }).then(() => {
-          // setUser.data.bag.push(item)
           let payload = produce(user, (draftUser) => {
             draftUser.data.bag.push(item)
           })
