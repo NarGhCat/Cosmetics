@@ -45,14 +45,26 @@ const Item = (props) => {
     getBrandLogo(photo);
   }, [photo]);
   function handleAddToBagItem(item, user) {
+    const bagItem = {
+      ind: item.ind,
+      itemId: item.itemId,
+      name: item.name,
+      photo: item.photo,
+      price:item.price,
+      url:item.url,
+      status:(item.status?item.status:'')
+    }
     if (user.data) {
       db.collection("users")
         .doc(user.uid)
         .update({
-          bag: firebase.firestore.FieldValue.arrayUnion(item),
+          bag: firebase.firestore.FieldValue.arrayUnion(bagItem),
         }).then(() => {
+          // user.data.bag.map((e) => {
+          //  console.log(e)
+          // })
           let payload = produce(user, (draftUser) => {
-            draftUser.data.bag.push(item);
+            draftUser.data.bag.push(bagItem);
           });
           dispatch({
             type: SET_USER,
@@ -68,7 +80,6 @@ const Item = (props) => {
       history.push("/login");
     }
   }
-
   function handleLearnMore(item) {
     dispatch({
       type: SET_SELECTED_ITEM,

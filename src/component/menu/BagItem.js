@@ -1,15 +1,17 @@
 import React, { useState, useEffect, Fragment } from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionActions from "@material-ui/core/AccordionActions";
-import Typography from "@material-ui/core/Typography";
+import {
+  AccordionDetails,
+  AccordionSummary,
+  AccordionActions,
+  Accordion,
+  Typography,
+  Chip,
+  Button,
+  Divider,
+} from '@material-ui/core'
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Chip from "@material-ui/core/Chip";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
 import { useStylesForBagItem } from "./BagStyles";
 import { db, storage } from "../..";
 import firebase from "firebase/app";
@@ -22,7 +24,7 @@ import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
 const BagItem = (props) => {
   const dispatch = useDispatch()
   const classes = useStylesForBagItem();
-  const { ind, name, price, photo } = props;
+  const { ind, name, price, photo, itemId } = props;
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
   const alert = useAlert();
@@ -33,17 +35,17 @@ const BagItem = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-
-  function handleDeleteFromBag(ind, user) {
+  function handleDeleteFromBag(itemId, ind, user) {
     db.collection("users")
       .doc(user.uid)
       .update({
-        bag: firebase.firestore.FieldValue.arrayRemove(user.data.bag[ind]),
+        bag: firebase.firestore.FieldValue.arrayRemove(user.data.bag.find((item) => item.itemId === itemId)),
       })
       .then(() => {
         let payload = produce(user, (draftUser) => {
-          draftUser.data.bag.splice(ind, 1);
+          draftUser.data.bag.filter((item) => item.itemId === itemId);
         });
+        console.log(payload)
         dispatch({
           type: SET_USER,
           payload
@@ -83,8 +85,7 @@ const BagItem = (props) => {
             </div>
             <div className={classes.column}>
               <Chip label="Remove from bag" onClick={() => {
-                handleDeleteFromBag(ind, user);
-                ;
+                handleDeleteFromBag(itemId, ind, user);
               }} />
             </div>
             <div className={clsx(classes.column, classes.helper)}>

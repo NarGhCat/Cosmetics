@@ -51,7 +51,13 @@ const Brand = () => {
       <SideBar />
       <div className={classes.brandItem}>
         {filteredItems.map((item, i) =>
-          <Item key={i}{...item.data} itemId={item.id}/>
+           <Item
+            key={item.id}
+            ind={i}
+            {...item.data}
+            itemId={item.id}
+            url={brandId}
+          />
         )}
       </div>
     </div>

@@ -39,7 +39,7 @@ const Category = () => {
       .then((querySnapshot) => {
         const filteringItems = [];
         querySnapshot.forEach((item) => {
-          filteringItems.push(item.data());
+          filteringItems.push({ id: item.id, data: item.data() });
         });
         setFilteredItems(filteringItems)
         dispatch({
@@ -55,11 +55,11 @@ const Category = () => {
       <div className={classes.categoryItem}>
         {filteredItems.map((item, i) => (
           <Item
-            key={item.itemId}
+            key={item.id}
             ind={i}
-            {...item}
+            {...item.data}
+            itemId={item.id}
             url={categoryId}
-            selectedCategory={selectedCategory}
           />
         ))}
       </div>

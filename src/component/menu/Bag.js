@@ -19,7 +19,7 @@ const Bag = () => {
     if (user.data) {
       setBag(user.data.bag);
     }
-  }, [user]);
+  }, [user]); 
   return (
     <div className={classes.bagComponent}>
       <div className={classes.bagHeader}>
@@ -28,8 +28,8 @@ const Bag = () => {
       <div className={classes.paper}>
         <div className={`${classes.leftContent} for-scroll`}>
           <div className={classes.bagItems}>
-            {bag.map((item, i) => (
-              <BagItem key={i} ind={i} {...item} />
+            {bag.map((item,i) => (
+              <BagItem key={item.itemId} ind={i} {...item} />
             ))}
           </div>
         </div>

@@ -55,16 +55,16 @@ const SideBar = () => {
           <h3 className={classes.h3}>Categories</h3>
           <div className={classes.brands}>
             {categories.map((category, i) => (
-              <p key={i} className={classes.p}>
-                <ListItem button key={i}>
+              <ListItem key={i} className={classes.p} button key={i}>
+               
                   <Link
                     className={classes.link}
                     to={`/categories/${category.name}`}
                   >
                     {category.type}
                   </Link>
+ 
                 </ListItem>
-              </p>
             ))}
           </div>
         </div>
