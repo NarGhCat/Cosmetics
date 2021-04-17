@@ -21,7 +21,6 @@ function Nav() {
   const [email, setEmail] = useState("");
   const [uid, setUid] = useState("");
   const [userImg, setImg] = useState("");
-  const [bag, setBag] = useState([]);
 
   const handleToggle = (e) => {
     setDisplay(displayNone ? false : true);
@@ -44,7 +43,6 @@ function Nav() {
                 }
               });
               setImg(doc.data().image);
-              setBag(doc.data().bag.length);
             }
           });
       }

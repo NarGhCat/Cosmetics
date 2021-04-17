@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -14,14 +15,15 @@ import { db, storage } from "../..";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-
+import produce from "immer";
+import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
 const BagItem = (props) => {
+  const dispatch = useDispatch()
   const classes = useStylesForBagItem();
   const { ind, name, price, photo } = props;
   const user = useSelector(selectUser);
-  const [alertMessage, setAlert] = useState("");
   const [img, setImg] = useState("");
   const alert = useAlert();
   const getBrandLogo = async (photo) => {
@@ -36,11 +38,24 @@ const BagItem = (props) => {
     db.collection("users")
       .doc(user.uid)
       .update({
-        bag: firebase.firestore.FieldValue.arrayRemove(user.item.bag[ind]),
+        bag: firebase.firestore.FieldValue.arrayRemove(user.data.bag[ind]),
       })
       .then(() => {
-        setAlert("Successfully deleted");
+        let payload = produce(user, (draftUser) => {
+          draftUser.data.bag.splice(ind, 1);
+        });
+        dispatch({
+          type: SET_USER,
+          payload
+        });
+        alert.show(<div style={{ color: "white", fontSize: "12px" }}>'Successfully deleted !'</div>)
       });
+  }
+  function handleLearnMore(item) {
+    dispatch({
+      type: SET_SELECTED_ITEM,
+      payload: item
+    });
   }
   return (
     <div className={classes.root}>
@@ -67,37 +82,32 @@ const BagItem = (props) => {
               </div>
             </div>
             <div className={classes.column}>
-              <Chip label="Barbados" onDelete={() => {}} />
+              <Chip label="Remove from bag" onClick={() => {
+                handleDeleteFromBag(ind, user);
+                ;
+              }} />
             </div>
             <div className={clsx(classes.column, classes.helper)}>
               <Typography variant="caption">
                 Select your destination of choice
                 <br />
-                <a
-                  href="#secondary-heading-and-columns"
-                  className={classes.link}
-                >
-                  Learn more
-                </a>
               </Typography>
             </div>
           </AccordionDetails>
           <Divider />
           <AccordionActions>
-            <Button
-              size="small"
-              onClick={() => {
-                handleDeleteFromBag(ind, user);
-                alert.show(
-                  <div style={{ color: "white", fontSize: "12px" }}>
-                    {alertMessage}
-                  </div>
-                );
-              }}
-              color="primary"
-            >
-              Remove from bag
-            </Button>
+            <Link to="/clickedItem">
+              <Button
+                bgColor="white"
+                labelcolor="#4c003f"
+                width="140px"
+                border="none"
+                onClick={() => handleLearnMore({ ...props })}
+              >
+                {" "}
+            Learn More
+          </Button>
+            </Link>
           </AccordionActions>
         </Accordion>
       </Fragment>
