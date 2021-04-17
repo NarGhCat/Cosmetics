@@ -9,24 +9,24 @@ import {
   CardActionArea,
   CardActions,
   CardContent,
-  makeStyles,
+  makeStyles
 } from "@material-ui/core";
 import { db, storage } from "../..";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
 import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
-import { useAlert } from 'react-alert'
-import produce from "immer"
+import { useAlert } from "react-alert";
+import produce from "immer";
 
 const useStyles = makeStyles({
   new: {
     float: "right",
-    color: "red",
+    color: "red"
   },
   card: {
-    boxShadow: "0 0 6px 2px #f500cb87",
-  },
+    boxShadow: "0 0 6px 2px #f500cb87"
+  }
 });
 
 const Item = (props) => {
@@ -36,7 +36,6 @@ const Item = (props) => {
   const history = useHistory();
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
-  const [alertMessage, setAlert] = useState("");
   const { name, price, photo, status } = props;
   const getBrandLogo = async (photo) => {
     let data = await storage.refFromURL(photo).getDownloadURL();
@@ -53,27 +52,31 @@ const Item = (props) => {
           bag: firebase.firestore.FieldValue.arrayUnion(item),
         }).then(() => {
           let payload = produce(user, (draftUser) => {
-            draftUser.data.bag.push(item)
-          })
+            draftUser.data.bag.push(item);
+          });
           dispatch({
             type: SET_USER,
             payload
-          })
-          alertDraft.show(<div style={{ color: 'white', fontSize: '12px' }}>successfully added to bag</div>)
-        })
+          });
+          alertDraft.show(
+            <div style={{ color: "white", fontSize: "12px" }}>
+              successfully added to bag
+            </div>
+          );
+        });
     } else {
-      history.push('/login')
+      history.push("/login");
     }
   }
 
   function handleLearnMore(item) {
     dispatch({
       type: SET_SELECTED_ITEM,
-      payload: item,
+      payload: item
     });
   }
   return (
-    <Card className={classes.card} >
+    <Card className={classes.card}>
       <Typography className={classes.new}>{status}</Typography>
       <CardActionArea>
         <CardMedia img={img} />
@@ -89,7 +92,9 @@ const Item = (props) => {
           labelcolor="#4c003f"
           width="140px"
           border="none"
-          onClick={() => { handleAddToBagItem({ ...props }, user); }}
+          onClick={() => {
+            handleAddToBagItem({ ...props }, user);
+          }}
         >
           {" "}
           Add to Bag

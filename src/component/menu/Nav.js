@@ -5,12 +5,16 @@ import wLogo from "../../Pics/white-logo.png";
 import NavModules from "./NavModules";
 import { auth, db } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
-import {  SET_USER } from "../../reducer/reducer";
-import { selectBagCount, selectCategories, selectUser } from "../../selectors/fierbase";
+import { SET_USER } from "../../reducer/reducer";
+import {
+  selectBagCount,
+  selectCategories,
+  selectUser
+} from "../../selectors/fierbase";
 import bagIcon from "../../Pics/bag.png";
 function Nav() {
   const categories = useSelector(selectCategories);
-  const bagCount = useSelector(selectBagCount)
+  const bagCount = useSelector(selectBagCount);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const [displayNone, setDisplay] = useState(false);
@@ -36,8 +40,8 @@ function Nav() {
                 type: SET_USER,
                 payload: {
                   data: doc.data(),
-                  uid: user.uid,
-                },
+                  uid: user.uid
+                }
               });
               setImg(doc.data().image);
               setBag(doc.data().bag.length);
@@ -105,4 +109,4 @@ function Nav() {
     </div>
   );
 }
-export default Nav
+export default Nav;
