@@ -16,7 +16,7 @@ function Footer() {
         className="brands-main-content"
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "center"
         }}
       >
         <div style={{ width: "200px", margin: "50px 50px", marginLeft: "15%" }}>
@@ -27,7 +27,7 @@ function Footer() {
                 <div
                   className="footerItem"
                   // onClick={() => {
-                    // dispatch({ type: SELECTED_BRAND, payload: brand });
+                  // dispatch({ type: SELECTED_BRAND, payload: brand });
                   // }}
                 >
                   {brand.label}
@@ -39,12 +39,20 @@ function Footer() {
         <div style={{ width: "200px", margin: "50px 50px", marginLeft: "15%" }}>
           <h2 style={{ color: "white" }}>CONNECT</h2>
           <li className="footerItem">
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={instaLogo} className="logos" alt="" />
             </a>
           </li>
           <li className="footerItem">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={faceLogo} className="logos" alt="" />
             </a>
           </li>
