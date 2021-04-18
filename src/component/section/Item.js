@@ -50,9 +50,9 @@ const Item = (props) => {
       itemId: item.itemId,
       name: item.name,
       photo: item.photo,
-      price:item.price,
-      url:item.url,
-      status:(item.status?item.status:'')
+      price: item.price,
+      url: item.url,
+      status: (item.status ? item.status : '')
     }
     if (user.data) {
       db.collection("users")
@@ -60,21 +60,28 @@ const Item = (props) => {
         .update({
           bag: firebase.firestore.FieldValue.arrayUnion(bagItem),
         }).then(() => {
-          // user.data.bag.map((e) => {
-          //  console.log(e)
-          // })
-          let payload = produce(user, (draftUser) => {
-            draftUser.data.bag.push(bagItem);
-          });
-          dispatch({
-            type: SET_USER,
-            payload
-          });
-          alertDraft.show(
-            <div style={{ color: "white", fontSize: "12px" }}>
-              successfully added to bag
+          const hasItem = user.data.bag.find(item => item.itemId === bagItem.itemId)
+          if (hasItem === undefined) {
+            let payload = produce(user, (draftUser) => {
+              draftUser.data.bag.push(bagItem);
+            });
+            dispatch({
+              type: SET_USER,
+              payload
+            });
+            alertDraft.show(
+              <div style={{ color: "white", fontSize: "12px" }}>
+                successfully added to bag
             </div>
-          );
+            )
+          } else {
+            alertDraft.show(
+              <div style={{ color: "white", fontSize: "12px" }}>
+                you already have this product in your bag
+              </div>
+            )
+          }
+
         });
     } else {
       history.push("/login");

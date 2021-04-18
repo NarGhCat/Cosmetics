@@ -43,7 +43,7 @@ const BagItem = (props) => {
       })
       .then(() => {
         let payload = produce(user, (draftUser) => {
-          let result = user.data.bag.findIndex(function (bagItem) {
+          let result = draftUser.data.bag.findIndex(function (bagItem) {
             return bagItem.itemId === itemId;
           });
           draftUser.data.bag.splice(result,1);
