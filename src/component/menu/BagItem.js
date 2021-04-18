@@ -43,9 +43,11 @@ const BagItem = (props) => {
       })
       .then(() => {
         let payload = produce(user, (draftUser) => {
-          draftUser.data.bag.filter((item) => item.itemId === itemId);
+          let result = user.data.bag.findIndex(function (bagItem) {
+            return bagItem.itemId === itemId;
+          });
+          draftUser.data.bag.splice(result,1);
         });
-        console.log(payload)
         dispatch({
           type: SET_USER,
           payload
