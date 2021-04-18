@@ -4,11 +4,11 @@ const useStyles = makeStyles({
   button: {
     border: ({ border }) => border,
     background: ({ bgColor }) => bgColor,
-    width: ({ width }) => width,
+    width: ({ width }) => width
   },
   buttonLabel: {
-    color: ({ labelcolor }) => labelcolor,
-  },
+    color: ({ labelcolor }) => labelcolor
+  }
 });
 const Button = (props) => {
   const {
@@ -27,7 +27,7 @@ const Button = (props) => {
     <MaterialButton
       classes={{
         label: buttonClasses.buttonLabel,
-        ...classes,
+        ...classes
       }}
       labelcolor={labelcolor}
       className={`${buttonClasses.button} ${className}`}
