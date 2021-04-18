@@ -24,12 +24,15 @@ const Card = (props) => {
   const {
     width = "150px",
     children,
-    variant = "secondary",
     className = "",
     ...rest
   } = props;
   const cardClasses = useStyles();
 
-  return <MaterialCard className={cardClasses.card}>{children}</MaterialCard>;
+  return <MaterialCard 
+  width={width}
+  className={`${cardClasses.card} ${className}`}
+  {...rest}
+  >{children}</MaterialCard>;
 };
 export default Card;

@@ -17,7 +17,6 @@ const Button = (props) => {
     labelcolor = "white",
     width = "150px",
     classes = {},
-    color = "secondary",
     children,
     variant = "outlined",
     className = "",

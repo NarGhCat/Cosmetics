@@ -20,6 +20,15 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     width: 82 + "%",
   },
+  title:{
+    display:'Block',
+    width:'100%',
+    borderBottom:'1px solid white',
+    marginBottom:25
+  },
+  h1:{
+    color:'white'
+  }
 });
 
 const Category = () => {
@@ -28,6 +37,7 @@ const Category = () => {
   const selectedCategory = useSelector(selectCategoryById(categoryId));
   const [filteredItems, setFilteredItems] = useState([]);
   const dispatch = useDispatch();
+  const [title,setTitle] = useState('')
 
   useEffect(() => {
     if (!selectedCategory) return;
@@ -46,6 +56,7 @@ const Category = () => {
           type: SET_ITEMS_BY_CATEGORY,
           payload: filteringItems,
         });
+        setTitle(selectedCategory.name)
       });
   }, [selectedCategory, dispatch]);
 
@@ -53,10 +64,10 @@ const Category = () => {
     <div className={classes.root}>
       <SideBar />
       <div className={classes.categoryItem}>
-        {filteredItems.map((item, i) => (
+      <div className={classes.title}><h1 className={classes.h1}>{title}</h1></div>
+        {filteredItems.map((item) => (
           <Item
             key={item.id}
-            ind={i}
             {...item.data}
             itemId={item.id}
             url={categoryId}

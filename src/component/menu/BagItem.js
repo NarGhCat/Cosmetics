@@ -99,15 +99,13 @@ const BagItem = (props) => {
           </AccordionDetails>
           <Divider />
           <AccordionActions>
-            <Link to="/clickedItem">
+            <Link to={`/learnmore/${itemId}`}>
               <Button
                 bgColor="white"
                 labelcolor="#4c003f"
                 width="140px"
                 border="none"
-                onClick={() => handleLearnMore({ ...props })}
               >
-                {" "}
             Learn More
           </Button>
             </Link>

@@ -30,7 +30,7 @@ const Bag = () => {
       setBag(clonedUserBag);
       let setPrice = 0
       clonedUserBag.map((item) => {
-        setPrice += item.price
+       return setPrice += item.price 
       })
       setTotalPrice(setPrice)
     }

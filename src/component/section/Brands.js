@@ -11,19 +11,19 @@ const Brands = () => {
   const { url } = useRouteMatch();
   const [logos, setLogos] = useState([]);
 
-  async function getImgUrl(path) {
-    let gsReference = storage.refFromURL(path);
-    return gsReference.getDownloadURL();
-  }
-  const getBrandLogos = async (brands) => {
-    const imageArray = [];
-    brands.forEach((brand) => {
-      imageArray.push(getImgUrl(brand.logo));
-    });
-    const data = await Promise.all(imageArray);
-    setLogos(data);
-  };
   useEffect(() => {
+    async function getImgUrl(path) {
+      let gsReference = storage.refFromURL(path);
+      return gsReference.getDownloadURL();
+    }
+    const getBrandLogos = async (brands) => {
+      const imageArray = [];
+      brands.forEach((brand) => {
+        imageArray.push(getImgUrl(brand.logo));
+      });
+      const data = await Promise.all(imageArray);
+      setLogos(data);
+    };
     getBrandLogos(brands);
   }, [brands]);
 

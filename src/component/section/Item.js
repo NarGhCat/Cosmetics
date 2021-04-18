@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
@@ -18,6 +18,7 @@ import { selectUser } from "../../selectors/fierbase";
 import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
 import { useAlert } from "react-alert";
 import produce from "immer";
+import { handleAddToBagItem } from "../../actions/functions";
 
 const useStyles = makeStyles({
   new: {
@@ -36,7 +37,7 @@ const Item = (props) => {
   const history = useHistory();
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
-  const { name, price, photo, status } = props;
+  const { name, price, photo, status,itemId } = props;
   const getBrandLogo = async (photo) => {
     let data = await storage.refFromURL(photo).getDownloadURL();
     setImg(data);
@@ -44,54 +45,8 @@ const Item = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-  function handleAddToBagItem(item, user) {
-    const bagItem = {
-      itemId: item.itemId,
-      name: item.name,
-      photo: item.photo,
-      price: item.price,
-      url: item.url,
-      status: (item.status ? item.status : '')
-    }
-    if (user.data) {
-      db.collection("users")
-        .doc(user.uid)
-        .update({
-          bag: firebase.firestore.FieldValue.arrayUnion(bagItem),
-        }).then(() => {
-          const hasItem = user.data.bag.find(item => item.itemId === bagItem.itemId)
-          if (hasItem === undefined) {
-            let payload = produce(user, (draftUser) => {
-              draftUser.data.bag.push(bagItem);
-            });
-            dispatch({
-              type: SET_USER,
-              payload
-            });
-            alertDraft.show(
-              <div style={{ color: "white", fontSize: "12px" }}>
-                successfully added to bag
-            </div>
-            )
-          } else {
-            alertDraft.show(
-              <div style={{ color: "white", fontSize: "12px" }}>
-                you already have this product in your bag
-              </div>
-            )
-          }
+  
 
-        });
-    } else {
-      history.push("/login");
-    }
-  }
-  function handleLearnMore(item) {
-    dispatch({
-      type: SET_SELECTED_ITEM,
-      payload: item
-    });
-  }
   return (
     <Card className={classes.card}>
       <Typography className={classes.new}>{status}</Typography>
@@ -110,21 +65,18 @@ const Item = (props) => {
           width="140px"
           border="none"
           onClick={() => {
-            handleAddToBagItem({ ...props }, user);
+            handleAddToBagItem({ ...props }, user,alertDraft,dispatch,history);
           }}
         >
-          {" "}
           Add to Bag
         </Button>
-        <Link to="/clickedItem">
+        <Link to={`/learnmore/${itemId}`}>
           <Button
             bgColor="white"
             labelcolor="#4c003f"
             width="140px"
             border="none"
-            onClick={() => handleLearnMore({ ...props })}
           >
-            {" "}
             Learn More
           </Button>
         </Link>

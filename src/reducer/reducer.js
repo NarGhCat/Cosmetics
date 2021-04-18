@@ -1,4 +1,3 @@
-import { SET_LOGGED_IN_USER } from "../actions/auth";
 import initialState from "./initialState";
 export const SET_BRANDS = 'SET_BRANDS'
 export const SET_CATEGORY = 'SET_CATEGORY'
@@ -10,12 +9,6 @@ export const SET_ITEMS_BY_CATEGORY = 'SET_ITEMS_BY_CATEGORY'
 export const SET_SELECTED_ITEM = "SET_SELECTED_ITEM"
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_LOGGED_IN_USER: {
-      return {
-        ...state,
-        loggedInUser: action.payload,
-      };
-    }
     case SET_BRANDS: {
       return {
         ...state,

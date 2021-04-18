@@ -47,7 +47,7 @@ export default function App() {
           <Route path="/bag/payment" component={Payment} />
           <Route path="/login" component={Login} />
           <Route path="/Signup" component={Signup} />
-          <Route path="/clickedItem" component={LearnMore} />
+          <Route exact path="/learnmore/:itemId" component={LearnMore} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

@@ -20,6 +20,15 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     width: 82 + "%",
   },
+  title:{
+    display:'Block',
+    width:'100%',
+    borderBottom:'1px solid white',
+    marginBottom:25
+  },
+  h1:{
+    color:'white'
+  }
 });
 
 const Brand = () => {
@@ -28,6 +37,7 @@ const Brand = () => {
   const selectedBrand = useSelector(selectBrandById(brandId));
   const [filteredItems, setFilteredItems] = useState([])
   const dispatch = useDispatch()
+  const [title,setTitle] = useState('')
   useEffect(() => {
     if (!selectedBrand) return;
     const ref = db.collection("brands").doc(selectedBrand.brandId);
@@ -44,16 +54,18 @@ const Brand = () => {
           type: SET_ITEMS_BY_BRAND,
           payload: filteringItems,
         });
+        setTitle(selectedBrand.name)
       });
   }, [selectedBrand, dispatch]);
-  return (
+  return ( 
+    <>
     <div className={classes.root}>
       <SideBar />
       <div className={classes.brandItem}>
-        {filteredItems.map((item, i) =>
-           <Item
+        <div className={classes.title}><h1 className={classes.h1}>{title}</h1></div>
+        {filteredItems.map((item) =>
+           <Item 
             key={item.id}
-            ind={i}
             {...item.data}
             itemId={item.id}
             url={brandId}
@@ -61,6 +73,7 @@ const Brand = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 export default Brand;

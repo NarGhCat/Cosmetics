@@ -5,12 +5,14 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
-import { selectedItem, selectNews } from "../../selectors/fierbase";
-import { useSelector } from "react-redux";
+import { selectItemById, selectNews, selectUser } from "../../selectors/fierbase";
+import { useDispatch, useSelector } from "react-redux";
 import { storage } from "../..";
 import "firebase/firestore";
 import Item from "./Item";
-
+import { useHistory, useParams } from "react-router";
+import { handleAddToBagItem } from "../../actions/functions";
+import { useAlert } from "react-alert";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
@@ -39,28 +41,26 @@ const useStyles = makeStyles((theme) => ({
     height: 140
   }
 }));
-
 const LearnMore = () => {
+  const alertDraft = useAlert();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector(selectUser);
   const classes = useStyles();
-  const clickItem = useSelector(selectedItem);
+  const {itemId} = useParams()
+  const selectedItem = useSelector(selectItemById(itemId));
   const news = useSelector(selectNews);
   const [img, setImg] = useState("");
-
   let newArrayItems = [...news];
   const shuffled = newArrayItems.sort(() => 0.5 - Math.random());
   let newArray = shuffled.slice(0, 3);
-
-  async function getImgUrl(path) {
-    let gsReference = storage.refFromURL(path);
-    return gsReference.getDownloadURL();
-  }
-  const getBrandLogos = async (clickItem) => {
-    const data = await getImgUrl(clickItem.photo);
+  useEffect(() => {
+    const getBrandLogo = async (photo) => {
+    let data = await storage.refFromURL(photo).getDownloadURL();
     setImg(data);
   };
-  useEffect(() => {
-    getBrandLogos(clickItem);
-  }, [clickItem]);
+    getBrandLogo((selectedItem?selectedItem.photo:''));
+  }, [selectedItem]);
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -74,18 +74,20 @@ const LearnMore = () => {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="h4">
-                  {clickItem.name}
+                  {(selectedItem?selectedItem.name:'')}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
                   Brand
                 </Typography>
                 <br />
-                <Typography variant="subtitle1">$ {clickItem.price}</Typography>
+                <Typography variant="subtitle1">$ {(selectedItem?selectedItem.price:'')}</Typography>
                 <Button
                   variant="contained"
                   color="default"
                   className={classes.button}
-                  // onClick={() => handleClickedItem({ ...props }, user)}
+                  onClick={() => {
+                    handleAddToBagItem({ ...selectedItem }, user,alertDraft,dispatch,history);
+                  }}
                 >
                   ADD TO BAG
                 </Button>

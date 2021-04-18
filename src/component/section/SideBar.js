@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ListItem, makeStyles } from "@material-ui/core";
-import { selectBrands, selectCategories } from "../../selectors/fierbase";
+import { selectBrands } from "../../selectors/fierbase";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   sidebar: {
@@ -18,9 +18,11 @@ const useStyles = makeStyles({
     marginTop: 12,
   },
   h3: {
-    borderBottom: 1 + "px solid black",
+    borderBottom: 1 + "px solid",
     fontSize: 25,
     cursor: "pointer",
+    color:'white'
+
   },
   p: {
     marginTop: 10,
@@ -29,13 +31,12 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: "none",
-    color: "black",
+    color: "white",
   },
 });
 const SideBar = () => {
   const classes = useStyles();
   const brands = useSelector(selectBrands);
-  const categories = useSelector(selectCategories);
   return (
     <>
       <div className={classes.sidebar}>
@@ -48,23 +49,6 @@ const SideBar = () => {
                   {brand.label}
                 </Link>
               </ListItem>
-            ))}
-          </div>
-        </div>
-        <div className={classes.brandsSelector}>
-          <h3 className={classes.h3}>Categories</h3>
-          <div className={classes.brands}>
-            {categories.map((category, i) => (
-              <ListItem key={i} className={classes.p} button key={i}>
-               
-                  <Link
-                    className={classes.link}
-                    to={`/categories/${category.name}`}
-                  >
-                    {category.type}
-                  </Link>
- 
-                </ListItem>
             ))}
           </div>
         </div>
