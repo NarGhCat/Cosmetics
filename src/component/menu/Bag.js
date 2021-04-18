@@ -10,27 +10,42 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import { useStylesForBag } from "./BagStyles";
+import produce from "immer";
 
 const Bag = () => {
   const user = useSelector(selectUser);
   const classes = useStylesForBag();
   const [bag, setBag] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([])
+  const emptyBag = (
+    <div className={classes.emptyBag}>
+      <h1 className={classes.emptyBagTitle}>Bag is Empty</h1>
+    </div>
+  )
   useEffect(() => {
     if (user.data) {
-      setBag(user.data.bag);
+      let clonedUserBag = produce(user, (draftUser) => {
+        return draftUser.data.bag
+      });
+      setBag(clonedUserBag);
+      let setPrice = 0
+      clonedUserBag.map((item) => {
+        setPrice += item.price
+      })
+      setTotalPrice(setPrice)
     }
-  }, [user]); 
+  }, [user]);
   return (
     <div className={classes.bagComponent}>
       <div className={classes.bagHeader}>
-        <h1> SHOPPTING BAG {} </h1>
+        <h1> SHOPPTING BAG { } </h1>
       </div>
       <div className={classes.paper}>
         <div className={`${classes.leftContent} for-scroll`}>
           <div className={classes.bagItems}>
-            {bag.map((item,i) => (
+            {(bag.length ? bag.map((item, i) => (
               <BagItem key={item.itemId} ind={i} {...item} />
-            ))}
+            )) : emptyBag)}
           </div>
         </div>
         <Card className={classes.card} variant="outlined">
@@ -39,19 +54,22 @@ const Bag = () => {
               ORDER SUMMARY
             </Typography>
             < br />
-            <Typography className={classes.pos} component="h3">
+            <Typography component="h3">
               SUBTOTAL
             </Typography>
-            <Typography className={classes.pos} component="p">
+            <Typography component="p">
               SHIPPING
             </Typography>
-            <Typography className={classes.pos} component="p">
+            <Typography component="p">
               ESTIMATED TOTAL
             </Typography>
+            <Typography component="p">
+              Total price - $ {totalPrice}
+            </Typography>
           </CardContent>
-          <CardActions style={{border: "1px solid black" }}>
+          <CardActions style={{ border: "1px solid black" }}>
             <Link to="/bag/payment">
-             <Button size="small">CLICK TO ORDER</Button>
+              <Button size="small">CLICK TO ORDER</Button>
             </Link>
           </CardActions>
         </Card>

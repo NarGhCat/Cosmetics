@@ -13,6 +13,12 @@ const firebaseConfig = {
   storageBucket: "cosmetics-91882.appspot.com",
   messagingSenderId: "134093997606",
   appId: "1:134093997606:web:ab96e1e384a17969aec8e7"
+  // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  // authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  // projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  // storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  // messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  // appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -22,7 +28,7 @@ export const auth = firebase.auth()
 export const storage = firebase.storage();
 const options = {
   position: positions.BOTTOM_RIGHT,
-  timeout: 5000,
+  timeout: 3000,
   offset: '30px',
   transition: transitions.FADE,
   color:'white',

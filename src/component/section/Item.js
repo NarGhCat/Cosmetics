@@ -46,7 +46,6 @@ const Item = (props) => {
   }, [photo]);
   function handleAddToBagItem(item, user) {
     const bagItem = {
-      ind: item.ind,
       itemId: item.itemId,
       name: item.name,
       photo: item.photo,
