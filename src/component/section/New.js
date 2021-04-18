@@ -1,10 +1,24 @@
 import "../../styles/NewStyle.css";
 import React, { useState, useEffect } from "react";
-import { selectNews } from "../../selectors/fierbase";
-import { useSelector } from "react-redux";
-import { storage } from "../../index";
-import { makeStyles } from "@material-ui/core";
+import { selectNews, selectUser } from "../../selectors/fierbase";
+import { useSelector, useDispatch } from "react-redux";
+import { db, storage } from "../../index";
+// import Card from "../shared/Card";
+// import Button from "../shared/Button";
+// import CardMedia from "../shared/CardMedia";
+// import Typography from "../shared/Typography";
+// import { Link, useHistory } from "react-router-dom";
+import {
+  // CardActionArea,
+  // CardActions,
+  // CardContent,
+  makeStyles
+} from "@material-ui/core";
+
 import SideBar from "./SideBar";
+import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
+import firebase from "firebase/app";
+import { useAlert } from "react-alert";
 import Item from "./Item";
 
 const useStyles = makeStyles({
@@ -12,14 +26,14 @@ const useStyles = makeStyles({
     display: "flex",
     width: 95 + "%",
     margin: "auto",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   brandItem: {
     display: "flex",
     flexFlow: "wrap",
     justifyContent: "space-between",
-    width: 82 + "%",
-  },
+    width: 82 + "%"
+  }
 });
 
 const New = (props) => {
