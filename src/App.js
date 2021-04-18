@@ -1,9 +1,3 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 import { useEffect } from "react";
 import New from "./component/section/New";
 import Brands from "./component/section/Brands";
@@ -19,6 +13,12 @@ import Payment from "./component/section/Payment";
 import Category from "./component/section/Category";
 import LearnMore from "./component/section/LearnMore";
 import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import {
   getBrandsActions,
   getCategoriesAction,
   getItemsActions,
@@ -28,18 +28,10 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBrandsActions());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getCategoriesAction());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getItemsActions());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getNewItemsActions());
+
   }, [dispatch]);
 
   return (
