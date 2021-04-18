@@ -1,5 +1,5 @@
 import "../../styles/styles.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { SELECTED_BRAND } from "../../reducer/reducer";
 import { selectBrands } from "../../selectors/fierbase";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import youtubeLogo from "../../Pics/icons/youtube.png";
 
 function Footer() {
   const brands = useSelector(selectBrands);
-  const dispatch = useDispatch();
+
   return (
     <footer>
       <div

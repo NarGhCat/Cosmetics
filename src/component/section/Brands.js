@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Button from "../shared/Button";
 import { selectBrands } from "../../selectors/fierbase";
 import { storage } from "../../";
@@ -10,7 +10,6 @@ const Brands = () => {
   const brands = useSelector(selectBrands);
   const { url } = useRouteMatch();
   const [logos, setLogos] = useState([]);
-  const dispatch = useDispatch();
 
   async function getImgUrl(path) {
     let gsReference = storage.refFromURL(path);
@@ -38,9 +37,6 @@ const Brands = () => {
                 <Grid className="image-grid">
                   <ButtonBase className="image-btn">
                     <Link
-                      // onClick={() => {
-                      //   dispatch({ type: SELECTED_BRAND, payload: brand });
-                      // }}
                       to={`${url}/${brand.brandId}`}
                     >
                       <img style={{ width: 300, height: 300 }} src={logos[i]} alt="" />
@@ -59,9 +55,6 @@ const Brands = () => {
                   <Grid className="grid-btn">
                     <Link to={`${url}/${brand.brandId}`} className="brand-link">
                       <Button
-                        // onClick={() => {
-                          // dispatch({ type: SELECTED_BRAND, payload: brand });
-                        // }}
                         variant="contained"
                       >
                         {brand.label}
