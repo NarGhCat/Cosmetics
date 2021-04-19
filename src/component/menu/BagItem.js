@@ -35,7 +35,7 @@ const BagItem = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-  function handleDeleteFromBag(itemId, ind, user) {
+  function handleDeleteFromBag(itemId, user) {
     db.collection("users")
       .doc(user.uid)
       .update({
@@ -82,7 +82,7 @@ const BagItem = (props) => {
             </div>
             <div className={classes.column}>
               <Chip label="Remove from bag" onClick={() => {
-                handleDeleteFromBag(itemId, ind, user);
+                handleDeleteFromBag(itemId, user);
               }} />
             </div>
             <div className={clsx(classes.column, classes.helper)}>

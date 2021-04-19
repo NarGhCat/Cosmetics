@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useSelector } from "react-redux";
-import { selectItems } from "../../selectors/fierbase";
+import { selectItems } from "../../selectors/firebase";
 import Item from "./Item";
 
 const CarouselPrint = () => {
