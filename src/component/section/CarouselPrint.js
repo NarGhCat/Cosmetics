@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useSelector } from "react-redux";
-import { selectNews } from "../../selectors/fierbase";
+import { selectItems } from "../../selectors/fierbase";
 import Item from "./Item";
 
 const CarouselPrint = () => {
@@ -22,8 +22,8 @@ const CarouselPrint = () => {
       slidesToSlide: 1
     }
   };
-  const news = useSelector(selectNews);
-  let newArrayItems = [...news].slice(0, 9);
+  const items = useSelector(selectItems);
+  let arrayItems = [...items].slice(0, 9);
   return (
     <div style={{ margin: "3% 10% 3% 10%" }}>
       <h1
@@ -60,7 +60,7 @@ const CarouselPrint = () => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
-        {newArrayItems.map((item, i) => {
+        {arrayItems.map((item, i) => {
           return (
             <Item key={item.itemId} ind={i} {...item} showThumbs={false} />
           );
