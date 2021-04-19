@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import { db } from "../..";
 import { SET_ITEMS_BY_BRAND } from "../../reducer/reducer";
-import { selectBrand, selectBrandById } from "../../selectors/fierbase";
+import { selectBrandById } from "../../selectors/fierbase";
 import Item from "./Item";
 import SideBar from "./SideBar";
 import { useParams } from "react-router";

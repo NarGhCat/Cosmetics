@@ -3,7 +3,7 @@ import { Button as MaterialButton, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   button: {
     border: ({ border }) => border,
-    background: ({ bgColor }) => bgColor,
+    background: ({ bgcolor }) => bgcolor,
     width: ({ width }) => width
   },
   buttonLabel: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 const Button = (props) => {
   const {
     border = "2px solid #4c003f",
-    bgColor = "#4c003f",
+    bgcolor = "#4c003f",
     labelcolor = "white",
     width = "150px",
     classes = {},
@@ -22,7 +22,7 @@ const Button = (props) => {
     className = "",
     ...rest
   } = props;
-  const buttonClasses = useStyles({ border, bgColor, labelcolor, width });
+  const buttonClasses = useStyles({ border, bgcolor, labelcolor, width });
   return (
     <MaterialButton
       classes={{

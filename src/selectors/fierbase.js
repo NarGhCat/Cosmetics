@@ -7,7 +7,6 @@ export const selectCategoryById = (id) => (state) =>
   state.categories.find((category) => category.categoryId === id);
 export const selectBrandById = (id) => (state) =>
   state.brands.find((brand) => brand.brandId === id);
-
 export const selectItemById = (id) => (state) =>
   state.items.find((item) => item.itemId === id);
-export const selectBagCount = (state) =>(state.user.data ? state.user && state.user.data.bag.length || 0 : '');
+export const selectBagCount = (state) =>(state.user.data ? state.user && state.user.data.bag.length : '');

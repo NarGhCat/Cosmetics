@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
 import AlertTemplate from 'react-alert-template-basic'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import { Provider } from "react-redux";
@@ -24,7 +26,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
-export const auth = firebase.auth()
+export const auth = firebase.auth() ;
 export const storage = firebase.storage();
 const options = {
   position: positions.BOTTOM_RIGHT,

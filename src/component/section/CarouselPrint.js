@@ -4,11 +4,9 @@ import { Carousel } from "react-responsive-carousel";
 import { selectNews } from "../../selectors/fierbase";
 import { useSelector } from "react-redux";
 import Item from "./Item";
-import { useParams } from "react-router-dom";
 
 const CarouselPrint = () => {
   const news = useSelector(selectNews);
-  const { brandId } = useParams();
   let newArrayItems = [...news].slice(0, 9);
   return (
     <div style={{ margin: "auto" }}>
@@ -41,9 +39,10 @@ const CarouselPrint = () => {
         centerSlidePercentage={27}
         width="90%"
         style={{ margin: "auto" }}
+        showThumbs={false}
       >
         {newArrayItems.map((item, i) => {
-          return <Item key={item.itemId} ind={i} {...item} />;
+          return <Item key={item.itemId} ind={i} {...item} showThumbs={false} />;
         })}
       </Carousel>
     </div>

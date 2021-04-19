@@ -101,7 +101,7 @@ const BagItem = (props) => {
           <AccordionActions>
             <Link to={`/learnmore/${itemId}`}>
               <Button
-                bgColor="white"
+                bgcolor="white"
                 labelcolor="#4c003f"
                 width="140px"
                 border="none"

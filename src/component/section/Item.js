@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
@@ -11,13 +11,10 @@ import {
   CardContent,
   makeStyles
 } from "@material-ui/core";
-import { db, storage } from "../..";
-import firebase from "firebase/app";
+import { storage } from "../..";
 import "firebase/firestore";
 import { selectUser } from "../../selectors/fierbase";
-import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
 import { useAlert } from "react-alert";
-import produce from "immer";
 import { handleAddToBagItem } from "../../actions/functions";
 
 const useStyles = makeStyles({
@@ -60,7 +57,7 @@ const Item = (props) => {
       </CardActionArea>
       <CardActions>
         <Button
-          bgColor="white"
+          bgcolor="white"
           labelcolor="#4c003f"
           width="140px"
           border="none"
@@ -72,7 +69,7 @@ const Item = (props) => {
         </Button>
         <Link to={`/learnmore/${itemId}`}>
           <Button
-            bgColor="white"
+            bgcolor="white"
             labelcolor="#4c003f"
             width="140px"
             border="none"

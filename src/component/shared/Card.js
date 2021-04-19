@@ -13,17 +13,20 @@ const useStyles = makeStyles({
     height: 200
   },
   typography: {
-    color: "#4c003f"
+    color: "#4C003F"
   },
   buttonLabel: {
-    color: "#4c003f"
+    color: "#4C003F"
   }
 });
-
 const Card = (props) => {
-  const { children } = props;
+  const {
+    width = "150px",
+    children,
+    className = "",
+    ...rest
+  } = props;
   const cardClasses = useStyles();
-
   return <MaterialCard 
   width={width}
   className={`${cardClasses.card} ${className}`}

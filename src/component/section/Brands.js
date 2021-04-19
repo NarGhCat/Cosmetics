@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import Button from "../shared/Button";
 import { selectBrands } from "../../selectors/fierbase";
 import { storage } from "../../";
@@ -10,7 +10,6 @@ const Brands = () => {
   const brands = useSelector(selectBrands);
   const { url } = useRouteMatch();
   const [logos, setLogos] = useState([]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     async function getImgUrl(path) {
