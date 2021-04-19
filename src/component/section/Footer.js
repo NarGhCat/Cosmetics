@@ -9,7 +9,6 @@ import youtubeLogo from "../../Pics/icons/youtube.png";
 
 function Footer() {
   const brands = useSelector(selectBrands);
-
   return (
     <footer>
       <div
@@ -23,15 +22,8 @@ function Footer() {
           <h2 style={{ color: "white" }}>Brands</h2>
           {brands.map((brand, i) => (
             <div key={i}>
-              <Link to={`/brands/${brand.name}`}>
-                <div
-                  className="footerItem"
-                  // onClick={() => {
-                  // dispatch({ type: SELECTED_BRAND, payload: brand });
-                  // }}
-                >
-                  {brand.label}
-                </div>
+              <Link to={`/brands/${brand.brandId}`}>
+                <div className="footerItem">{brand.label}</div>
               </Link>
             </div>
           ))}
@@ -67,8 +59,6 @@ function Footer() {
           <Link to="/login">
             <li className="footerItem">My Account</li>
           </Link>
-          <li className="footerItem">Order Status</li>
-          <li className="footerItem">My Favourites</li>
         </div>
       </div>
     </footer>

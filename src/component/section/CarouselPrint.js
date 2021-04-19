@@ -1,15 +1,31 @@
-import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import { selectNews } from "../../selectors/firebase";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { useSelector } from "react-redux";
+import { selectItems } from "../../selectors/fierbase";
 import Item from "./Item";
 
 const CarouselPrint = () => {
-  const news = useSelector(selectNews);
-  let newArrayItems = [...news].slice(0, 9);
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 1
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1
+    }
+  };
+  const items = useSelector(selectItems);
+  let arrayItems = [...items].slice(0, 9);
   return (
-    <div style={{ margin: "auto" }}>
+    <div style={{ margin: "3% 10% 3% 10%" }}>
       <h1
         style={{
           textTransform: "uppercase",
@@ -31,22 +47,26 @@ const CarouselPrint = () => {
         Meet the products you‘ve made best-sellers.
       </h3>
       <Carousel
+        showDots
+        responsive={responsive}
+        infinite
         autoPlay
-        stopOnHover
-        autoFocus
-        infiniteLoop
-        centerMode
-        centerSlidePercentage={27}
-        width="90%"
-        style={{ margin: "auto" }}
-        showThumbs={false}
+        autoPlaySpeed={3000}
+        keyBoardControl
+        transitionDuration={100}
+        customTransition="transform 1000ms ease-in-out"
+        focusOnSelect
+        containerClass="carousel-container"
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
       >
-        {newArrayItems.map((item, i) => {
-          return <Item key={item.itemId} ind={i} {...item} showThumbs={false} />;
+        {arrayItems.map((item, i) => {
+          return (
+            <Item key={item.itemId} ind={i} {...item} showThumbs={false} />
+          );
         })}
       </Carousel>
     </div>
   );
 };
-
 export default CarouselPrint;

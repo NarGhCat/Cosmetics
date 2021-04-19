@@ -21,7 +21,7 @@ export const deletedFromBagAlert = (
   <div className="alert-message">
     <Alert severity="info">
       <AlertTitle>Info</AlertTitle>
-      successfully deleted
+      Successfully deleted
     </Alert>
   </div>
 );
@@ -29,7 +29,7 @@ export const addedToBagAlert = (
   <div className="alert-message">
     <Alert severity="success">
       <AlertTitle>Success</AlertTitle>
-      successfully added to bag
+      Successfully added to bag
     </Alert>
   </div>
 );

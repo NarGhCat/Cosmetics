@@ -8,20 +8,18 @@
 body {
   margin-top: 65px;
   background: radial-gradient(
-    ellipse farthest-side at center ,
+    ellipse farthest-side at center,
     #f500cb 0%,
-    rgb(0 0 0 ) 100%
+    rgb(0 0 0) 100%
   );
 }
 
 #mainPicture {
-  max-height: 1135px;
-  width: 100%;
+  min-height: 1135px;
+  width: 90%;
   background: url("https://m.maccosmetics.com/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  margin-left: 20px;
-  height: 1125px;
 }
 
 #mainPicture > h2 {
