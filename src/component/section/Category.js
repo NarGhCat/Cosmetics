@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import { db } from "../..";
 import { SET_ITEMS_BY_CATEGORY } from "../../reducer/reducer";
-import { selectCategoryById } from "../../selectors/fierbase";
+import { selectCategoryById } from "../../selectors/firebase";
 import Item from "./Item";
 import SideBar from "./SideBar";
 const useStyles = makeStyles({

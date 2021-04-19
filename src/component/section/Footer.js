@@ -1,7 +1,7 @@
 import "../../styles/styles.css";
 import { useSelector } from "react-redux";
 // import { SELECTED_BRAND } from "../../reducer/reducer";
-import { selectBrands } from "../../selectors/fierbase";
+import { selectBrands } from "../../selectors/firebase";
 import { Link } from "react-router-dom";
 import faceLogo from "../../Pics/icons/facebook.png";
 import instaLogo from "../../Pics/icons/instagram.png";

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/bag.css";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../selectors/fierbase";
+import { selectUser } from "../../selectors/firebase";
 import BagItem from "./BagItem";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -15,6 +15,7 @@ import produce from "immer";
 const Bag = () => {
   const user = useSelector(selectUser);
   const classes = useStylesForBag();
+  const history = useHistory()
   const [bag, setBag] = useState([]);
   const [totalPrice, setTotalPrice] = useState([])
   const emptyBag = (
@@ -22,6 +23,7 @@ const Bag = () => {
       <h1 className={classes.emptyBagTitle}>Bag is Empty</h1>
     </div>
   )
+
   useEffect(() => {
     if (user.data) {
       let clonedUserBag = produce(user, (draftUser) => {
@@ -30,11 +32,13 @@ const Bag = () => {
       setBag(clonedUserBag);
       let setPrice = 0
       clonedUserBag.map((item) => {
-       return setPrice += item.price 
+       return setPrice += + item.price 
       })
       setTotalPrice(setPrice)
+    } else {
+      history.push("/")
     }
-  }, [user]);
+  }, [user, history]);
   return (
     <div className={classes.bagComponent}>
       <div className={classes.bagHeader}>

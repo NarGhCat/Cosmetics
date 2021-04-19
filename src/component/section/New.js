@@ -1,5 +1,5 @@
 import "../../styles/NewStyle.css";
-import { selectNews } from "../../selectors/fierbase";
+import { selectNews } from "../../selectors/firebase";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import SideBar from "./SideBar";

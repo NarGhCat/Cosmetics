@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ListItem, makeStyles } from "@material-ui/core";
-import { selectBrands } from "../../selectors/fierbase";
+import { selectBrands } from "../../selectors/firebase";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   sidebar: {

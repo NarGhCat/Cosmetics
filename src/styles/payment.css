@@ -1,3 +1,41 @@
+.payment-form {
+    width: 450px;
+	display: flex;
+	height: 70vh;
+	justify-content: space-around;
+	flex-direction: column;
+	border-radius: 10px;
+}
+.payment-form .payment-form-input {
+}
+.payment-form .payment-form-input .card-form {
+
+}
+.payment-form .payment-form-input .card-form .card-form-inner {
+
+}
+.payment-form .payment-form-input .card-form .card-form-inner .form {
+    width: 59%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 378px; 
+    position: unset; 
+    text-align: center;
+} 
+.payment-form .payment-form-input .card-form .card-form-inner .form input {
+    background: #f9f9f9;
+    padding: 10px;
+    width: 130%;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-weight: 300;
+    margin-left: 70px;
+}
+
+
 /* 
 
 .App {

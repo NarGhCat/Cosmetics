@@ -18,40 +18,46 @@ const Payment = () => {
   };
 
   return (
-    <div id="PaymentForm">
-      <Cards
-        cvc={data.cvc}
-        expiry={data.expiry}
-        focus={data.focus}
-        name={data.name}
-        number={data.number}
-      />
-      <form action="">
-        <input
-          type="number"
-          name="cvc"
-          placeholder="CVC"
-          onChange={handleInputChange}
+    <div className="payment-form">
+      <div className="payment-form-input">
+        <Cards
+          cvc={data.cvc}
+          expiry={data.expiry}
+          focus={data.focus}
+          name={data.name}
+          number={data.number}
         />
-        <input
-          type="date"
-          name="expiry"
-          placeholder="Expire Date"
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          onChange={handleInputChange}
-        />
-        <input
-          type="number"
-          name="number"
-          placeholder="Card Number"
-          onChange={handleInputChange}
-        />
-      </form>
+        <div className = "card-form">
+          <div className = "card-form-inner">
+            <form action="" className="form">
+              <input
+                type="number"
+                name="cvc"
+                placeholder="CVC"
+                onChange={handleInputChange}
+              />
+              <input
+                type="date"
+                name="expiry"
+                placeholder="Expire Date"
+                onChange={handleInputChange}
+              />
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                onChange={handleInputChange}
+              />
+              <input
+                type="number"
+                name="number"
+                placeholder="Card Number"
+                onChange={handleInputChange}
+              />
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

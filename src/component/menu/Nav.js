@@ -9,8 +9,8 @@ import { SET_USER } from "../../reducer/reducer";
 import {
   selectBagCount,
   selectCategories,
-  selectUser
-} from "../../selectors/fierbase";
+  selectUser,
+} from "../../selectors/firebase";
 import bagIcon from "../../Pics/bag.png";
 function Nav() {
   const categories = useSelector(selectCategories);
@@ -39,8 +39,8 @@ function Nav() {
                 type: SET_USER,
                 payload: {
                   data: doc.data(),
-                  uid: user.uid
-                }
+                  uid: user.uid,
+                },
               });
               setImg(doc.data().image);
             }
@@ -59,6 +59,16 @@ function Nav() {
       </div>
     );
   }
+
+  const navModules = (
+    <NavModules
+      handleToggle={handleToggle}
+      userImg={userImg}
+      email={email}
+      uid={uid}
+    />
+  );
+
   return (
     <div className="page-navigation">
       <div className="page-container">
@@ -96,13 +106,12 @@ function Nav() {
             </span>
           </div>
         </div>
-        <NavModules
-          changeProfileDisplay={displayNone}
-          handleToggle={handleToggle}
-          userImg={userImg}
-          email={email}
-          uid={uid}
-        />
+        {displayNone ? navModules : ""}
+        <div
+          onClick={handleToggle}
+          style={{ display: displayNone ? "block" : "none" }}
+          className="close-dropDown"
+        ></div>
       </div>
     </div>
   );

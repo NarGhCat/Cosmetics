@@ -82,7 +82,7 @@ const Login = (props) => {
           </div>
           <div className="in-login-create-newAcc-btn">
             <div className="create-newAcc-btn">
-              <a href="/signup">Register A Account</a>
+              <a href="/signup">Create a new account</a>
             </div>
           </div>
         </div>

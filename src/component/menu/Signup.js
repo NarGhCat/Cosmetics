@@ -17,7 +17,8 @@ const Signup = () => {
   });
   const generatePreviewImgUrl = (file, callback) => {
     const reader = new FileReader();
-    reader.onloadend = (e) => callback(reader.result);
+    reader.onload = () => callback(reader.result);
+    reader.readAsDataURL(file)
   };
   let inputChange = { ...values };
   const handleImgChange = (e) => {
@@ -55,7 +56,6 @@ const Signup = () => {
         db.collection("users")
           .doc(user.uid)
           .set({
-            // uid: user.uid,
             username: inputChange.username,
             email: inputChange.email,
             image: chosen.previewImgUrl ? chosen.previewImgUrl : unKnown,

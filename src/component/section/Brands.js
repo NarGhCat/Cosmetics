@@ -4,7 +4,7 @@ import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
 import {useSelector } from "react-redux";
 import Button from "../shared/Button";
-import { selectBrands } from "../../selectors/fierbase";
+import { selectBrands } from "../../selectors/firebase";
 import { storage } from "../../";
 const Brands = () => {
   const brands = useSelector(selectBrands);
@@ -37,9 +37,6 @@ const Brands = () => {
                 <Grid className="image-grid">
                   <ButtonBase className="image-btn">
                     <Link
-                      // onClick={() => {
-                      //   dispatch({ type: SELECTED_BRAND, payload: brand });
-                      // }}
                       to={`${url}/${brand.brandId}`}
                     >
                       <img style={{ width: 300, height: 300 }} src={logos[i]} alt="" />

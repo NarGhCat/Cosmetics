@@ -1,15 +1,16 @@
 import "../../styles/navModules.css";
 import React from "react";
 import addUserIcon from "../../Pics/icons/addUser.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../index";
 const NavModules = (props) => {
-  const { changeProfileDisplay, handleToggle, uid, email, userImg } = props;
+  const { handleToggle, uid, email, userImg } = props;
+  const history = useHistory()
   let navUserSetting;
   if (uid) {
     navUserSetting = (
       <div
-        style={{ display: changeProfileDisplay ? "block" : "none" }}
+
         className="profile-dropdown"
       >
         <div className="profile-dropdown-content">
@@ -25,6 +26,7 @@ const NavModules = (props) => {
               onClick={() => {
                 auth.signOut();
                 window.location.reload();
+                history.push("/")
               }}
               className="profile-dropdown-logout-button"
             >
@@ -37,12 +39,11 @@ const NavModules = (props) => {
   } else {
     navUserSetting = (
       <div
-        style={{ display: changeProfileDisplay ? "block" : "none" }}
         className="profile-dropdown"
       >
         <div className="profile-dropdown-content">
           <div className="navbar-loginButtonLink">
-            <Link id="loginButtonLink" to="/login">
+            <Link id="loginButtonLink" to="/login" onClick={handleToggle}>
               Login
             </Link>
           </div>
@@ -50,7 +51,7 @@ const NavModules = (props) => {
             <span>
               <img src={addUserIcon} alt="img" />
             </span>
-            <Link id="createAccountButtonLink" to="signup">
+            <Link id="createAccountButtonLink" to="signup" onClick={handleToggle}>
               Create New Account
             </Link>
           </div>
@@ -60,11 +61,6 @@ const NavModules = (props) => {
   }
   return (
     <>
-      <div
-        onClick={handleToggle}
-        style={{ display: changeProfileDisplay ? "block" : "none" }}
-        className="close-dropDown"
-      ></div>
       {navUserSetting}
     </>
   );

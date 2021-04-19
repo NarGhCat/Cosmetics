@@ -16,11 +16,11 @@ import { useStylesForBagItem } from "./BagStyles";
 import { db, storage } from "../..";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { selectUser } from "../../selectors/fierbase";
+import { selectUser } from "../../selectors/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import produce from "immer";
-import { SET_SELECTED_ITEM, SET_USER } from "../../reducer/reducer";
+import { SET_USER } from "../../reducer/reducer";
 const BagItem = (props) => {
   const dispatch = useDispatch()
   const classes = useStylesForBagItem();
@@ -55,12 +55,7 @@ const BagItem = (props) => {
         alert.show(<div style={{ color: "white", fontSize: "12px" }}>'Successfully deleted !'</div>)
       });
   }
-  function handleLearnMore(item) {
-    dispatch({
-      type: SET_SELECTED_ITEM,
-      payload: item
-    });
-  }
+  
   return (
     <div className={classes.root}>
       <Fragment>

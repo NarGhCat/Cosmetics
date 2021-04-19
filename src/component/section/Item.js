@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { storage } from "../..";
 import "firebase/firestore";
-import { selectUser } from "../../selectors/fierbase";
+import { selectUser } from "../../selectors/firebase";
 import { useAlert } from "react-alert";
 import { handleAddToBagItem } from "../../actions/functions";
 
