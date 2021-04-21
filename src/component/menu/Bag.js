@@ -58,17 +58,12 @@ const Bag = () => {
               ORDER SUMMARY
             </Typography>
             < br />
-            <Typography component="h3">
-              SUBTOTAL
-            </Typography>
             <Typography component="p">
-              SHIPPING
+              SHIPPING - FREE
             </Typography>
+            <br />
             <Typography component="p">
-              ESTIMATED TOTAL
-            </Typography>
-            <Typography component="p">
-              Total price - $ {totalPrice}
+              TOTAL PRICE - $ {totalPrice}
             </Typography>
           </CardContent>
           <CardActions style={{ border: "1px solid black" }}>

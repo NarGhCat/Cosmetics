@@ -24,7 +24,7 @@ import { SET_USER } from "../../reducer/reducer";
 const BagItem = (props) => {
   const dispatch = useDispatch()
   const classes = useStylesForBagItem();
-  const { ind, name, price, photo, itemId } = props;
+  const { name, price, photo, itemId } = props;
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
   const alert = useAlert();
@@ -87,7 +87,7 @@ const BagItem = (props) => {
             </div>
             <div className={clsx(classes.column, classes.helper)}>
               <Typography variant="caption">
-                Select your destination of choice
+                Select your beauty products 
                 <br />
               </Typography>
             </div>

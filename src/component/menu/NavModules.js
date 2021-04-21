@@ -51,7 +51,7 @@ const NavModules = (props) => {
             <span>
               <img src={addUserIcon} alt="img" />
             </span>
-            <Link id="createAccountButtonLink" to="signup" onClick={handleToggle}>
+            <Link id="createAccountButtonLink" to="/signup" onClick={handleToggle}>
               Create New Account
             </Link>
           </div>
