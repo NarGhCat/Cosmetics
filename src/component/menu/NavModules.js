@@ -26,7 +26,6 @@ const NavModules = (props) => {
               onClick={() => {
                 auth.signOut();
                 window.location.reload();
-                history.push("/")
               }}
               className="profile-dropdown-logout-button"
             >
@@ -51,7 +50,7 @@ const NavModules = (props) => {
             <span>
               <img src={addUserIcon} alt="img" />
             </span>
-            <Link id="createAccountButtonLink" to="signup" onClick={handleToggle}>
+            <Link id="createAccountButtonLink" to="/signup" onClick={handleToggle}>
               Create New Account
             </Link>
           </div>

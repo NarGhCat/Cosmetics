@@ -1,0 +1,31 @@
+
+footer {
+    background: #292929;
+    width: 100%;
+  }
+footer .footer-main-content {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: auto;
+    padding: 20px 0;
+}
+footer .footer-main-content .footer-content h2 {
+    color: white;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+}
+footer .footer-main-content .footer-content .footerItem{
+    color: white;
+    list-style: none;
+    font-size: 20px;
+    margin-top: 6px;
+}
+footer .footer-main-content .footer-content .footerItem:hover{
+    
+    text-decoration: underline;
+    opacity: 0.6;
+}
+
+
+

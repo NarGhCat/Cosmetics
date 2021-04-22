@@ -86,7 +86,6 @@
 
 .page-navigation .page-container .navbar-desktop .profile-items .div-bag-icon a img {
   width: 25px;
-
 }
 
 .page-navigation .page-container .navbar-desktop .profile-items .div-bag-icon .bag-count {
@@ -98,7 +97,14 @@
   position     : absolute;
   top          : -13px;
   right        : -9px;
-  width: 13px;
-  height: 13px;
-  text-align: center;
+  width        : 13px;
+  height       : 13px;
+  text-align   : center;
+}
+
+@media screen and (max-width:600px) {
+  .page-navigation {
+    position: absolute;
+  }
+
 }

@@ -59,7 +59,9 @@ const LearnMore = () => {
     let data = await storage.refFromURL(photo).getDownloadURL();
     setImg(data);
   };
-    getBrandLogo((selectedItem?selectedItem.photo:''));
+  getBrandLogo((selectedItem?selectedItem.photo:''));
+  return   selectedItem
+   
   }, [selectedItem]);
   return (
     <div className={classes.root}>

@@ -13,25 +13,25 @@ body {
     rgb(0 0 0) 100%
   );
 }
-
-#mainPicture {
-  min-height: 1135px;
-  width: 90%;
-  background: url("https://m.maccosmetics.com/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg");
-  background-size: contain;
+.header{
+width: 100%;
+}
+.header .header-content{
+  min-height: 800px;
+  width: 95%;
+  margin: auto;
+  background: url(https://m.maccosmetics.com/media/export/cms/makeup_services/assets_2019/aptBookingLanding_806x625_v1.jpg);
+  background-size: 100%;
   background-repeat: no-repeat;
 }
-
-#mainPicture > h2 {
-  padding-top: 300px;
+.header .header-content h2 {
+padding-top: 300px;
   font-size: 50px;
   padding-left: 40px;
 }
-
-#mainPicture > h3 {
-  padding-left: 40px;
+.header .header-content h3 {
+padding-left: 40px;
 }
-
 .logos {
   height: 31px;
   width: 31px;
@@ -61,19 +61,6 @@ span {
   color: black;
 }
 
-footer {
-  background: #292929;
-}
-
-.footerItem {
-  color: white;
-  list-style: none;
-  font-size: 20px;
-}
-.footerItem:hover {
-  text-decoration: underline;
-  opacity: 0.6;
-}
 .userIcon {
   height: 26px;
   width: 24px;

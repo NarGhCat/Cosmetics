@@ -40,14 +40,14 @@ export default function App() {
         <Nav />
         <Switch>
           <Route path="/new" component={New} />
-          <Route path="/categories/:categoryId" component={Category} />
+          <Route exact path="/categories/:categoryId" component={Category} />
           <Route exact path="/brands" component={Brands} />
           <Route path="/brands/:brandId" component={Brand} />
           <Route exact path="/bag" component={Bag} />
           <Route path="/bag/payment" component={Payment} />
-          <Route path="/login" component={Login} />
-          <Route path="/Signup" component={Signup} />
           <Route exact path="/learnmore/:itemId" component={LearnMore} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
           <Route exact path="/" component={Main} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />

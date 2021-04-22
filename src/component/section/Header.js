@@ -2,8 +2,8 @@ import "../../styles/styles.css";
 
 function Header() {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <div id="mainPicture">
+    <div className='header'>
+      <div className='header-content' id="mainPicture">
         <h2>30% OFF</h2>
         <h3>ALL CONCEALERS AND HIGHLIGHTERS</h3>
       </div>
