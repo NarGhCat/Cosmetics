@@ -3,6 +3,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useSelector } from "react-redux";
 import { selectItems } from "../../selectors/firebase";
 import Item from "./Item";
+import '../../styles/carousel.css'
 
 const CarouselPrint = () => {
   const responsive = {
@@ -25,47 +26,30 @@ const CarouselPrint = () => {
   const items = useSelector(selectItems);
   let arrayItems = [...items].slice(0, 9);
   return (
-    <div style={{ margin: "3% 10% 3% 10%" }}>
-      <h1
-        style={{
-          textTransform: "uppercase",
-          textAlign: "center",
-          marginTop: "30px",
-          fontSize: "40px",
-          color: "white"
-        }}
-      >
-        BENEFIT MUST-HAVES
-      </h1>
-      <h3
-        style={{
-          textTransform: "uppercase",
-          textAlign: "center",
-          color: "white"
-        }}
-      >
-        Meet the products you‘ve made best-sellers.
-      </h3>
-      <Carousel
-        showDots
-        responsive={responsive}
-        infinite
-        autoPlay
-        autoPlaySpeed={3000}
-        keyBoardControl
-        transitionDuration={100}
-        customTransition="transform 1000ms ease-in-out"
-        focusOnSelect
-        containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-      >
-        {arrayItems.map((item, i) => {
-          return (
-            <Item key={item.itemId} ind={i} {...item} showThumbs={false} />
-          );
-        })}
-      </Carousel>
+    <div className='carousel-main' >
+      <h1 className='carousel-title'>BENEFIT MUST-HAVES</h1>
+      <h3 className='carousel-subtitle'>Meet the products you‘ve made best-sellers.</h3>
+      <div className='slider'>
+        <Carousel
+          responsive={responsive}
+          infinite
+          autoPlay
+          autoPlaySpeed={3000}
+          keyBoardControl
+          transitionDuration={100}
+          customTransition="transform 1000ms ease-in-out"
+          focusOnSelect
+          containerClass="carousel-container"
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+          {arrayItems.map((item, i) => {
+            return (
+              <Item key={item.itemId} ind={i} {...item} showThumbs={false} />
+            );
+          })}
+        </Carousel>
+      </div>
     </div>
   );
 };

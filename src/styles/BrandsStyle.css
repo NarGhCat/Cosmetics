@@ -1,148 +1,3 @@
-/* #Clinique {
-  margin: 10px;
-
-  background: url("https://static.turbosquid.com/Preview/001185/881/H5/3D-cosmetics-clinique_0.jpg");
-  height: 500px;
-  width: 500px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#Clinique:hover {
-  opacity: 0.6;
-}
-#Clinique:hover:after {
-  content: "Clinique Products";
-  font-size: 90px;
-  color: white;
-}
-
-#EsteeLauder {
-  margin: 10px;
-  margin-top: 70px;
-  background: url("https://di2ponv0v5otw.cloudfront.net/posts/2018/03/27/5aba8db53b1608182cb7d7f2/m_5aba8dda84b5ce533da19ebd.jpg");
-  height: 500px;
-  width: 500px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#EsteeLauder:hover {
-  opacity: 0.6;
-}
-#EsteeLauder:hover:after {
-  content: "Estee Lauder Products";
-  font-size: 90px;
-  color: white;
-}
-
-#Mac {
-  margin: 10px;
-  background: url("https://images.squarespace-cdn.com/content/v1/5b16dc07372b965bcf3b3a7b/1531859478819-L1LZG6ZIRDWAU7VNU6N8/ke17ZwdGBToddI8pDm48kPJXHKy2-mnvrsdpGQjlhod7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmrMDYraMJMCQwFxTSOIP7LpSBEQpA-g5k6VTjWbSuadHJq0dp98hg5AZvIaPb3DoM/makeup+copy.png");
-  height: 500px;
-  width: 500px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#Mac:hover {
-  opacity: 0.6;
-}
-#Mac:hover:after {
-  content: "MAC Products";
-  font-size: 90px;
-  color: white;
-}
-#Dior {
-  margin: 10px;
-  background: url("https://ourfashiontrends.com/wp-content/uploads/2019/05/1-11.jpg");
-  height: 500px;
-  width: 500px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#Dior:hover {
-  opacity: 0.6;
-}
-#Dior:hover:after {
-  content: "Dior Products";
-  font-size: 90px;
-  color: white;
-}
-#KKW {
-  margin: 10px;
-  background: url("https://ugc.reveliststatic.com/gen/constrain/640/640/80/2018/03/13/11/6t/mi/ph4o4pt3k82qbwe.jpg");
-  height: 500px;
-  width: 500px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#KKW:hover {
-  opacity: 0.6;
-}
-#KKW:hover:after {
-  content: "KKW Beauty Products";
-  font-size: 90px;
-  color: white;
-}
-#Kylie {
-  margin: 10px;
-  background: url("https://www.laprovence.com/media/relaxnews/2019-10/2019-10-14/capture_d_aoe_c.a7a85072226.w640.jpg");
-  height: 500px;
-  width: 500px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#Kylie:hover {
-  opacity: 0.6;
-}
-#Kylie:hover:after {
-  content: "Kylie Products";
-  font-size: 90px;
-  color: white;
-}
-
-#Burberry {
-  margin: 10px;
-  margin-top: 70px;
-  background: url("https://i.pinimg.com/originals/28/dd/fc/28ddfc7ec2166463af493a3c0e287da1.jpg");
-  background-position: 30% 30%;
-  height: 500px;
-  width: 500px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  cursor: pointer;
-}
-#Burberry:hover {
-  opacity: 0.6;
-}
-#Burberry:hover:after {
-  content: "Burberry Products";
-  font-size: 90px;
-  color: white;
-}
-.brands-main-content{
-
-}
-.brands-main-content .brands-content{
-
-}
-.brands-main-content .brands-content .brand{
-  
-} */
-
-
-
 .brands-main-content {
   margin-top: 72px;
   width     : 100%;
@@ -160,8 +15,6 @@
 .brands-main-content .brands-content .root .paper {
   padding: 5px;
 }
-
-.brands-main-content .brands-content .root .paper .main-grid {}
 
 .brands-main-content .brands-content .root .paper .main-grid .image-grid {
   width : 30%;
@@ -200,7 +53,6 @@
   text-align: end;
 }
 
-.brands-main-content .brands-content .root .paper .main-grid .desc-grid .grid-btn .brand-link {}
 
 .brands-main-content .brands-content .root .paper .main-grid .desc-grid .grid-btn .brand-link .btn {
   background-color: #4c003f;

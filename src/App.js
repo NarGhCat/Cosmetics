@@ -12,6 +12,7 @@ import Bag from "./component/menu/Bag";
 import Payment from "./component/section/Payment";
 import Category from "./component/section/Category";
 import LearnMore from "./component/section/LearnMore";
+import './styles/responsive.css'
 import {
   BrowserRouter as Router,
   Switch,

@@ -7,11 +7,7 @@
 
 body {
   margin-top: 65px;
-  background: radial-gradient(
-    ellipse farthest-side at center,
-    #f500cb 0%,
-    rgb(0 0 0) 100%
-  );
+  background: radial-gradient(ellipse farthest-side at center top, #4c003f 0%, rgb(0 0 0) 100%);
 }
 .header{
 width: 100%;
@@ -32,34 +28,7 @@ padding-top: 300px;
 .header .header-content h3 {
 padding-left: 40px;
 }
-.logos {
-  height: 31px;
-  width: 31px;
-  padding-top: 3px;
-  margin-left: 39px;
-}
 
-.discoverEvenMore {
-  cursor: pointer;
-  margin: 0 40px 40px 40px;
-  padding: 100px;
-  font-size: 70px;
-  text-transform: uppercase;
-  text-align: center;
-  height: 150px;
-  width: 150px;
-  border-radius: 50px;
-}
-
-.discoverEvenMore:hover {
-  transition: 0.5s;
-  opacity: 0.6;
-  border-radius: 70px;
-}
-
-span {
-  color: black;
-}
 
 .userIcon {
   height: 26px;

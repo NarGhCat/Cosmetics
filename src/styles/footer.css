@@ -27,6 +27,11 @@ footer .footer-main-content .footer-content .footerItem:hover{
     text-decoration: underline;
     opacity: 0.6;
 }
+.logos {
+    width: 31px;
+    padding-top: 3px;
+    margin-left: 39px;
+  }
 
 
 

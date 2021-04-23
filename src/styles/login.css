@@ -81,8 +81,8 @@
 .login-main .login-container .login-form .form label,
 .login-main .login-container .login-form .form input {
     width        : 100%;
-    background   : #4c003f6e;   /*xent*/
-    border       : 1px solid #770263;  /*xent*/
+    background   : #4c003f6e;   
+    border       : 1px solid #770263;  
     font-size    : 18px;
     color        : white;
     padding      : 7px 14px;
@@ -94,13 +94,13 @@
 
 .login-main .login-container .login-form .form label,
 .login-main .login-container .login-form .form .submit {
-    background-color: #4c003f;  /*xent*/
+    background-color: #4c003f;  
     margin-top      : 20px;
     cursor          : pointer;
 }
 .login-main .login-container .login-form .form label:hover,
 .login-main .login-container .login-form .form .submit:hover{
-    background-color: #770263  /*xent*/
+    background-color: #770263  
 }
 .login-main .login-container .login-form .form input:focus {
     border: 1px solid #770263;
