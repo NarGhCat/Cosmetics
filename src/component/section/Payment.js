@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import { Button as ButtonMaterial, Dialog, DialogActions, DialogContent, DialogContentText } from '@material-ui/core'
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/payment.css";
 import Button from '../shared/Button'
 import { selectUser } from "../../selectors/firebase";
 import produce from "immer";
-
-import { useAlert } from "react-alert";
 import { db } from "../..";
 import { SET_USER } from "../../reducer/reducer";
 import { useHistory } from "react-router";
 const Payment = () => {
   const user = useSelector(selectUser);
-  const alert = useAlert();
-  const history = useHistory()
   const dispatch = useDispatch()
+  const history = useHistory()
+  const [open, setOpen] = useState(false);
   const [data, setData] = useState({
     cvc: "",
     expiry: "",
@@ -28,11 +27,7 @@ const Payment = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-// const alert = (
-
-// )
-const handleBuy = ( user)=>{
+  const handleBuy = (user) => {
     db.collection("users")
       .doc(user.uid)
       .update({
@@ -40,16 +35,19 @@ const handleBuy = ( user)=>{
       })
       .then(() => {
         let payload = produce(user, (draftUser) => {
-           draftUser.data.bag =[];
+          draftUser.data.bag = [];
         });
         dispatch({
           type: SET_USER,
           payload
         });
-        alert.show(<div style={{ color: "white", fontSize: "12px" }}>'Successfully completed !'</div>)
-        history.push('/')
+        setOpen(true)
       });
-}
+  }
+  const handleClose = () => {
+    setOpen(false);
+    history.push('/')
+  };
   return (
     <div className="payment-form">
       <div className="payment-form-input">
@@ -60,8 +58,8 @@ const handleBuy = ( user)=>{
           name={data.name}
           number={data.number}
         />
-        <div className = "card-form">
-          <div className = "card-form-inner">
+        <div className="card-form">
+          <div className="card-form-inner">
             <form action="" className="form">
               <input
                 type="number"
@@ -91,9 +89,28 @@ const handleBuy = ( user)=>{
           </div>
         </div>
         <div className='payment-button'>
-          <Button onClick={()=>{handleBuy(user)}}>BUY</Button>
+          <Button onClick={() => { handleBuy(user) }}>BUY</Button>
         </div>
       </div>
+      <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            your item is on its way. thanks for shopping
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <ButtonMaterial onClick={handleClose} color="primary" autoFocus>
+            Ok
+          </ButtonMaterial>
+        </DialogActions>
+      </Dialog>
+    </div>
     </div>
   );
 };

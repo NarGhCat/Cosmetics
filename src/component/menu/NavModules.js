@@ -1,11 +1,10 @@
 import "../../styles/navModules.css";
 import React from "react";
 import addUserIcon from "../../Pics/icons/addUser.png";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../../index";
 const NavModules = (props) => {
   const { handleToggle, uid, email, userImg } = props;
-  const history = useHistory()
   let navUserSetting;
   if (uid) {
     navUserSetting = (
