@@ -21,8 +21,7 @@ const useStyles = makeStyles({
     borderBottom: 1 + "px solid",
     fontSize: 25,
     cursor: "pointer",
-    color:'white'
-
+    color: "white",
   },
   p: {
     marginTop: 10,

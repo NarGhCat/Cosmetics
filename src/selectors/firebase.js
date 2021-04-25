@@ -9,4 +9,5 @@ export const selectBrandById = (id) => (state) =>
   state.brands.find((brand) => brand.brandId === id);
 export const selectItemById = (id) => (state) =>
   state.items.find((item) => item.itemId === id);
-export const selectBagCount = (state) =>(state.user.data ? state.user && state.user.data.bag.length : '');
+export const selectBagCount = (state) =>
+  state.user.data ? state.user && state.user.data.bag.length : "";

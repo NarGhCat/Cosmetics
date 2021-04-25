@@ -20,24 +20,24 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     width: 82 + "%",
   },
-  title:{
-    display:'Block',
-    width:'100%',
-    borderBottom:'1px solid white',
-    marginBottom:25
+  title: {
+    display: "Block",
+    width: "100%",
+    borderBottom: "1px solid white",
+    marginBottom: 25,
   },
-  h1:{
-    color:'white'
-  }
+  h1: {
+    color: "white",
+  },
 });
 
 const Brand = () => {
   const classes = useStyles();
   const { brandId } = useParams();
   const selectedBrand = useSelector(selectBrandById(brandId));
-  const [filteredItems, setFilteredItems] = useState([])
-  const dispatch = useDispatch()
-  const [title,setTitle] = useState('')
+  const [filteredItems, setFilteredItems] = useState([]);
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
   useEffect(() => {
     if (!selectedBrand) return;
     const ref = db.collection("brands").doc(selectedBrand.brandId);
@@ -49,30 +49,27 @@ const Brand = () => {
         querySnapshot.forEach((item) => {
           filteringItems.push({ id: item.id, data: item.data() });
         });
-        setFilteredItems(filteringItems)
+        setFilteredItems(filteringItems);
         dispatch({
           type: SET_ITEMS_BY_BRAND,
           payload: filteringItems,
         });
-        setTitle(selectedBrand.name)
+        setTitle(selectedBrand.name);
       });
   }, [selectedBrand, dispatch]);
-  return ( 
+  return (
     <>
-    <div className={classes.root}>
-      <SideBar />
-      <div className={classes.brandItem}>
-        <div className={classes.title}><h1 className={classes.h1}>{title}</h1></div>
-        {filteredItems.map((item) =>
-           <Item 
-            key={item.id}
-            {...item.data}
-            itemId={item.id}
-            url={brandId}
-          />
-        )}
+      <div className={classes.root}>
+        <SideBar />
+        <div className={classes.brandItem}>
+          <div className={classes.title}>
+            <h1 className={classes.h1}>{title}</h1>
+          </div>
+          {filteredItems.map((item) => (
+            <Item key={item.id} {...item.data} itemId={item.id} url={brandId} />
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 };

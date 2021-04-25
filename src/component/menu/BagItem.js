@@ -10,7 +10,7 @@ import {
   Chip,
   Button,
   Divider,
-} from '@material-ui/core'
+} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useStylesForBagItem } from "./BagStyles";
 import { db, storage } from "../..";
@@ -22,7 +22,7 @@ import { useAlert } from "react-alert";
 import produce from "immer";
 import { SET_USER } from "../../reducer/reducer";
 const BagItem = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const classes = useStylesForBagItem();
   const { name, price, photo, itemId } = props;
   const user = useSelector(selectUser);
@@ -39,23 +39,29 @@ const BagItem = (props) => {
     db.collection("users")
       .doc(user.uid)
       .update({
-        bag: firebase.firestore.FieldValue.arrayRemove(user.data.bag.find((item) => item.itemId === itemId)),
+        bag: firebase.firestore.FieldValue.arrayRemove(
+          user.data.bag.find((item) => item.itemId === itemId)
+        ),
       })
       .then(() => {
         let payload = produce(user, (draftUser) => {
           let result = draftUser.data.bag.findIndex(function (bagItem) {
             return bagItem.itemId === itemId;
           });
-          draftUser.data.bag.splice(result,1);
+          draftUser.data.bag.splice(result, 1);
         });
         dispatch({
           type: SET_USER,
-          payload
+          payload,
         });
-        alert.show(<div style={{ color: "white", fontSize: "12px" }}>'Successfully deleted !'</div>)
+        alert.show(
+          <div style={{ color: "white", fontSize: "12px" }}>
+            'Successfully deleted !'
+          </div>
+        );
       });
   }
-  
+
   return (
     <div className={classes.root}>
       <Fragment>
@@ -81,13 +87,16 @@ const BagItem = (props) => {
               </div>
             </div>
             <div className={classes.column}>
-              <Chip label="Remove from bag" onClick={() => {
-                handleDeleteFromBag(itemId, user);
-              }} />
+              <Chip
+                label="Remove from bag"
+                onClick={() => {
+                  handleDeleteFromBag(itemId, user);
+                }}
+              />
             </div>
             <div className={clsx(classes.column, classes.helper)}>
               <Typography variant="caption">
-                Select your beauty products 
+                Select your beauty products
                 <br />
               </Typography>
             </div>
@@ -101,8 +110,8 @@ const BagItem = (props) => {
                 width="140px"
                 border="none"
               >
-            Learn More
-          </Button>
+                Learn More
+              </Button>
             </Link>
           </AccordionActions>
         </Accordion>

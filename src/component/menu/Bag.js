@@ -15,41 +15,43 @@ import produce from "immer";
 const Bag = () => {
   const user = useSelector(selectUser);
   const classes = useStylesForBag();
-  const history = useHistory()
+  const history = useHistory();
   const [bag, setBag] = useState([]);
-  const [totalPrice, setTotalPrice] = useState([])
+  const [totalPrice, setTotalPrice] = useState([]);
   const emptyBag = (
     <div className={classes.emptyBag}>
       <h1 className={classes.emptyBagTitle}>Bag is Empty</h1>
     </div>
-  )
+  );
 
   useEffect(() => {
     if (user.data) {
       let clonedUserBag = produce(user, (draftUser) => {
-        return draftUser.data.bag
+        return draftUser.data.bag;
       });
       setBag(clonedUserBag);
-      let setPrice = 0
+      let setPrice = 0;
       clonedUserBag.map((item) => {
-       return setPrice += + item.price 
-      })
-      setTotalPrice(setPrice)
+        return (setPrice += +item.price);
+      });
+      setTotalPrice(setPrice);
     } else {
-      history.push("/")
+      history.push("/");
     }
   }, [user, history]);
   return (
     <div className={classes.bagComponent}>
       <div className={classes.bagHeader}>
-        <h1> SHOPPTING BAG { } </h1>
+        <h1> SHOPPING BAG {} </h1>
       </div>
       <div className={classes.paper}>
         <div className={`${classes.leftContent} for-scroll`}>
           <div className={classes.bagItems}>
-            {(bag.length ? bag.map((item, i) => (
-              <BagItem key={item.itemId} ind={i} {...item} />
-            )) : emptyBag)}
+            {bag.length
+              ? bag.map((item, i) => (
+                  <BagItem key={item.itemId} ind={i} {...item} />
+                ))
+              : emptyBag}
           </div>
         </div>
         <Card className={classes.card} variant="outlined">
@@ -57,14 +59,10 @@ const Bag = () => {
             <Typography variant="h5" component="h2">
               ORDER SUMMARY
             </Typography>
-            < br />
-            <Typography component="p">
-              SHIPPING - FREE
-            </Typography>
             <br />
-            <Typography component="p">
-              TOTAL PRICE - $ {totalPrice}
-            </Typography>
+            <Typography component="p">SHIPPING - FREE</Typography>
+            <br />
+            <Typography component="p">TOTAL PRICE - $ {totalPrice}</Typography>
           </CardContent>
           <CardActions style={{ border: "1px solid black" }}>
             <Link to="/bag/payment">

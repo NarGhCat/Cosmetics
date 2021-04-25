@@ -48,16 +48,16 @@ export const useStylesForBag = makeStyles((theme) => ({
     margin: "0 auto",
   },
   emptyBag: {
-    position: 'relative',
-    height: '600px',
+    position: "relative",
+    height: "600px",
   },
   emptyBagTitle: {
-    color: '#ffffffab',
-    position: 'absolute',
-    top: '50%',
-    left: '20%',
-    fontSize: '67px',
-  }
+    color: "#ffffffab",
+    position: "absolute",
+    top: "50%",
+    left: "20%",
+    fontSize: "67px",
+  },
 }));
 export const useStylesForBagItem = makeStyles((theme) => ({
   root: {

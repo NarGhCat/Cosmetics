@@ -7,12 +7,16 @@
 
 body {
   margin-top: 65px;
-  background: radial-gradient(ellipse farthest-side at center top, #4c003f 0%, rgb(0 0 0) 100%);
+  background: radial-gradient(
+    ellipse farthest-side at center top,
+    #4c003f 0%,
+    rgb(0 0 0) 100%
+  );
 }
-.header{
-width: 100%;
+.header {
+  width: 100%;
 }
-.header .header-content{
+.header .header-content {
   min-height: 800px;
   width: 95%;
   margin: auto;
@@ -21,14 +25,13 @@ width: 100%;
   background-repeat: no-repeat;
 }
 .header .header-content h2 {
-padding-top: 300px;
+  padding-top: 300px;
   font-size: 50px;
   padding-left: 40px;
 }
 .header .header-content h3 {
-padding-left: 40px;
+  padding-left: 40px;
 }
-
 
 .userIcon {
   height: 26px;

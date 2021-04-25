@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import "../../styles/BrandsStyle.css";
 import { Grid, Paper, Typography, ButtonBase } from "@material-ui/core";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Button from "../shared/Button";
 import { selectBrands } from "../../selectors/firebase";
 import { storage } from "../../";
@@ -36,10 +36,12 @@ const Brands = () => {
               <Grid container className="main-grid">
                 <Grid className="image-grid">
                   <ButtonBase className="image-btn">
-                    <Link
-                      to={`${url}/${brand.brandId}`}
-                    >
-                      <img style={{ width: 300, height: 300 }} src={logos[i]} alt="" />
+                    <Link to={`${url}/${brand.brandId}`}>
+                      <img
+                        style={{ width: 300, height: 300 }}
+                        src={logos[i]}
+                        alt=""
+                      />
                     </Link>
                   </ButtonBase>
                 </Grid>
@@ -54,14 +56,7 @@ const Brands = () => {
                   </Grid>
                   <Grid className="grid-btn">
                     <Link to={`${url}/${brand.brandId}`} className="brand-link">
-                      <Button
-                        // onClick={() => {
-                          // dispatch({ type: SELECTED_BRAND, payload: brand });
-                        // }}
-                        variant="contained"
-                      >
-                        {brand.label}
-                      </Button>
+                      <Button variant="contained">{brand.label}</Button>
                     </Link>
                   </Grid>
                 </Grid>

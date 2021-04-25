@@ -18,7 +18,7 @@ const Signup = () => {
   const generatePreviewImgUrl = (file, callback) => {
     const reader = new FileReader();
     reader.onload = () => callback(reader.result);
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(file);
   };
   let inputChange = { ...values };
   const handleImgChange = (e) => {

@@ -9,14 +9,14 @@ const useStyles = makeStyles({
     display: "flex",
     width: 95 + "%",
     margin: "auto",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   brandItem: {
     display: "flex",
     flexFlow: "wrap",
     justifyContent: "space-between",
-    width: 82 + "%"
-  }
+    width: 82 + "%",
+  },
 });
 const New = () => {
   const brandClasses = useStyles();
@@ -26,13 +26,10 @@ const New = () => {
       <SideBar />
       <div className={brandClasses.brandItem}>
         {news.map((item) => (
-          <Item 
-          key={item.itemId}
-          {...item}
-        />
+          <Item key={item.itemId} {...item} />
         ))}
       </div>
-    </div> 
+    </div>
   );
 };
 export default New;

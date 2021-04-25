@@ -4,8 +4,8 @@ import App from "./App";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
-import AlertTemplate from 'react-alert-template-basic'
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from "react-alert-template-basic";
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import { Provider } from "react-redux";
 import store from "./reducer/indexStore";
 const firebaseConfig = {
@@ -14,7 +14,7 @@ const firebaseConfig = {
   projectId: "cosmetics-91882",
   storageBucket: "cosmetics-91882.appspot.com",
   messagingSenderId: "134093997606",
-  appId: "1:134093997606:web:ab96e1e384a17969aec8e7"
+  appId: "1:134093997606:web:ab96e1e384a17969aec8e7",
   // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   // authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   // projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -26,21 +26,21 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
-export const auth = firebase.auth() ;
+export const auth = firebase.auth();
 export const storage = firebase.storage();
 const options = {
   position: positions.BOTTOM_RIGHT,
   timeout: 3000,
-  offset: '30px',
+  offset: "30px",
   transition: transitions.FADE,
-  color:'white',
-  background:'white'
-}
+  color: "white",
+  background: "white",
+};
 
 ReactDOM.render(
   <React.StrictMode>
     <AlertProvider template={AlertTemplate} {...options}>
-      <Provider store={store} >
+      <Provider store={store}>
         <App />
       </Provider>
     </AlertProvider>

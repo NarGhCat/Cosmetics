@@ -12,7 +12,7 @@ import Bag from "./component/menu/Bag";
 import Payment from "./component/section/Payment";
 import Category from "./component/section/Category";
 import LearnMore from "./component/section/LearnMore";
-import './styles/responsive.css'
+import "./styles/responsive.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,7 +32,6 @@ export default function App() {
     dispatch(getCategoriesAction());
     dispatch(getItemsActions());
     dispatch(getNewItemsActions());
-
   }, [dispatch]);
 
   return (

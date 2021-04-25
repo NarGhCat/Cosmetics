@@ -5,9 +5,9 @@
   border-radius: 10px;
 }
 .for-scroll::-webkit-scrollbar-thumb {
-  background: #4c003f; 
+  background: #4c003f;
   border-radius: 10px;
 }
 .for-scroll::-webkit-scrollbar-thumb:hover {
-  background: #4c003f ; 
+  background: #4c003f;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../shared/Card";
 import Button from "../shared/Button";
@@ -9,7 +9,7 @@ import {
   CardActionArea,
   CardActions,
   CardContent,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import { storage } from "../..";
 import "firebase/firestore";
@@ -20,11 +20,11 @@ import { handleAddToBagItem } from "../../actions/functions";
 const useStyles = makeStyles({
   new: {
     float: "right",
-    color: "red"
+    color: "red",
   },
   card: {
-    boxShadow: "0 0 6px 2px #f500cb87"
-  }
+    boxShadow: "0 0 6px 2px #f500cb87",
+  },
 });
 
 const Item = (props) => {
@@ -34,7 +34,7 @@ const Item = (props) => {
   const history = useHistory();
   const user = useSelector(selectUser);
   const [img, setImg] = useState("");
-  const { name, price, photo, status,itemId } = props;
+  const { name, price, photo, status, itemId } = props;
   const getBrandLogo = async (photo) => {
     let data = await storage.refFromURL(photo).getDownloadURL();
     setImg(data);
@@ -42,7 +42,6 @@ const Item = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-  
 
   return (
     <Card className={classes.card}>
@@ -62,7 +61,13 @@ const Item = (props) => {
           width="140px"
           border="none"
           onClick={() => {
-            handleAddToBagItem({ ...props }, user,alertDraft,dispatch,history);
+            handleAddToBagItem(
+              { ...props },
+              user,
+              alertDraft,
+              dispatch,
+              history
+            );
           }}
         >
           Add to Bag

@@ -8,10 +8,7 @@ const NavModules = (props) => {
   let navUserSetting;
   if (uid) {
     navUserSetting = (
-      <div
-
-        className="profile-dropdown"
-      >
+      <div className="profile-dropdown">
         <div className="profile-dropdown-content">
           <div className="profile-dropdown-info profile-items">
             <span className="profile-dropdown-info-img">
@@ -36,9 +33,7 @@ const NavModules = (props) => {
     );
   } else {
     navUserSetting = (
-      <div
-        className="profile-dropdown"
-      >
+      <div className="profile-dropdown">
         <div className="profile-dropdown-content">
           <div className="navbar-loginButtonLink">
             <Link id="loginButtonLink" to="/login" onClick={handleToggle}>
@@ -49,7 +44,11 @@ const NavModules = (props) => {
             <span>
               <img src={addUserIcon} alt="img" />
             </span>
-            <Link id="createAccountButtonLink" to="/signup" onClick={handleToggle}>
+            <Link
+              id="createAccountButtonLink"
+              to="/signup"
+              onClick={handleToggle}
+            >
               Create New Account
             </Link>
           </div>
@@ -57,10 +56,6 @@ const NavModules = (props) => {
       </div>
     );
   }
-  return (
-    <>
-      {navUserSetting}
-    </>
-  );
+  return <>{navUserSetting}</>;
 };
 export default NavModules;

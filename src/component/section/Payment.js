@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import { Button as ButtonMaterial, Dialog, DialogActions, DialogContent, DialogContentText } from '@material-ui/core'
+import {
+  Button as ButtonMaterial,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/payment.css";
-import Button from '../shared/Button'
+import Button from "../shared/Button";
 import { selectUser } from "../../selectors/firebase";
 import produce from "immer";
 import { db } from "../..";
@@ -12,8 +18,8 @@ import { SET_USER } from "../../reducer/reducer";
 import { useHistory } from "react-router";
 const Payment = () => {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({
     cvc: "",
@@ -39,14 +45,14 @@ const Payment = () => {
         });
         dispatch({
           type: SET_USER,
-          payload
+          payload,
         });
-        setOpen(true)
+        setOpen(true);
       });
-  }
+  };
   const handleClose = () => {
     setOpen(false);
-    history.push('/')
+    history.push("/");
   };
   return (
     <div className="payment-form">
@@ -88,29 +94,35 @@ const Payment = () => {
             </form>
           </div>
         </div>
-        <div className='payment-button'>
-          <Button onClick={() => { handleBuy(user) }}>BUY</Button>
+        <div className="payment-button">
+          <Button
+            onClick={() => {
+              handleBuy(user);
+            }}
+          >
+            BUY
+          </Button>
         </div>
       </div>
       <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            your item is on its way. thanks for shopping
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <ButtonMaterial onClick={handleClose} color="primary" autoFocus>
-            Ok
-          </ButtonMaterial>
-        </DialogActions>
-      </Dialog>
-    </div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Your package is on the way. Thank you for shopping with us!
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <ButtonMaterial onClick={handleClose} color="primary" autoFocus>
+              Ok
+            </ButtonMaterial>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 };
