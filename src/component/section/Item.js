@@ -9,22 +9,25 @@ import {
   CardActionArea,
   CardActions,
   CardContent,
-  makeStyles,
+  IconButton,
+  makeStyles
 } from "@material-ui/core";
 import { storage } from "../..";
 import "firebase/firestore";
 import { selectUser } from "../../selectors/firebase";
 import { useAlert } from "react-alert";
 import { handleAddToBagItem } from "../../actions/functions";
+import { handleAddToFavorites } from "../../actions/HandleAddToFavorites";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles({
   new: {
     float: "right",
-    color: "red",
+    color: "red"
   },
   card: {
-    boxShadow: "0 0 6px 2px #f500cb87",
-  },
+    boxShadow: "0 0 6px 2px #f500cb87"
+  }
 });
 
 const Item = (props) => {
@@ -82,6 +85,23 @@ const Item = (props) => {
             Learn More
           </Button>
         </Link>
+      </CardActions>
+
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon
+            color="primary"
+            onClick={() => {
+              handleAddToFavorites(
+                { ...props },
+                user,
+                alertDraft,
+                dispatch,
+                history
+              );
+            }}
+          />
+        </IconButton>
       </CardActions>
     </Card>
   );

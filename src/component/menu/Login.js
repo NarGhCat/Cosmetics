@@ -11,7 +11,7 @@ const Login = (props) => {
     email: "",
     password: "",
     errorMessage: "",
-    errorCode: "",
+    errorCode: ""
   });
   let submitNewValues = { ...values };
 

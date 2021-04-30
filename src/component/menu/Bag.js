@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/bag.css";
-import Typography from "@material-ui/core/Typography";
+import { Typography } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../selectors/firebase";
 import BagItem from "./BagItem";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import { CardActions, CardContent, Button } from "@material-ui/core";
 import { useStylesForBag } from "./BagStyles";
 import produce from "immer";
 

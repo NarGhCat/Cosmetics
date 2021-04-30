@@ -13,7 +13,7 @@ const Signup = () => {
     password: "",
     errorMessage: "",
     errorCode: "",
-    sizeErrorMessage: "",
+    sizeErrorMessage: ""
   });
   const generatePreviewImgUrl = (file, callback) => {
     const reader = new FileReader();
@@ -60,6 +60,7 @@ const Signup = () => {
             email: inputChange.email,
             image: chosen.previewImgUrl ? chosen.previewImgUrl : unKnown,
             bag: [],
+            favorites: []
           })
           .then((docRef) => {
             inputChange.errorMessage = "";

@@ -17,14 +17,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+  Redirect
 } from "react-router-dom";
 import {
   getBrandsActions,
   getCategoriesAction,
   getItemsActions,
-  getNewItemsActions,
+  getNewItemsActions
 } from "./reducer/asyncActions/firestoreActions";
+import Favorites from "./component/menu/Favorites";
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route exact path="/" component={Main} />
+          <Route exact path="/myFavorites" component={Favorites} />
           <Route exact path="/home" component={Main}>
             <Redirect to="/" />
           </Route>

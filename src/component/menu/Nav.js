@@ -9,7 +9,7 @@ import { SET_USER } from "../../reducer/reducer";
 import {
   selectBagCount,
   selectCategories,
-  selectUser,
+  selectUser
 } from "../../selectors/firebase";
 import bagIcon from "../../Pics/bag.png";
 function Nav() {
@@ -39,8 +39,8 @@ function Nav() {
                 type: SET_USER,
                 payload: {
                   data: doc.data(),
-                  uid: user.uid,
-                },
+                  uid: user.uid
+                }
               });
               setImg(doc.data().image);
             }
@@ -94,9 +94,13 @@ function Nav() {
               Brands
             </Link>
           </div>
-          <div className="profile-items">
-            {bagItemIcon}
 
+          <div className="profile-items">
+            <Link to="/myFavorites">
+              <div>Favorites</div>
+            </Link>
+
+            {bagItemIcon}
             <span
               onClick={handleToggle}
               id="profile-items"

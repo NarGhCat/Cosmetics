@@ -9,7 +9,7 @@ import {
   Typography,
   Chip,
   Button,
-  Divider,
+  Divider
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useStylesForBagItem } from "./BagStyles";
@@ -41,7 +41,7 @@ const BagItem = (props) => {
       .update({
         bag: firebase.firestore.FieldValue.arrayRemove(
           user.data.bag.find((item) => item.itemId === itemId)
-        ),
+        )
       })
       .then(() => {
         let payload = produce(user, (draftUser) => {
@@ -52,7 +52,7 @@ const BagItem = (props) => {
         });
         dispatch({
           type: SET_USER,
-          payload,
+          payload
         });
         alert.show(
           <div style={{ color: "white", fontSize: "12px" }}>
@@ -116,7 +116,6 @@ const BagItem = (props) => {
           </AccordionActions>
         </Accordion>
       </Fragment>
-      {/* {alert} */}
     </div>
   );
 };

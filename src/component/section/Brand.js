@@ -12,23 +12,23 @@ const useStyles = makeStyles({
     display: "flex",
     width: 95 + "%",
     margin: "auto",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   brandItem: {
     display: "flex",
     flexFlow: "wrap",
     justifyContent: "space-between",
-    width: 82 + "%",
+    width: 82 + "%"
   },
   title: {
     display: "Block",
     width: "100%",
     borderBottom: "1px solid white",
-    marginBottom: 25,
+    marginBottom: 25
   },
   h1: {
-    color: "white",
-  },
+    color: "white"
+  }
 });
 
 const Brand = () => {
@@ -52,7 +52,7 @@ const Brand = () => {
         setFilteredItems(filteringItems);
         dispatch({
           type: SET_ITEMS_BY_BRAND,
-          payload: filteringItems,
+          payload: filteringItems
         });
         setTitle(selectedBrand.name);
       });

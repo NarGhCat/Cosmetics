@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import {
   selectItemById,
   selectNews,
-  selectUser,
+  selectUser
 } from "../../selectors/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { storage } from "../..";
@@ -19,31 +19,31 @@ import { handleAddToBagItem } from "../../actions/functions";
 import { useAlert } from "react-alert";
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
     maxWidth: "50%",
-    maxHeight: 1500,
+    maxHeight: 1500
   },
   image: {
     width: 300,
-    height: 500,
+    height: 500
   },
   img: {
     margin: "auto",
     display: "block",
     maxWidth: "100%",
-    maxHeight: "100%",
+    maxHeight: "100%"
   },
   button: {
     margin: theme.spacing(10, 0, 0, 0),
-    width: 250,
+    width: 250
   },
   media: {
-    height: 140,
-  },
+    height: 140
+  }
 }));
 const LearnMore = () => {
   const alertDraft = useAlert();
