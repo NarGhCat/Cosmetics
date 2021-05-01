@@ -18,7 +18,7 @@ const Bag = () => {
   const [totalPrice, setTotalPrice] = useState([]);
   const emptyBag = (
     <div className={classes.emptyBag}>
-      <h1 className={classes.emptyBagTitle}>Bag is Empty</h1>
+      <h1 className={classes.emptyBagTitle}>BAG IS EMPTY</h1>
     </div>
   );
 

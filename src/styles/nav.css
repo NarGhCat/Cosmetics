@@ -106,6 +106,7 @@
   a
   img {
   width: 25px;
+  margin-right: 7px;
 }
 
 .page-navigation
@@ -114,7 +115,7 @@
   .profile-items
   .div-bag-icon
   .bag-count {
-  background: #ec57a3;
+  background: #794c63;
   font-size: 13px;
   padding: 3px;
   border-radius: 50%;
