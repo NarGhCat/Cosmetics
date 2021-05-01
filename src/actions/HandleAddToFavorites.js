@@ -11,6 +11,28 @@ export function handleAddToFavorites(
   dispatch,
   history
 ) {
+  const handleDeleteFromFavorites = (itemId, user) => {
+    db.collection("users")
+      .doc(user.uid)
+      .update({
+        favorites: firebase.firestore.FieldValue.arrayRemove(
+          user.data.favorites.find((item) => item.itemId === itemId)
+        )
+      })
+      .then(() => {
+        let payload = produce(user, (draftUser) => {
+          let result = draftUser.data.favorites.findIndex(function (favItem) {
+            return favItem.itemId === itemId;
+          });
+          draftUser.data.favorites.splice(result, 1);
+        });
+        dispatch({
+          type: SET_USER,
+          payload
+        });
+      });
+  };
+
   const favItem = {
     itemId: item.itemId,
     name: item.name,
@@ -36,15 +58,17 @@ export function handleAddToFavorites(
             type: SET_USER,
             payload
           });
+
           alertDraft.show(
             <div style={{ color: "white", fontSize: "12px" }}>
               Successfully added to favorites
             </div>
           );
         } else {
+          handleDeleteFromFavorites(item.itemId, user);
           alertDraft.show(
             <div style={{ color: "white", fontSize: "12px" }}>
-              You have already had this product in your favorites
+              'Successfully deleted!'
             </div>
           );
         }

@@ -36,6 +36,8 @@ const Item = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(selectUser);
+  const [isFave, setIsFave] = useState(false);
+  const [iconColor, setIconColor] = useState("action");
   const [img, setImg] = useState("");
   const { name, price, photo, status, itemId } = props;
   const getBrandLogo = async (photo) => {
@@ -90,8 +92,15 @@ const Item = (props) => {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon
-            color="primary"
+            color={iconColor}
             onClick={() => {
+              if (isFave) {
+                setIsFave(false);
+                setIconColor("action");
+              } else {
+                setIsFave(true);
+                setIconColor("secondary");
+              }
               handleAddToFavorites(
                 { ...props },
                 user,
