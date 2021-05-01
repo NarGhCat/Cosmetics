@@ -9,7 +9,7 @@ import { SET_USER } from "../../reducer/reducer";
 import {
   selectBagCount,
   selectCategories,
-  selectUser,
+  selectUser
 } from "../../selectors/firebase";
 import bagIcon from "../../Pics/bag.png";
 import faveIcon from "../../Pics/icons/heart.png";
@@ -40,8 +40,8 @@ function Nav() {
                 type: SET_USER,
                 payload: {
                   data: doc.data(),
-                  uid: user.uid,
-                },
+                  uid: user.uid
+                }
               });
               setImg(doc.data().image);
             }
@@ -49,6 +49,7 @@ function Nav() {
       }
     });
   }, [dispatch]);
+
   let bagItemIcon = "";
   if (user.data) {
     bagItemIcon = (
@@ -57,6 +58,19 @@ function Nav() {
         <Link className="navbar-menu-a" to="/bag">
           <img src={bagIcon} alt="" />
         </Link>
+      </div>
+    );
+  }
+
+  let faveItemIcon = "";
+  if (user.data) {
+    faveItemIcon = (
+      <div className="profile-items">
+        <div className="div-bag-icon">
+          <Link className="navbar-menu-a" to="/myFavorites">
+            <img src={faveIcon} alt="" />
+          </Link>
+        </div>
       </div>
     );
   }
@@ -97,13 +111,7 @@ function Nav() {
           </div>
 
           <div className="profile-items">
-            <div className="div-bag-icon">
-              {/* <span className="bag-count">{bagCount}</span> */}
-              <Link className="navbar-menu-a" to="/myFavorites">
-                <img src={faveIcon} alt="" />
-              </Link>
-            </div>
-
+            {faveItemIcon}
             {bagItemIcon}
             <span
               onClick={handleToggle}
