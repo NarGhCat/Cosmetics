@@ -19,6 +19,7 @@ import { useAlert } from "react-alert";
 import { handleAddToBagItem } from "../../actions/functions";
 import { handleAddToFavorites } from "../../actions/HandleAddToFavorites";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import userEvent from "@testing-library/user-event";
 
 const useStyles = makeStyles({
   new: {
@@ -47,7 +48,16 @@ const Item = (props) => {
   useEffect(() => {
     getBrandLogo(photo);
   }, [photo]);
-
+  useEffect(()=>{
+    user.data.favorites.map((item)=>{
+      if(item.itemId===itemId){
+        setIconColor("secondary")
+        setIsFave(true);
+      }
+    // (item.itemId===itemId?setIconColor("action"):)
+  })
+  },[])
+  
   return (
     <Card className={classes.card}>
       <Typography className={classes.new}>{status}</Typography>
@@ -88,18 +98,18 @@ const Item = (props) => {
           </Button>
         </Link>
       </CardActions>
-
+          
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon
             color={iconColor}
             onClick={() => {
               if (isFave) {
-                setIsFave(false);
                 setIconColor("action");
+                setIsFave(false);
               } else {
-                setIsFave(true);
                 setIconColor("secondary");
+                setIsFave(true);
               }
               handleAddToFavorites(
                 { ...props },
